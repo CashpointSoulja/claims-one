@@ -1,0 +1,66 @@
+{
+  "title": "TypeSafe AI public-site design observations",
+  "captured_date_utc": "2026-10-11",
+  "method": "Rendered Chrome pages; document.fonts.ready; lazy-content scroll; computed styles; full-page and opening-viewport screenshots",
+  "scope": "Public visual reference only, not an official identity manual or application test report",
+  "sources": {
+    "home": "https://typesafe.ai/",
+    "enterprise": "https://typesafe.ai/enterprise",
+    "article": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+    "api": "https://docs.typesafe.ai/api.md",
+    "primitives": "https://docs.typesafe.ai/primitives.md",
+    "confidence": "https://docs.typesafe.ai/confidence.md"
+  },
+  "captures": [
+    { "page": "home", "viewport": [1440, 1000], "device_scale_factor": 1, "full_page_pixels": [1440, 11282], "full_page": "public/brand/typesafe-home-desktop.png", "opening_viewport": "public/brand/typesafe-home-desktop-viewport.png" },
+    { "page": "home", "viewport": [390, 844], "device_scale_factor": 1, "full_page_pixels": [390, 10206], "full_page": "public/brand/typesafe-home-mobile.png", "opening_viewport": "public/brand/typesafe-home-mobile-viewport.png" },
+    { "page": "enterprise", "viewport": [1440, 1000], "device_scale_factor": 1, "full_page_pixels": [1440, 5822], "full_page": "public/brand/typesafe-enterprise-desktop.png", "opening_viewport": "public/brand/typesafe-enterprise-desktop-viewport.png" },
+    { "page": "article", "viewport": [1440, 1000], "device_scale_factor": 1, "full_page_pixels": [1440, 10475], "full_page": "public/brand/typesafe-blog-desktop.png", "opening_viewport": "public/brand/typesafe-blog-desktop-viewport.png" }
+  ],
+  "computed_colors": {
+    "homepage_body": "rgb(254, 254, 254)",
+    "primary_ink": "rgb(30, 30, 30)",
+    "soft_ink": "rgba(30, 30, 30, 0.86)",
+    "grey": "rgb(222, 222, 222)",
+    "grey_deep": "rgb(196, 196, 196)",
+    "pink": "rgb(243, 134, 161)",
+    "plotted_magenta": "rgb(229, 81, 186)",
+    "plotted_green": "rgba(3, 170, 92, 0.74)",
+    "system_caption_and_article_canvas": "rgb(171, 186, 185)",
+    "enterprise_body": "rgb(255, 255, 255)"
+  },
+  "computed_typography": {
+    "wordmark_desktop": { "text": "TypeSafe AI", "family": "Die Grotesk C Medium", "font_size_px": 18, "line_height_px": 18, "weight": 500, "letter_spacing_px": 0.54, "glyph_run_width_px": 97.1328125 },
+    "homepage_h1_desktop": { "family": "Die Grotesk C Medium", "font_size_px": 150, "line_height_px": 120, "weight": 500, "letter_spacing": "normal" },
+    "homepage_h1_mobile": { "family": "Die Grotesk C Medium", "font_size_px": 54, "line_height_px": 43.2, "weight": 500, "x_px": 20, "width_px": 339.5 },
+    "supporting_body": { "family": "Die Grotesk C Regular", "font_size_px": 17, "line_height_px": 20.4, "weight": 400, "letter_spacing_px": 0.85 },
+    "homepage_cta_desktop": { "family": "Die Grotesk C Medium", "font_size_px": 64, "line_height_px": 57.6, "weight": 500 },
+    "homepage_cta_mobile": { "family": "Die Grotesk C Medium", "font_size_px": 28, "line_height_px": 25.2, "weight": 500 },
+    "announcement_desktop": { "family": "LisaTerminal Paper 2X3Y Medium", "font_size_px": 18, "line_height_px": 18, "weight": 500, "letter_spacing_px": 0.18 },
+    "announcement_mobile": { "family": "LisaTerminal Paper 2X3Y Medium", "font_size_px": 16, "line_height_px": 16, "weight": 500, "letter_spacing_px": 0.16 },
+    "base64_desktop": { "family": "JetBrains Mono", "font_size_px": 10, "line_height_px": 12, "weight": 300, "letter_spacing_px": 0.5 },
+    "diagram_caption_desktop": { "family": "JetBrains Mono", "font_size_px": 12, "line_height_px": 14.4, "weight": 300, "letter_spacing_px": 0.6 }
+  },
+  "font_sources": [
+    { "family": "Die Grotesk C Medium", "url": "https://framerusercontent.com/assets/4w6Hg5DeDzuWT6PSthKEwbacV0g.woff2", "redistributed": false, "licensing": "Copyright 2026 Klim Type Foundry; subject to respective Klim Font Licence Agreements", "licence_url": "https://klim.co.nz/licences/" },
+    { "family": "Die Grotesk C Regular", "url": "https://framerusercontent.com/assets/AjH8uNDZvXKC9xfhOZo8jIJKVss.woff2", "redistributed": false, "licensing": "Copyright 2025 Klim Type Foundry; subject to respective Klim Font Licence Agreements", "licence_url": "https://klim.co.nz/licences/" },
+    { "family": "LisaTerminal Paper 2X3Y Medium", "url": "https://framerusercontent.com/assets/V2AZqQSDXyGgvnJfcbuPd1WaW0.woff2", "redistributed": false, "licensing": "No distribution licence established from observed public font metadata" },
+    { "family": "JetBrains Mono", "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8lqxTOlOV.woff2", "redistributed": false, "observation": "Homepage code decorations" },
+    { "family": "Fragment Mono", "url": "https://fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnB4NHhg.woff2", "redistributed": true, "local_path": "public/brand/fragment-mono-latin-400.woff2", "licensing": "Copyright 2022 The Fragment-Mono Project Authors; SIL Open Font License 1.1", "local_licence": "docs/brand/fragment-mono-license.txt", "licence_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/fragmentmono/OFL.txt", "observation": "Declared in homepage stylesheet; loaded in launch article; not the measured homepage system-caption family" }
+  ],
+  "computed_layout_desktop": {
+    "content_area_width_px": 1425,
+    "outer_container": { "width_px": 1240, "x_px": 92.5, "top_padding_px": 60, "gap_px": 40 },
+    "headline_wrapper": { "max_width_px": 1024, "horizontal_padding_px": 10 },
+    "headline_inner": { "width_px": 1004, "gap_px": 50, "bottom_padding_px": 200 },
+    "sky_scene": { "x_px": 92.5, "y_px": 1492.5, "width_px": 1240, "height_px": 800 },
+    "observed_image_area_radius_px": 4,
+    "observed_video_overlay_shadow": "rgba(0, 0, 0, 0.25) 0px 4px 4px 0px",
+    "note": "Most large wrappers are square. Floating-window styling is also contained in raster graphics. Product-window radii and shadows in BRAND.md are adaptations, not universal measured tokens."
+  },
+  "assets": {
+    "wordmark": { "path": "public/brand/typesafe-wordmark.svg", "kind": "Transparent outlined rendering of the public textual wordmark", "view_box": "0 0 97.132813 18", "source_page": "https://typesafe.ai/", "glyph_font": "Die Grotesk C Medium", "measured_character_x_px": [0, 9.046875, 18.4296875, 29.2109375, 39.09375, 50.609375, 60.046875, 65.7109375, 75.59375, 79.5, 92.9140625], "rights_note": "TypeSafe AI trademark. Static reference rendering; does not establish font or trademark reuse permission." },
+    "sky": { "path": "public/brand/typesafe-sky.png", "source_url": "https://framerusercontent.com/images/khHXfJSV1hyOxMqy8loI0dIEz4.png", "computed_css_url": "https://framerusercontent.com/images/khHXfJSV1hyOxMqy8loI0dIEz4.png?width=3840&height=2400", "pixels": [3840, 2400], "rights_note": "Observed TypeSafe AI homepage artwork; public availability is not an unrestricted reuse licence." }
+  },
+  "interpretation_boundary": "The light editorial hero, literal wordmark, and bounded sky scene follow the public homepage. The dark working console, status colors, product spacing scale, and rounded live panels are explicit Claims One adaptations. No commercial display-font files or analytics are bundled."
+}

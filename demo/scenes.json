@@ -1,0 +1,9 @@
+[
+  {"id":"hero","title":"System One for claims","text":"I built Claims One as an independent concept for TypeSafe AI and Jev. This is a mock reference, not live inference."},
+  {"id":"claim","title":"One state. Six questions.","text":"I submit a synthetic dental claim. One batch evaluates six independent questions, then ordinary code composes the route."},
+  {"id":"probabilities","title":"The published primitive contract","text":"Choice and Score show full probability distributions and confidence. Scores display one to five, with the raw zero-based value explained. Noul returns only its value."},
+  {"id":"threshold","title":"Same answers. Different delegation.","text":"At eighty-five percent, this claim needs human review. I lower the threshold to sixty-five: simulated auto-approve. The answers stay unchanged. Safety holds cannot be overridden."},
+  {"id":"economics","title":"Published assumptions, explicit units","text":"Fifty thousand claims at fifteen hundred input tokens each illustrate three dollars fifteen monthly. The comparator comes from published ratios, not independent pricing or measured performance."},
+  {"id":"evaluation","title":"Synthetic evaluation, visible denominators","text":"The shared threshold updates this two-hundred-and-forty-row synthetic evaluation. Counts and denominators expose the tradeoff; these are not measured Jev accuracy."},
+  {"id":"docs","title":"The thinking ships, too.","text":"Finally, my local documentation records the product decisions, contract, tests, and limitations. This is a reference to inspect, not a live insurance service."}
+]

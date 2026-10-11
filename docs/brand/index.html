@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Public TypeSafe AI design observations, actual reference screenshots, asset provenance, and a clearly separated Claims One application interpretation.">
+  <title>Claims One — TypeSafe AI brand reference</title>
+  <style>
+    @font-face { font-family: 'Fragment Mono'; src: url('../../public/brand/fragment-mono-latin-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    :root { color-scheme: light; --paper: #fefefe; --ink: #1e1e1e; --pink: #f386a1; --rule: #dedede; --muted: #565656; --mono: 'Fragment Mono', ui-monospace, monospace; }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 24px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.55; }
+    a { color: inherit; text-underline-offset: 4px; overflow-wrap: anywhere; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #1e1e1e; outline-offset: 5px; }
+    .skip { position: absolute; top: -100px; left: 20px; padding: 12px; background: var(--pink); z-index: 2; }
+    .skip:focus { top: 8px; }
+    .system-bar { min-height: 48px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; padding: 12px 24px; border-bottom: 1px solid #c4c4c4; background: #fefefe; }
+    .system-bar img { display: block; width: 129.51px; height: 24px; }
+    .system-bar span { padding-left: 20px; border-left: 1px solid #c4c4c4; font: 12px/1.5 var(--mono); }
+    .system-bar .stamp { margin-left: auto; color: var(--muted); border: 0; }
+    main, footer { width: min(1240px, calc(100% - 64px)); margin-inline: auto; }
+    header { padding: 64px 0 36px; }
+    .eyebrow, .tag, .number { font: 12px/1.5 var(--mono); letter-spacing: .04em; }
+    .eyebrow { color: var(--muted); margin: 0 0 24px; }
+    h1 { font-size: clamp(52px, 8vw, 108px); line-height: .88; letter-spacing: -.045em; max-width: 1000px; margin: 0 0 32px; }
+    h2 { font-size: clamp(32px, 4vw, 54px); line-height: 1; letter-spacing: -.035em; margin: 8px 0 24px; }
+    h3 { font-size: 22px; line-height: 1.15; margin: 0 0 12px; }
+    p { max-width: 80ch; margin: 0 0 18px; }
+    .intro { font-size: 20px; line-height: 1.4; max-width: 62ch; }
+    .note { color: var(--muted); font-size: 14px; }
+    .notice { padding: 20px 24px; background: #f7f7f7; border-left: 4px solid var(--pink); margin: 24px 0; }
+    .notice p:last-child { margin-bottom: 0; }
+    nav { display: flex; flex-wrap: wrap; column-gap: 28px; row-gap: 4px; border-block: 1px solid var(--rule); padding: 12px 0; }
+    nav a { display: inline-flex; align-items: center; min-height: 44px; font: 12px/1.5 var(--mono); }
+    section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+    .number { color: var(--muted); margin-bottom: 12px; }
+    .tag { display: inline-block; padding: 4px 8px; background: #dedede; margin: 0 0 16px; }
+    .tag.adaptation { background: #f386a1; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .capture-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(230px, 1fr); gap: 24px; align-items: start; }
+    figure { margin: 0; min-width: 0; }
+    .capture { display: block; width: 100%; height: auto; border: 1px solid #c4c4c4; background: #dedede; }
+    .capture-link { display: block; }
+    figcaption { margin-top: 12px; color: #565656; font-size: 14px; }
+    figcaption strong { display: block; color: #1e1e1e; font-size: 16px; margin-bottom: 4px; }
+    .mobile-shot { width: min(100%, 390px); margin-inline: auto; }
+    details { margin-top: 24px; border: 1px solid #c4c4c4; background: #f7f7f7; padding: 16px 20px; }
+    summary { cursor: pointer; min-height: 32px; font: 13px/1.5 var(--mono); }
+    details > .grid { margin-top: 20px; }
+    .scroll-capture { max-height: 660px; overflow: auto; background: #dedede; border: 1px solid #c4c4c4; }
+    .scroll-capture img { display: block; width: 100%; height: auto; }
+    .scroll-capture.mobile { max-width: 390px; margin-inline: auto; }
+    .swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+    .swatch { min-width: 0; }
+    .swatch .chip { height: 104px; border: 1px solid #c4c4c4; }
+    .swatch strong { display: block; margin-top: 10px; font-size: 14px; }
+    .swatch code { font-size: 12px; }
+    code, pre { font-family: var(--mono); }
+    code { font-size: .84em; overflow-wrap: anywhere; }
+    pre { padding: 24px; background: #1e1e1e; color: #fefefe; overflow: auto; font-size: 12px; line-height: 1.75; }
+    .table-wrap { width: 100%; overflow: auto; margin: 24px 0; }
+    table { border-collapse: collapse; text-align: left; width: 100%; font-size: 14px; }
+    th { font: 12px/1.5 var(--mono); background: #f3f3f3; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid #dedede; vertical-align: top; }
+    td:first-child { font-weight: bold; }
+    .sample { padding: 24px; border: 1px solid #c4c4c4; background: #f7f7f7; }
+    .sample .sample-title { font-size: clamp(34px, 5vw, 64px); line-height: .9; letter-spacing: -.04em; }
+    .sample .mono-sample { font: 14px/1.65 var(--mono); }
+    .wordmark-stage { display: flex; min-height: 180px; padding: 32px; justify-content: center; align-items: center; background-color: #fefefe; background-image: linear-gradient(45deg,#dedede 25%,transparent 25%),linear-gradient(-45deg,#dedede 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#dedede 75%),linear-gradient(-45deg,transparent 75%,#dedede 75%); background-size: 24px 24px; background-position: 0 0,0 12px,12px -12px,-12px 0; border: 1px solid #c4c4c4; }
+    .wordmark-stage img { width: min(100%, 388.53px); height: auto; }
+    .sky-reference { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border: 1px solid #c4c4c4; }
+    ul, ol { padding-left: 24px; max-width: 88ch; }
+    li { margin-bottom: 10px; }
+    .dark-palette { background: #171717; color: #fefefe; border: 1px solid #414141; padding: 24px; }
+    .dark-palette p { color: #b8b8b8; }
+    .dark-palette .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .dark-palette .chip { border-color: #414141; height: 64px; }
+    .dark-palette a:focus-visible { outline-color: #fefefe; }
+    footer { padding: 32px 0 48px; font-size: 14px; color: #565656; }
+    @media (max-width: 760px) { main, footer { width: calc(100% - 40px); } .system-bar { padding-inline: 20px; gap: 12px; } .system-bar span { padding-left: 12px; } .system-bar .stamp { display: none; } header { padding-top: 40px; } section { padding: 40px 0; } .grid, .capture-grid { grid-template-columns: minmax(0, 1fr); } .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); } .swatch .chip { height: 80px; } .notice, .sample, .dark-palette { padding: 16px; } th, td { padding: 10px; min-width: 130px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print { body { font-size: 11pt; } main, footer { width: 100%; } .system-bar, nav, .skip { display: none; } header { padding: 16px 0; } h1 { font-size: 46pt; } h2 { font-size: 26pt; } section { padding: 20px 0; } figure, .sample, .dark-palette { break-inside: avoid; } .capture-grid, .grid { grid-template-columns: 1fr 1fr; } .swatches { grid-template-columns: repeat(6,1fr); } .capture { max-height: 330px; object-fit: contain; } details { display: none; } pre { white-space: pre-wrap; color: #1e1e1e; background: #f7f7f7; } .dark-palette { color: #1e1e1e; background: #f7f7f7; } .dark-palette p { color: #565656; } * { print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to brand reference</a>
+  <div class="system-bar" aria-label="Reference document identity">
+    <img src="../../public/brand/typesafe-wordmark.svg" width="130" height="24" alt="TypeSafe AI">
+    <span>Claims One / brand reference</span>
+    <span class="stamp">Public-site capture · 11 Oct 2026</span>
+  </div>
+  <main id="content">
+    <header>
+      <p class="eyebrow">A visual study, not an official identity manual</p>
+      <h1>The homepage.<br>Then the console.</h1>
+      <p class="intro">Start with what TypeSafe actually looks like. Keep its paper, enormous ink type, literal wordmark, and sky desktop scene. Adapt the working window to claims triage—not the whole brand to generic SaaS.</p>
+      <p class="note">Actual public-site screenshots and computed values are separated below from application recommendations. The guide uses a system sans-serif fallback; the screenshots preserve the real commercial display typography.</p>
+      <div class="notice">
+        <p><strong>Independent reference.</strong> Claims One is an independent concept by Ayo Ahmed. Not affiliated with or endorsed by TypeSafe AI. TypeSafe AI, Jev, fonts, artwork, and screenshot content remain their respective owners' property.</p>
+        <p><strong>Mock-only application direction.</strong> Built against Jev's documented API contract; the mock adapter mirrors real endpoints and response shapes. A real key can later be connected through one adapter file plus a server-side environment variable. This guide does not claim a live Jev connection or measured model performance. The site must visibly say <strong>“Mock demo.”</strong></p>
+      </div>
+      <nav aria-label="Guide sections">
+        <a href="#captures">01 Captures</a><a href="#palette">02 Palette</a><a href="#type">03 Type &amp; spacing</a><a href="#assets">04 Assets &amp; rights</a><a href="#console">05 Interpretation</a><a href="#voice">06 Voice</a><a href="#contract">07 Data honesty</a><a href="#sources">08 Sources</a>
+      </nav>
+    </header>
+
+    <section id="captures" aria-labelledby="captures-title">
+      <p class="number">01 / Actual rendered evidence</p>
+      <h2 id="captures-title">Look at the source.</h2>
+      <span class="tag">Direct observation</span>
+      <p>The homepage begins on a near-white canvas. The enormous headline, sparse navigation, pixel-system details, and later pink sky establish a desktop-OS world. Pink is a selective accent, not a full-page gradient.</p>
+      <p class="note">Captured in Chrome after fonts loaded and lazy content was scrolled into view. Desktop: 1440 × 1000; mobile: 390 × 844; device scale factor 1. Animated content may differ between captures. Click any opening view for the original PNG; expand the archive for complete, uncropped pages.</p>
+      <div class="capture-grid">
+        <figure>
+          <a class="capture-link" href="../../public/brand/typesafe-home-desktop-viewport.png" aria-label="Open original TypeSafe homepage desktop viewport screenshot"><img class="capture" src="../../public/brand/typesafe-home-desktop-viewport.png" width="1440" height="1000" alt="Actual TypeSafe homepage desktop opening view: system-menu strip, announcement, and enormous black headline on near-white."></a>
+          <figcaption><strong>Home / desktop opening view</strong>1440 × 1000 pixels. Die Grotesk C Medium at 150px / 120px. <a href="https://typesafe.ai/">Source: typesafe.ai</a></figcaption>
+        </figure>
+        <figure class="mobile-shot">
+          <a class="capture-link" href="../../public/brand/typesafe-home-mobile-viewport.png" aria-label="Open original TypeSafe homepage mobile viewport screenshot"><img class="capture" src="../../public/brand/typesafe-home-mobile-viewport.png" width="390" height="844" alt="Actual TypeSafe homepage mobile opening view, with wrapped headline, compact menu, and the beginning of the desktop scene."></a>
+          <figcaption><strong>Home / mobile opening view</strong>390 × 844 pixels. Headline 54px / 43.2px; content starts at x=20px.</figcaption>
+        </figure>
+      </div>
+      <details>
+        <summary>Full-page archive / home desktop and mobile</summary>
+        <p class="note">Desktop original: 1440 × 11282. Mobile original: 390 × 10206. These framed previews scroll; the linked PNGs contain the complete pages.</p>
+        <div class="grid">
+          <figure><div class="scroll-capture"><img src="../../public/brand/typesafe-home-desktop.png" width="1440" height="11282" loading="lazy" alt="Complete rendered TypeSafe homepage desktop screenshot, including the pink-sky window scene, economics, diagrams, FAQ, and footer."></div><figcaption><a href="../../public/brand/typesafe-home-desktop.png">Open complete desktop PNG</a></figcaption></figure>
+          <figure><div class="scroll-capture mobile"><img src="../../public/brand/typesafe-home-mobile.png" width="390" height="10206" loading="lazy" alt="Complete rendered TypeSafe homepage mobile screenshot with the full narrow-screen section sequence."></div><figcaption><a href="../../public/brand/typesafe-home-mobile.png">Open complete mobile PNG</a></figcaption></figure>
+        </div>
+      </details>
+      <div class="grid" style="margin-top:32px">
+        <figure><a class="capture-link" href="../../public/brand/typesafe-enterprise-desktop-viewport.png" aria-label="Open original TypeSafe enterprise desktop viewport screenshot"><img class="capture" src="../../public/brand/typesafe-enterprise-desktop-viewport.png" width="1440" height="1000" loading="lazy" alt="Actual TypeSafe enterprise page opening view, showing its dark enterprise treatment and large Put Jev to work headline."></a><figcaption><strong>Enterprise / desktop</strong>Evidence that the public identity also supports dark operational surfaces. <a href="https://typesafe.ai/enterprise">Source: enterprise page</a></figcaption></figure>
+        <figure><a class="capture-link" href="../../public/brand/typesafe-blog-desktop-viewport.png" aria-label="Open original TypeSafe launch article desktop viewport screenshot"><img class="capture" src="../../public/brand/typesafe-blog-desktop-viewport.png" width="1440" height="1000" loading="lazy" alt="Actual TypeSafe launch article opening view with desktop-style window chrome and the giant System One Models and Jev headline."></a><figcaption><strong>Launch article / desktop</strong>Editorial evidence, technical results, then explicit Nuance. <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Source: launch article</a></figcaption></figure>
+      </div>
+      <details>
+        <summary>Full-page archive / enterprise and launch article</summary>
+        <div class="grid">
+          <figure><div class="scroll-capture"><img src="../../public/brand/typesafe-enterprise-desktop.png" width="1440" height="5822" loading="lazy" alt="Complete rendered TypeSafe enterprise page desktop screenshot."></div><figcaption>1440 × 5822. <a href="../../public/brand/typesafe-enterprise-desktop.png">Open complete enterprise PNG</a></figcaption></figure>
+          <figure><div class="scroll-capture"><img src="../../public/brand/typesafe-blog-desktop.png" width="1440" height="10475" loading="lazy" alt="Complete rendered TypeSafe launch article desktop screenshot, including pricing, evidence, nuance, and FAQs."></div><figcaption>1440 × 10475. <a href="../../public/brand/typesafe-blog-desktop.png">Open complete article PNG</a></figcaption></figure>
+        </div>
+      </details>
+      <p class="note" style="margin-top:24px">Screenshot credit: TypeSafe AI, typesafe.ai. Reproduced for visual reference. These public-site captures are not Claims One application test results.</p>
+    </section>
+
+    <section id="palette" aria-labelledby="palette-title">
+      <p class="number">02 / Computed colors</p>
+      <h2 id="palette-title">Paper. Ink. Pink.</h2>
+      <span class="tag">Direct observation</span>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#fefefe"></div><strong>Paper</strong><code>#FEFEFE</code></div>
+        <div class="swatch"><div class="chip" style="background:#1e1e1e"></div><strong>Ink</strong><code>#1E1E1E</code></div>
+        <div class="swatch"><div class="chip" style="background:#dedede"></div><strong>Grey</strong><code>#DEDEDE</code></div>
+        <div class="swatch"><div class="chip" style="background:#c4c4c4"></div><strong>Deep grey</strong><code>#C4C4C4</code></div>
+        <div class="swatch"><div class="chip" style="background:#f386a1"></div><strong>Pink</strong><code>#F386A1</code></div>
+        <div class="swatch"><div class="chip" style="background:#e551ba"></div><strong>Plot accent</strong><code>#E551BA</code></div>
+      </div>
+      <p>The main headline and wordmark compute to <code>rgb(30,30,30)</code>; downstream editorial ink includes <code>rgba(30,30,30,.86)</code>. The article canvas uses <code>#ABBAB9</code>. One plotted green is <code>rgba(3,170,92,.74)</code>—an observed demo accent, not a proven universal success token.</p>
+      <p class="note">The pink/purple sky is a raster image. It must not be described as a scraped CSS gradient. Application token names above are recommendations attached to measured values, not names extracted from an official design system.</p>
+    </section>
+
+    <section id="type" aria-labelledby="type-title">
+      <p class="number">03 / Exact type and layout</p>
+      <h2 id="type-title">The type does the work.</h2>
+      <span class="tag">Direct observation</span>
+      <div class="table-wrap"><table>
+        <caption class="note" style="text-align:left;margin-bottom:12px">Computed homepage typography; values are CSS pixels.</caption>
+        <thead><tr><th scope="col">Element</th><th scope="col">Family / weight</th><th scope="col">Desktop size / leading</th><th scope="col">Mobile / tracking</th></tr></thead>
+        <tbody>
+          <tr><td>Literal wordmark</td><td>Die Grotesk C Medium / 500</td><td>18 / 18; 97.1328px run</td><td>Reference tracking .54px</td></tr>
+          <tr><td>Main headline</td><td>Die Grotesk C Medium / 500</td><td>150 / 120</td><td>54 / 43.2; normal tracking</td></tr>
+          <tr><td>Supporting copy</td><td>Die Grotesk C Regular / 400</td><td>17 / 20.4</td><td>17 / 20.4; .85px tracking</td></tr>
+          <tr><td>Editorial CTA</td><td>Die Grotesk C Medium / 500</td><td>64 / 57.6</td><td>28 / 25.2</td></tr>
+          <tr><td>Announcement caption</td><td>LisaTerminal Paper 2X3Y Medium / 500</td><td>18 / 18; .18px tracking</td><td>16 / 16; .16px tracking</td></tr>
+          <tr><td>Base64 decoration</td><td>JetBrains Mono / 300</td><td>10 / 12; .5px tracking</td><td>Decorative, not a body style</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>Fragment Mono is not the measured pixel-caption font.</strong> It is declared in public font resources and loaded on the launch article. LisaTerminal supplies the measured homepage's system captions; JetBrains Mono supplies its code decorations. Fragment Mono is our openly licensed portable console-label choice.</p>
+      <div class="grid">
+        <div class="sample"><p class="eyebrow">System fallback preview / not Die Grotesk</p><p class="sample-title">System One<br>for claims.</p><p>Arial is a no-purchase portability fallback. Exact type remains visible in the actual screenshots above; this sample does not claim identical glyphs.</p></div>
+        <div class="sample"><p class="eyebrow">Bundled Fragment Mono / OFL 1.1</p><p class="mono-sample">CHOICE / distribution<br>SCORE / ordered levels<br>NOUL / probability of yes<br><br>Mock demo · human review</p><p class="note">A restrained utility register. No invented reasoning transcript or fake terminal activity.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th scope="col">Layout measurement</th><th scope="col">Exact observation</th></tr></thead>
+        <tbody>
+          <tr><td>Desktop content</td><td>1240px wide; x=92.5px inside 1425px content width at a 1440px viewport</td></tr>
+          <tr><td>Headline wrapper</td><td>1024px maximum width; 10px horizontal padding; live headline width 1004px</td></tr>
+          <tr><td>Opening outer stack</td><td>60px top padding; 40px gap</td></tr>
+          <tr><td>Headline inner stack</td><td>50px gap; 200px bottom padding</td></tr>
+          <tr><td>Mobile intro/headline</td><td>x=20px; width=339.5px in the captured layout</td></tr>
+          <tr><td>Sky scene</td><td>1240 × 800px at x=92.5px, y=1492.5px in the desktop capture</td></tr>
+          <tr><td>Radii / shadow</td><td>Most wrappers square; two image areas 4px radius; one video overlay 0 4px 4px rgba(0,0,0,.25)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">The floating windows also exist inside raster graphics. Rounded live console panels and larger shadows below are explicit adaptations, not computed universal homepage values.</p>
+    </section>
+
+    <section id="assets" aria-labelledby="assets-title">
+      <p class="number">04 / Provenance and licences</p>
+      <h2 id="assets-title">The literal mark. No invention.</h2>
+      <span class="tag">Public text reproduced as an outline</span>
+      <div class="grid">
+        <figure><div class="wordmark-stage"><img src="../../public/brand/typesafe-wordmark.svg" width="389" height="72" alt="TypeSafe AI transparent outlined wordmark"></div><figcaption><strong>Transparent wordmark</strong>The checkerboard is this guide's backdrop, not part of the SVG. <a href="../../public/brand/typesafe-wordmark.svg">Open the actual SVG</a>.</figcaption></figure>
+        <div><h3>Exact public glyphs.</h3><p>The navigation logo is rendered text: “TypeSafe AI,” Die Grotesk C Medium, 18px / 18px, weight 500, .54px tracking. No dedicated navigation-logo image was observed.</p><p>The self-contained SVG outlines those glyphs at measured browser character positions, with a transparent <code>97.132813 × 18</code> viewBox. It has no font request, background, tracking code, or invented symbol.</p><p class="note">TypeSafe AI trademark; independent reference rendering. The outline asset does not establish font or trademark reuse permission. Normalize the baseline within the 18px line box; preserve the aspect ratio.</p></div>
+      </div>
+      <div class="grid" style="margin-top:32px">
+        <figure><img class="sky-reference" src="../../public/brand/typesafe-sky.png" width="3840" height="2400" loading="lazy" alt="The original pink and purple sky artwork observed as the TypeSafe homepage desktop-scene background."><figcaption><strong>Original public sky artwork</strong>3840 × 2400. <a href="https://framerusercontent.com/images/khHXfJSV1hyOxMqy8loI0dIEz4.png">Observed source asset</a>. Public availability is not unrestricted reuse permission.</figcaption></figure>
+        <div><h3>Keep the menu light.</h3><ul><li>Put the literal wordmark first, top-left, on paper; put Claims One beside it with a fine separator.</li><li>Keep the wordmark's aspect ratio and casing. No extra symbol, stretching, violet glow, or replacement glyphs.</li><li>Recommended application clear space: 12px; minimum displayed line-box height: 18px. These are not official trademark rules.</li><li>Use base-aware app asset paths; this document uses relative paths so it opens directly without an application server.</li></ul></div>
+      </div>
+      <div class="notice"><p><strong>Commercial display fonts are not bundled.</strong> Die Grotesk is owned by Klim Type Foundry and requires the appropriate licence. LisaTerminal's redistribution rights were not established. Do not hotlink either as a licence workaround. Obtain licensed local files from the owner if available; otherwise disclose the system sans-serif fallback. No purchase or permission is claimed here.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th scope="col">Font / ownership</th><th scope="col">Exact observed source</th><th scope="col">Distribution boundary</th></tr></thead>
+        <tbody>
+          <tr><td>Die Grotesk C Medium<br>Klim, © 2026</td><td><a href="https://framerusercontent.com/assets/4w6Hg5DeDzuWT6PSthKEwbacV0g.woff2">4w6Hg5DeDzuWT6PSthKEwbacV0g.woff2</a></td><td>Not bundled. <a href="https://klim.co.nz/licences/">Klim licence required</a>.</td></tr>
+          <tr><td>Die Grotesk C Regular<br>Klim, © 2025</td><td><a href="https://framerusercontent.com/assets/AjH8uNDZvXKC9xfhOZo8jIJKVss.woff2">AjH8uNDZvXKC9xfhOZo8jIJKVss.woff2</a></td><td>Not bundled. <a href="https://klim.co.nz/retail-fonts/die-grotesk/">Foundry reference</a>.</td></tr>
+          <tr><td>LisaTerminal Paper 2X3Y Medium</td><td><a href="https://framerusercontent.com/assets/V2AZqQSDXyGgvnJfcbuPd1WaW0.woff2">V2AZqQSDXyGgvnJfcbuPd1WaW0.woff2</a></td><td>No established distribution licence; not bundled.</td></tr>
+          <tr><td>JetBrains Mono</td><td><a href="https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8lqxTOlOV.woff2">Exact observed Google Fonts WOFF2</a></td><td>Observed source only; not bundled.</td></tr>
+          <tr><td>Fragment Mono<br>Project Authors, © 2022</td><td><a href="https://fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnB4NHhg.woff2">Exact observed Latin WOFF2</a></td><td>Bundled under SIL OFL 1.1. <a href="fragment-mono-license.txt">Complete included licence</a>; <a href="https://raw.githubusercontent.com/google/fonts/main/ofl/fragmentmono/OFL.txt">official licence source</a>.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Fragment Mono here is the open-source family, not a similarly named commercial Fragment family. Preserve its licence on distribution. Its Latin subset needs a system fallback for unsupported characters. Third-party imagery and trademark permission should be confirmed before broader commercial reuse.</p>
+    </section>
+
+    <section id="console" aria-labelledby="console-title">
+      <p class="number">05 / Application interpretation</p>
+      <h2 id="console-title">A dark working window.<br>Not a dark rebrand.</h2>
+      <span class="tag adaptation">Interpretation / recommended, not scraped</span>
+      <p>Use the literal homepage's light editorial opening and bounded sky scene. Put a dark utilitarian console inside that world. The enterprise page supports dark surfaces, but the claims-specific composition and rounded working panels are ours to define.</p>
+      <ol><li><strong>System bar:</strong> TypeSafe AI first; Claims One second; restrained mono status.</li><li><strong>Hero:</strong> “System One for claims.” Large ink type, short direct copy.</li><li><strong>Working scene:</strong> sky-backed, staggered desktop windows—not decorative purple dashboard cards.</li><li><strong>Console:</strong> readable near-black surfaces, grey rules, Fragment Mono labels, tabular figures, complete probability displays, and explicit human-review states.</li><li><strong>Evidence:</strong> economics followed by source and Nuance, then “We give a FAQ.”</li></ol>
+      <div class="dark-palette">
+        <h3>Console palette recommendations</h3>
+        <p>This is a token display, not an application mockup or live result.</p>
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background:#171717"></div><strong>Background</strong><code>#171717</code></div>
+          <div class="swatch"><div class="chip" style="background:#1e1e1e"></div><strong>Surface</strong><code>#1E1E1E</code></div>
+          <div class="swatch"><div class="chip" style="background:#262626"></div><strong>Raised</strong><code>#262626</code></div>
+          <div class="swatch"><div class="chip" style="background:#88d7a5"></div><strong>Auto-approve</strong><code>#88D7A5</code></div>
+          <div class="swatch"><div class="chip" style="background:#f2c37b"></div><strong>Human review</strong><code>#F2C37B</code></div>
+          <div class="swatch"><div class="chip" style="background:#f386a1"></div><strong>Risk / emphasis</strong><code>#F386A1</code></div>
+        </div>
+      </div>
+      <pre aria-label="Recommended application tokens">--console-bg: #171717;
+--console-surface: #1e1e1e;
+--console-raised: #262626;
+--console-rule: #414141;
+--console-text: #fefefe;
+--console-muted: #b8b8b8;
+--radius-window: 18px;
+--radius-panel: 12px;
+--radius-control: 8px;
+--window-shadow: 0 24px 70px rgba(30,30,30,.22),
+                 0 4px 12px rgba(30,30,30,.12);</pre>
+      <p><strong>Spacing adaptation:</strong> 4, 8, 12, 16, 24, 32, 48, 64px scale; 24–32px window padding; 16–24px gaps; minimum 44px targets. Use 16px / 1.5 body copy and 12–14px mono labels. Only display headings borrow the .8 line-height.</p>
+      <p><strong>Interaction:</strong> ink on pink filled buttons; color plus literal status labels; 160–220ms purposeful transitions; respect reduced motion. No shimmering fake activity, endless terminal typing, fake reasoning transcript, or color-only decisions.</p>
+    </section>
+
+    <section id="voice" aria-labelledby="voice-title">
+      <p class="number">06 / Claim, evidence, nuance</p>
+      <h2 id="voice-title">Be direct. Then qualify.</h2>
+      <span class="tag">Observed editorial register</span>
+      <p>Enterprise says “Put Jev to work” and “Classify, score, and route quickly, at low cost.” The homepage says “We give a FAQ.” The launch article follows bold claims with evidence and named Nuance sections. Keep the short, developer-native register; do not erase uncertainty.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th scope="col">Recommended</th><th scope="col">Avoid</th></tr></thead>
+        <tbody>
+          <tr><td>“System One for claims.”</td><td>Generic “revolutionary insurance intelligence” hype.</td></tr>
+          <tr><td>“Mock demo. Built against Jev's documented API contract.”</td><td>“Live Jev analysis” for fixture outputs.</td></tr>
+          <tr><td>“Confidence below your threshold. Send to an adjuster.”</td><td>“Guaranteed correct decision.”</td></tr>
+          <tr><td>“Synthetic evaluation data. Not measured Jev performance.”</td><td>“Validated accuracy” without a real evaluation.</td></tr>
+          <tr><td>“Based on TypeSafe's published workflow results.”</td><td>“Your claims will be 193.6x faster.”</td></tr>
+          <tr><td>“Nuance: policy checks remain in code.”</td><td>“Zero errors. Fully autonomous insurance.”</td></tr>
+        </tbody>
+      </table></div>
+      <div class="notice"><p><strong>Published economics are not our test results.</strong> The public site's 193.6x faster / 444.6x cheaper figures are workflow-evaluation results, not measured claims-triage guarantees. The launch article notes these are likely at the higher end of real-world gains. Its $42/billion input tokens, free output, and 70–500ms response time should always carry source and assumptions. A mock delay is not live service latency.</p><p><strong>No exclusivity claim.</strong> Do not say this is the first insurance example or that TypeSafe has no existing auto-insurance work. This guide makes no such claim.</p></div>
+    </section>
+
+    <section id="contract" aria-labelledby="contract-title">
+      <p class="number">07 / Data honesty</p>
+      <h2 id="contract-title">Typed answers.<br>Visible uncertainty.</h2>
+      <span class="tag">Official API distinctions</span>
+      <p>The API reference, primitives, and confidence docs inform the display design. Use the actual answer fields, not broad marketing shorthand.</p>
+      <ul><li><strong>Choice:</strong> show <code>choice</code>, all <code>probabilities</code>, and returned <code>confidence</code>. Confidence is derived from the distribution; it is not simply the top probability. Maximum 255 options.</li><li><strong>Score:</strong> show fractional <code>score</code>, every level in <code>probabilities</code>, the returned <code>legend</code>, and <code>confidence</code>. Accepts 2–10 levels, not 255. API level indices start at 0; label any product-scale transformation explicitly.</li><li><strong>Noul:</strong> show <code>noul</code> between 0 and 1 as <strong>“Probability of yes.”</strong> Do not invent API confidence or probabilities fields. Near 0.5 already communicates uncertainty.</li><li><strong>Parallel questions:</strong> several independent questions use the same state in one request. Routing is composed in application code. Do not invent a sequential reasoning narrative or an undocumented blanket 255-question limit.</li><li><strong>Calibration:</strong> confidence is not a blanket guarantee of domain accuracy. Fixture-fed charts stay labeled synthetic; thresholds require evaluation on the real use case.</li></ul>
+      <p class="note">Only public API documentation was used for these contract statements. No service call or paid model evaluation was performed. The application remains mock-only; real credentials must never be exposed in a browser bundle.</p>
+    </section>
+
+    <section id="sources" aria-labelledby="sources-title">
+      <p class="number">08 / Source ledger and handoff</p>
+      <h2 id="sources-title">Keep the receipts.</h2>
+      <ul><li><a href="https://typesafe.ai/">TypeSafe AI homepage</a> — actual desktop/mobile appearance, wordmark, type, colors, sky scene.</li><li><a href="https://typesafe.ai/enterprise">TypeSafe enterprise</a> — operational dark treatment and direct product voice.</li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Introducing System One Models &amp; Jev</a> — editorial voice, public economics, evidence, nuance.</li><li><a href="https://docs.typesafe.ai/api.md">API reference</a>, <a href="https://docs.typesafe.ai/primitives.md">primitives</a>, and <a href="https://docs.typesafe.ai/confidence.md">confidence</a> — authoritative contract distinctions.</li><li><a href="https://klim.co.nz/retail-fonts/die-grotesk/">Die Grotesk foundry page</a> and <a href="https://klim.co.nz/licences/">Klim licence terms</a> — commercial font ownership.</li><li><a href="fragment-mono-license.txt">Fragment Mono SIL OFL 1.1</a> — included distribution licence.</li><li><a href="observations.json">Measured evidence JSON</a> — exact values, URLs, dimensions, and reproduction notes.</li><li><a href="../../BRAND.md">Repository BRAND.md</a> — complete implementation handoff and CSS token recommendations.</li></ul>
+      <p class="note">This guide and its local assets need no account, API call, remote stylesheet, or remote font at viewing time. Public citations are links, not embedded trackers. No public-page analytics were copied. Application implementation, rendered app screenshots, responsive testing, and accessibility verification belong to the subsequent UI handoff.</p>
+    </section>
+  </main>
+  <footer><p>An independent concept by Ayo Ahmed. Not affiliated with or endorsed by TypeSafe AI.</p><p>TypeSafe AI screenshot content, trademark, and artwork are credited to TypeSafe AI, typesafe.ai; commercial font rights remain with their owners. Captured 11 October 2026. This is a reference study, not permission for unrestricted commercial reuse.</p></footer>
+</body>
+</html>

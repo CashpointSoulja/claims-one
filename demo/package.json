@@ -1,0 +1,23 @@
+{
+  "name": "claims-one-walkthrough",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "narrate": "python narration.py",
+    "capture": "node capture.mjs",
+    "render": "remotion render src/index.tsx ClaimsOne output/claims-one-walkthrough.mp4 --codec=h264 --crf=20 --concurrency=2 && node clean-metadata.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.534",
+    "playwright": "^1.55.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "claims-one",
+  "main": "worker/site.ts",
+  "compatibility_date": "2026-10-11",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api", "/api/*"],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "vars": {
+    "ENABLE_LIVE": "false"
+  },
+  "observability": {
+    "enabled": false
+  }
+}
