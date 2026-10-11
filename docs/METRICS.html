@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>METRICS — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="METRICS.md">Read source markdown ↗</a></header>
+<main><h1>Metrics — safety before delegation</h1>
+<p><a href="README.html">Documentation index</a> · <a href="PRD.html">Product requirements</a> · <a href="ROADMAP.html">Roadmap gates</a></p>
+<h2>Status and north-star hypothesis</h2>
+<p><strong>No production usage is measured in Claims One.</strong> The current dashboard calculates deterministic synthetic results. There is no analytics ingestion, customer cohort, live Jev inference, independent calibration study, or measured insurer savings.</p>
+<p>For a future validated triage product, a candidate north star is <strong>correct permitted routes per reviewed hour, subject to safety and equity constraints</strong>. The numerator must be audited correct routes, not just routed records; the denominator must include review and exception work, not only inference duration. Whether this is the right business metric requires operator discovery.</p>
+<p>Autonomy rate is a coverage metric, not a quality metric and not a goal to maximize in isolation.</p>
+<h2>Proposed metrics tree</h2>
+<pre><code class="language-text">Useful, trustworthy triage
+├── Safety: critical hold bypasses, harmful misroutes, privacy incidents
+├── Quality: route agreement, per-question errors, subgroup gaps, appeals
+├── Coverage: permitted autonomy, human-review share, reason composition
+├── Operations: time to appropriate attention, queue load, rework
+├── Economics: total cost per correct permitted route, not token cost alone
+└── Adoption: developer comprehension, valid integration, repeated useful use
+</code></pre>
+<p>The tree is a measurement design, not implemented telemetry. Production signals need a privacy-approved collection plan and independent truth labels.</p>
+<h2>What the synthetic dashboard actually computes</h2>
+<p><code>src/evals.ts</code> builds <strong>12 invented claims × 20 variants = 240 rows</strong>. It changes claim-type Choice concentration, recomputes its official confidence, and routes each response through the actual validator/router. The baseline <code>predictedAction</code> is the route at threshold <strong>0</strong>, which still preserves every safety hold. Row confidence is the minimum of the four required Choice/Score confidences.</p>
+<p>Truth actions are <strong>constructed</strong>, not independently observed: a deterministic draw is compared to row confidence; agreeing rows use the baseline action, and disagreements use an alternative synthetic action. This deliberately couples generated confidence and agreement. Plotting it near a calibration diagonal is not evidence that Jev or an insurer workflow is calibrated. Variants of one narrative are not 20 independent clinical or insurance cases.</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Exact calculation / denominator</th>
+<th>Important reading</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>total</code></td>
+<td>All 240 synthetic rows evaluated at the supplied threshold</td>
+<td>Not live monthly claims</td>
+</tr>
+<tr>
+<td><code>autonomous</code></td>
+<td>Rows for which the shared router sets <code>autonomous: true</code></td>
+<td>Only simulated auto-approve or fast-track</td>
+</tr>
+<tr>
+<td><code>escalated</code></td>
+<td><code>total − autonomous</code></td>
+<td>Includes urgent and ordinary human review</td>
+</tr>
+<tr>
+<td><code>correctAutonomous</code></td>
+<td>Autonomous rows whose current route equals synthetic <code>truthAction</code></td>
+<td>Correctness is synthetic action agreement, not coverage accuracy</td>
+</tr>
+<tr>
+<td><code>autonomyRate</code></td>
+<td><code>autonomous / total</code></td>
+<td>Coverage across all rows, including safety holds</td>
+</tr>
+<tr>
+<td><code>autonomousAccuracy</code></td>
+<td><code>correctAutonomous / autonomous</code></td>
+<td><strong>null</strong> when autonomous is zero; do not render 100%</td>
+</tr>
+<tr>
+<td>Bin <code>count</code></td>
+<td>Rows whose minimum required confidence falls in the bin</td>
+<td>Bins use all rows and are independent of slider threshold</td>
+</tr>
+<tr>
+<td>Bin <code>meanConfidence</code></td>
+<td>Sum of row confidence in bin / bin count</td>
+<td>Empty bins return 0 in the engine; UI must display no data, not inferred accuracy</td>
+</tr>
+<tr>
+<td>Bin <code>accuracy</code></td>
+<td>Baseline <code>predictedAction == truthAction</code> count / bin count</td>
+<td>Baseline synthetic route agreement, not current-threshold autonomous accuracy</td>
+</tr>
+<tr>
+<td>Escalation breakdown</td>
+<td>One <strong>first</strong> reason for every non-autonomous row at current threshold</td>
+<td>Counts sum to escalated rows, not all reasons attached to those rows</td>
+</tr>
+</tbody></table>
+<p>Bins are <code>[0,.60)</code>, <code>[.60,.70)</code>, <code>[.70,.80)</code>, <code>[.80,.90)</code>, and <code>[.90,1]</code>, labeled 0–59%, 60–69%, 70–79%, 80–89%, and 90–100%. The tradeoff plot computes 21 thresholds from 0 through 1 in .05 increments; the active slider uses .50–.99 in .01 increments. The same shared functions drive both calculations. High-threshold accuracy has a gap where there are no autonomous rows.</p>
+<p>Safety reasons precede threshold reasons. A primary-reason bar therefore describes <strong>first-hold composition</strong>, not the prevalence of every integrity, documentation, or policy issue. For future analysis, maintain both mutually exclusive primary reasons and clearly labeled multi-label reason counts; never combine their denominators.</p>
+<h3>Synthetic invariants worth testing</h3>
+<ul>
+<li><code>autonomous + escalated == total</code>.</li>
+<li><code>0 &lt;= correctAutonomous &lt;= autonomous &lt;= total</code>.</li>
+<li>Increasing the threshold cannot increase autonomy for a fixed dataset and hold policy.</li>
+<li>Bin counts sum to 240; weighted bin agreement equals overall baseline agreement.</li>
+<li>Primary reason counts sum to escalated rows.</li>
+<li>Risk-held, custom, invalid, and unrecognized responses do not become autonomous when the slider falls.</li>
+</ul>
+<p>These invariants show internally coherent calculations. They do not establish external validity.</p>
+<h2>Proposed production definitions</h2>
+<p>Each future report must identify its time window, inclusion/exclusion rules, rubric/model/policy versions, threshold, label availability, and cohort. Separate attempted requests, successfully evaluated claims, and audited claims.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Numerator / denominator or statistic</th>
+<th>Guardrail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>End-to-end autonomy</td>
+<td>Claims receiving a permitted delegated route / all eligible intake claims in the cohort</td>
+<td>Failures, missing evidence, and unsupported cases must not disappear from the intake denominator</td>
+</tr>
+<tr>
+<td>Conditional route accuracy</td>
+<td>Audited delegated routes agreeing with independently adjudicated route / all audited delegated routes with resolved labels</td>
+<td>Report audit coverage and uncertainty; do not substitute confidence for labels</td>
+</tr>
+<tr>
+<td>Audit coverage</td>
+<td>Delegated claims selected and resolved for independent audit / all delegated claims</td>
+<td>Stratify by confidence, category, policy, and risk; correct for sampling when reporting population estimates</td>
+</tr>
+<tr>
+<td>Critical hold bypass rate</td>
+<td>Audited cases that required a critical hold but received delegation / audited cases requiring that hold</td>
+<td>Separate from ordinary routing errors; any confirmed bypass pauses the affected path</td>
+</tr>
+<tr>
+<td>Human-review rate</td>
+<td>Claims sent to human queues / all intake claims</td>
+<td>Separate urgent, ordinary, missing evidence, and failure fallback</td>
+</tr>
+<tr>
+<td>Rework rate</td>
+<td>Reviewed routes changed after new evidence or correction / reviewed routes with a mature outcome</td>
+<td>Label reason for change; new evidence is not automatically a model mistake</td>
+</tr>
+<tr>
+<td>Time to appropriate attention</td>
+<td>Median/p95 elapsed time from intake to correct queue acceptance</td>
+<td>Include waiting and exception handling, not just API time</td>
+</tr>
+<tr>
+<td>Calibration gap</td>
+<td>Per-bin absolute difference between mean confidence and independent correctness; weighted by bin counts</td>
+<td>Validate per question/action first; minimum confidence is not a calibrated probability of a composed route</td>
+</tr>
+<tr>
+<td>Total cost per correct route</td>
+<td>Inference + infrastructure + evaluation + review + rework costs / audited or statistically estimated correct permitted routes</td>
+<td>Exclude no required cost center; report assumptions and uncertainty</td>
+</tr>
+<tr>
+<td>Developer activation</td>
+<td>Consented developers completing a valid offline integration task / consented developers beginning that task</td>
+<td>Define task start/end and errors; do not use page views as integration proof</td>
+</tr>
+<tr>
+<td>Repeat useful use</td>
+<td>Activated developers completing a second independent task in the defined window / activated developers eligible for that window</td>
+<td>Requires consented observation or privacy-approved events; not implemented today</td>
+</tr>
+</tbody></table>
+<p>Subgroup analysis should use relevant approved dimensions such as claim type, document completeness, policy version, language, and urgency. Avoid collecting protected or sensitive attributes just to fill a chart; any fairness audit requires a justified legal and research plan. Small cells should be withheld or aggregated, not presented as strong evidence.</p>
+<h3>Statistical and label discipline</h3>
+<ul>
+<li>Independent reviewers label routes and critical holds without seeing model confidence where feasible; disagreements go to adjudication and remain visible in the audit.</li>
+<li>Split by claim/policy/time boundaries before tuning thresholds. Related narratives and repeated variants must not leak across train/tune/held-out sets.</li>
+<li>Freeze a held-out evaluation before selecting a threshold. Evaluate critical cases and the delegated subset separately.</li>
+<li>Report bin/threshold sample counts and appropriate confidence intervals. A small perfect sample is not proof of safety. Zero observed errors is not zero possible error.</li>
+<li>Set acceptable error bounds and review capacity with the risk owner before collecting outcomes. Do not retrospectively choose a threshold to make a chart look good.</li>
+</ul>
+<h2>Proposed experiment register</h2>
+<p><strong>All experiments below are plans, not completed studies.</strong> No fake interview quotations or client results are implied.</p>
+<h3>E1 — Does the reference improve contract comprehension?</h3>
+<ul>
+<li><strong>Participants:</strong> six consented developers; diagnostic sample, not a representative market estimate.</li>
+<li><strong>Tasks:</strong> distinguish Noul shape, inspect raw Score versus 1–5 display, locate the secret boundary, explain the dental threshold change and an urgent hold.</li>
+<li><strong>Measure:</strong> correct unassisted answers / participants attempting each task, plus median task time among completers and completion share / starters. Include failures and timeouts separately.</li>
+<li><strong>Candidate target:</strong> 5/6 correctly explain primitive and simulation boundaries; 4/6 locate key isolation and reproduce the threshold example.</li>
+<li><strong>Decision:</strong> iterate copy/rubrics on observed confusion. Do not enable live or autonomous claims from this outcome.</li>
+</ul>
+<h3>E2 — Does the vertical packaging reduce integration friction?</h3>
+<ul>
+<li><strong>Design:</strong> a documentation-only versus reference-assisted synthetic composition task, counterbalanced where possible, with the same allowed time and no live endpoint.</li>
+<li><strong>Measures:</strong> error-free integrations / starts in each condition; predefined schema/secret/routing errors / submitted implementations; time among successful completers, with non-completion shown.</li>
+<li><strong>Confounds:</strong> prior TypeSafe familiarity, TypeScript skill, task order, learning effects, and sample recruitment.</li>
+<li><strong>Decision:</strong> invest in reusable integration/evaluation tooling only if friction is repeatable and the reference meaningfully changes it. A small directional result is not causal proof of enterprise adoption.</li>
+</ul>
+<h3>E3 — Is a future route safe in shadow mode?</h3>
+<ul>
+<li><strong>Preconditions:</strong> approved minimized data, budget, protected server route, independently defined labels/hold policy, and an agreed risk threshold. Not configured in v1.</li>
+<li><strong>Design:</strong> record candidate routes without taking action; independent adjudication of representative and risk-enriched cases; predeclared tuning and held-out splits.</li>
+<li><strong>Measures:</strong> label coverage, hold bypasses, per-action precision, conditional autonomy, subgroup gaps, review load, and uncertainty intervals with explicit denominators.</li>
+<li><strong>Decision:</strong> no transition from shadow to assisted operation if critical holds fail, sample precision is inadequate, labels are unresolved, or the review queue cannot absorb demand.</li>
+</ul>
+<h3>E4 — Is assistance operationally worthwhile?</h3>
+<ul>
+<li><strong>Preconditions:</strong> E3 passes and humans retain authority; rollback and monitoring owners identified.</li>
+<li><strong>Design:</strong> an approved, controlled queue pilot with a predeclared comparator and mature follow-up window; not a payment experiment.</li>
+<li><strong>Measures:</strong> time to appropriate attention, rework, total cost per correct route, service complaints, and hold safety, including all assigned claims.</li>
+<li><strong>Decision:</strong> continue only if the operational benefit remains after review/integration costs without worse safety outcomes. Published multipliers are not the control group&#39;s measured performance.</li>
+</ul>
+<h2>Proposed instrumentation, not current behavior</h2>
+<p>A future privacy-approved event design could include <code>task_started</code>, <code>evaluation_attempted</code>, <code>evaluation_succeeded</code>, <code>evaluation_failed</code>, <code>route_reviewed</code>, and <code>label_adjudicated</code>, with pseudonymous IDs, timestamps, schema/rubric/policy/model versions, mode, threshold, route, and structured reason codes. Do not log raw claim text, names, invoice contents, bank details, or keys. Define retention and deletion before collection.</p>
+<p>Separate synthetic-demo sessions, offline tests, live shadow requests, and real operational outcomes. Client events alone do not prove API usage or correctness. Record server usage only after a validated live response; estimate token sizing in a separate field.</p>
+<h2>Economics are not an outcome metric</h2>
+<p>The calculator&#39;s USD output is <code>claims × input tokens per claim × 42 / 1,000,000,000</code>; its comparison cost multiplies by 444.6. Per-request latency is an illustrative 114 ms, with a comparator of 114 × 193.6. These published-workflow ratios are not measured Claims One results or independent comparator pricing.</p>
+<p>Do not add the local demo&#39;s runtime to a Jev latency dataset. Mock token counters are zero; the rough serialized-character helper and calculator inputs are assumptions. A future benchmark must use the same state/rubrics, comparable output contract and quality target, captured actual usage, region/network context, concurrency, repeated trials, and measured failure/retry costs. See <a href="SOURCES.html">Sources</a>.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

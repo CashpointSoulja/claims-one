@@ -9,8 +9,9 @@
   "scripts": {
     "dev": "node scripts/build-docs.mjs && vite",
     "build": "node scripts/build-docs.mjs && tsc -b && vite build && node scripts/check-package.mjs",
+    "prepare:pages": "npm run build && node scripts/prepare-pages.mjs",
     "check:package": "node scripts/check-package.mjs",
-    "test": "vitest run",
+    "test": "vitest run --root .",
     "typecheck": "tsc -b",
     "lint": "eslint ."
   },

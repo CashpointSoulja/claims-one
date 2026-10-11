@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AGENTS — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="AGENTS.md">Read source markdown ↗</a></header>
+<main><h1>Standing maintenance context</h1>
+<p><a href="README.html">Documentation index</a> · <a href="DECISIONS.html">Decisions</a> · <a href="TEST-PLAN.html">Test plan</a></p>
+<h2>Product identity</h2>
+<p>Claims One is an independent synthetic pet-FNOL reference by Ayo Ahmed. It demonstrates composition around TypeSafe AI&#39;s documented System One contract and Jev; it is not an official TypeSafe product, an insurer, or a live decision service.</p>
+<p>Keep <strong>“An independent concept by Ayo Ahmed.”</strong> Keep public material synthetic, transparent, and non-affiliated. TypeSafe AI and Jev are subject names, not project-author credits. Third-party assets remain their owners&#39; work. Preserve the Fragment Mono licence and approximate-commercial-font disclosure.</p>
+<h2>Safe defaults</h2>
+<ul>
+<li>The public static experience is <strong>Mock demo</strong> with no API key, paid request, runtime secret, browser analytics, or mandatory sign-in.</li>
+<li>The twelve samples are invented. Do not paste real claimant/policyholder, payment, medical, or policy records into the public demo or commit them as examples.</li>
+<li><code>src/adapter.ts</code> defaults to local evaluation. Never silently switch to a remote service, add a credential field, or use a paid fallback.</li>
+<li>Exact complete sample text plus exact rubric identifies a fixture. Edited input is generic uncertainty, not model inference.</li>
+<li>Every route is simulated. Never imply real approval, payment, denial, coverage verification, or a fraud finding.</li>
+</ul>
+<h2>Contract invariants</h2>
+<p>Consult the official API, primitives, and confidence docs in <a href="SOURCES.html">Sources</a> before changing API details.</p>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Required behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Request</td>
+<td><code>{ state, model, questions }</code>; six application question IDs in <code>src/questions.ts</code>, one shared state, no dependency on another answer</td>
+</tr>
+<tr>
+<td>Choice</td>
+<td>1–255 options, exact probability keys, sum one, argmax option, formula-derived confidence</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>2–10 ordered levels, exact legend/probability keys, zero-based weighted mean and ordered-spread confidence</td>
+</tr>
+<tr>
+<td>Noul</td>
+<td><code>{ type: &#39;noul&#39;, noul: number }</code> only; no confidence, reason, or predicted label</td>
+</tr>
+<tr>
+<td>Response</td>
+<td><code>{ model, answers, usage }</code>; all required answers present, strict validation, no application metadata added to JSON</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Choice option limit is not a universal question-count limit; retain the &gt;255 independent-question regression</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>Scores add one only for the 1–5 UI; raw wire values remain 0–4. Noul is probability of yes</td>
+</tr>
+<tr>
+<td>Usage</td>
+<td>Offline counters are zero; serialized-character token sizing is an estimate, not measured usage</td>
+</tr>
+</tbody></table>
+<p>Preserve <code>Promise.all</code> in the mock to reflect independent questions. Do not describe it as measured model concurrency or six live calls.</p>
+<h2>Routing and provenance invariants</h2>
+<p><code>routeClaim(response, threshold)</code> in <code>src/routing.ts</code> is the sole application routing policy. Keep the UI and evaluation harness using it.</p>
+<ul>
+<li>Validate threshold and response before action; fail closed on malformed data.</li>
+<li>Require trusted external fixture context for simulated delegation. It lives in a WeakMap in <code>src/mock.ts</code>, not in the response schema.</li>
+<li>Retain the original response object in the UI. JSON serialization/cloning removes trusted context; copied JSON is for inspection, not restored authority.</li>
+<li>Custom, unrecognized, edited-rubric, cloned, and live responses remain human-only.</li>
+<li>All required Choice/Score confidences must meet the selected threshold. Do not average them to hide an uncertain answer.</li>
+<li>Integrity Noul must be at most .15 and policy-alignment Noul at least .90 for simulated delegation.</li>
+<li>Complete documentation needs raw score at least 3.8 and raw level-4 probability at least .90, plus trusted complete fixture evidence.</li>
+<li>Prior-condition/claim-value/invoice concerns, disputes, incomplete evidence, unknown type, severe or urgent cases, and high churn risk remain human/urgent regardless of slider.</li>
+<li>Keep the routine dental regression: human review at .85, simulated auto-approve at .65.</li>
+<li>Clear a stale result immediately on narrative/sample changes; gate pending async results by request identity. Never show an old route under new text.</li>
+</ul>
+<p>Changes to a gate need explicit product/risk rationale, focused boundary tests, and matching documentation. A looser threshold is not a production rollout approval.</p>
+<h2>Economics and evaluations</h2>
+<ul>
+<li><code>src/economics.ts</code> is the calculation source of truth. Validate numeric inputs and preserve explicit units.</li>
+<li>$42/billion input tokens, output free, 114 ms illustrative latency, 70–500 ms published range, and 193.6×/444.6× published workflow ratios are cited assumptions—not Claims One measurements.</li>
+<li>Comparators are ratio-derived. Show exclusions: review, integration, infrastructure, policy verification, retries, and evaluations.</li>
+<li><code>src/evals.ts</code> has 240 deterministic synthetic rows: twelve fixture groups × twenty variations. Labels are constructed, not independently adjudicated.</li>
+<li>Preserve null autonomous accuracy for zero eligible rows; do not replace it with 0% or 100%.</li>
+<li>Calibration bins use all rows&#39; minimum required Choice/Score confidence; chart agreement is synthetic and is not calibration proof.</li>
+<li>Escalation breakdown counts one primary reason per escalated row. Do not silently mix that denominator with multi-label holds.</li>
+<li>Never hand-code dashboard values or describe synthetic rows as customer outcomes.</li>
+</ul>
+<h2>Optional live boundary</h2>
+<p>The default site does not use the Worker. The server route needs deliberate adapter wiring and an actual deployment; static Pages alone does not supply <code>/api/evaluate</code>.</p>
+<p>Keep a server-only <code>TYPESAFE_API_KEY</code>, explicit <code>ENABLE_LIVE=true</code>, exact HTTPS <code>ALLOWED_ORIGIN</code>, verified Access team/audience, allowed identities, mandatory rate-limit binding, strict size/content/model validation, timeouts, upstream validation, generic redacted errors, and no-store responses. Worker transport tests use injected offline boundaries and do not prove a deployed Access configuration.</p>
+<p>Do not add keys, live data, or upstream error bodies to logs. Do not weaken same-origin relative endpoint validation. Do not mark live responses as trusted fixtures. Future production evidence needs a separately designed provenance, labeling, policy, privacy, and rollout system.</p>
+<h2>Brand and responsive behavior</h2>
+<p>Read <code>BRAND.md</code> before visual changes. Preserve the paper/ink opening, literal transparent wordmark, bounded sky imagery, dark working-console region, restrained pink actions, and evidence/nuance copy. Avoid a generic all-dark landing page, artificial logo treatment, excessive glow, and heavy radial decoration.</p>
+<p>Keep the fixed demo indicators, honest source/economics notes, non-affiliation notice, visible focus, reduced-motion support, mobile reflow, and adjacent evaluation data tables. Visual correctness requires rendered desktop and narrow screenshots plus real keyboard checks, not source inspection alone.</p>
+<h2>Documentation and verification workflow</h2>
+<ul>
+<li>Update root product docs with behavior changes. The build renders and copies them into <code>public/docs</code>; do not maintain contradictory hand-written public copies.</li>
+<li>Required docs must be substantive. <code>scripts/build-docs.mjs</code> intentionally fails for missing required sources; never fix that with empty placeholders.</li>
+<li><code>TEST-PLAN.md</code> specifies checks. <code>TEST-RESULTS.md</code> records actual commands, outcomes, limitations, and rendered/deployment evidence; preserve the separation.</li>
+<li>Run <code>npm test</code>, <code>npm run typecheck</code>, <code>npm run lint</code>, and <code>npm run build</code> as applicable, then record exact results. Do not claim a check passed unless it actually ran.</li>
+<li>Recheck relative assets and documentation at root and a project subpath. Test the generated site logged out after deployment before claiming public availability.</li>
+<li>Preserve file ownership in parallel work. Do not overwrite another workstream&#39;s sources or test record.</li>
+<li>Do not publish, merge, push, create a review request, or change repository settings without explicit authorization. Maintain the required Ayo Ahmed author identity for any separately authorized commits.</li>
+<li>Keep private planning references, secret material, machine-specific paths, and unrelated project material out of public sources and generated pages.</li>
+</ul>
+<h2>Positioning guardrails</h2>
+<p>The public TypeSafe use-case map already includes insurance FNOL. Its self-consistency insurance cookbook uses 14 Noul questions and 15 repeats per condition, with probability heatmaps, .30–.70 uncertainty/human-review bands, and per-call cost/latency. A logged-out console variation was not verified. Do not claim Claims One is the first insurance example or that the cookbook lacked routing, thresholds, uncertainty, or economics.</p>
+<p>Differentiate the full pet-FNOL product template: mixed primitives, application policy, editable delegation with nonoverrideable gates, interactive workflow, workload calculator, synthetic evals, and product/engineering docs. Published cookbook results were not independently reproduced. No interviews, customer outcomes, independent accuracy study, or internal TypeSafe enterprise-application inventory support this reference&#39;s product hypotheses.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

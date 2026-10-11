@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FIVE-WHYS — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="FIVE-WHYS.md">Read source markdown ↗</a></header>
+<main><h1>Five Whys — from uncertain intake to a bounded reference</h1>
+<p><a href="README.html">Documentation index</a> · <a href="PRD.html">Product requirements</a> · <a href="METRICS.html">Discovery metrics</a></p>
+<h2>Starting question</h2>
+<p><strong>Why might a team evaluating structured models struggle to turn a claims-triage idea into a dependable workflow?</strong></p>
+<p>The chain below is a <strong>product hypothesis</strong>, not a finding from customer research. No adjuster interviews, enterprise usage data, or insurer client results were collected. Public sources can establish API shapes and published positioning; they cannot establish this problem&#39;s prevalence, severity, or willingness to pay.</p>
+<h2>Hypothesis chain</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Proposed why</th>
+<th>What is actually evidenced</th>
+<th>What would test or disprove it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Because deciding a route depends on several different judgments, not one category label</td>
+<td>The implemented example separates type, urgency, integrity, policy alignment, records, and service intent. TypeSafe documents atomic questions composed in code</td>
+<td>Observe real intake with consent; ask operators to identify the smallest sufficient decision set. A simple deterministic rule may already solve the useful part</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Because those judgments depend on evidence of uneven completeness and certainty</td>
+<td>The synthetic narratives deliberately include missing invoices, onset conflicts, disputed prior history, and emergencies. This demonstrates possible cases, not frequency</td>
+<td>Sample approved, minimized records; independently label missingness and disputes. If evidence is usually structured and complete, text-based triage may be the wrong wedge</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Because a probability or schema alone does not encode an insurer&#39;s risk tolerance</td>
+<td>Official confidence docs distinguish uncertainty from action thresholds. This router explicitly adds holds</td>
+<td>Ask a risk owner to enumerate allowed actions and irreversible harms. If all useful routes require expert deliberation, automation should remain assistive</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Because teams must build and validate composition, human review, security, and measurement around the model</td>
+<td>The source visibly contains these separate boundaries. Their difficulty for external developers has not been measured</td>
+<td>Give developers the official docs and this reference in a counterbalanced task. Compare completion, mistakes, and points of confusion—not self-reported enthusiasm alone</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Because the missing bridge may be a product-ready pattern, rather than another isolated prediction demo</td>
+<td>Public TypeSafe materials include primitives, patterns, and an existing auto-insurance cookbook. Claims One packages a distinct pet-claims workflow as a reference</td>
+<td>Ask whether this packaging changes integration decisions or merely looks polished. If developers already compose safely from the cookbook, prioritize an eval package or other friction instead</td>
+</tr>
+</tbody></table>
+<p><strong>Candidate root cause:</strong> domain-aware composition and evidence of safe behavior may be more important than the raw ability to output a typed label. That is the hypothesis this artifact makes concrete; it is not a proven market diagnosis.</p>
+<h2>Alternative explanations</h2>
+<ul>
+<li>Access, procurement, privacy, or legal review—not workflow design—may be the adoption bottleneck.</li>
+<li>Developers may need SDK ergonomics, better examples for structured state, or observability more than a vertical UI.</li>
+<li>Insurance economics may be dominated by human investigation, policy verification, or integrations rather than inference cost.</li>
+<li>Existing deterministic routing may already work well. A probabilistic layer could add uncertainty without value.</li>
+<li>Narrative judgments may not be stable enough to delegate, even when returned with high confidence.</li>
+<li>A minimum-confidence gate across all required Choice/Score judgments may over-escalate; a route-specific gate might be better only after independent evidence.</li>
+</ul>
+<p>These alternatives prevent an attractive demo from becoming a premature product mandate.</p>
+<h2>Evidence discipline</h2>
+<h3>Direct observations</h3>
+<ul>
+<li>The official API supports Choice, Score, and Noul and batched independent questions over a shared state.</li>
+<li>Choice and Score include distributions and derived confidence; Noul does not include separate confidence.</li>
+<li>TypeSafe publishes an auto-insurance self-consistency example. This project cannot honestly claim to invent the first insurance use case.</li>
+<li>TypeSafe&#39;s launch article qualifies its published speed/cost gains as toward the higher end of real-world results.</li>
+<li>The current repository implements synthetic responses and calculations, not observed model behavior.</li>
+</ul>
+<p>References are in <a href="SOURCES.html">Sources</a>. These observations support a possible design, not validated demand or production benefit.</p>
+<h3>Not established</h3>
+<p>There is no verified inventory of TypeSafe&#39;s enterprise applications, no proof it has “zero enterprise apps,” no customer quote, no measured adjuster time saving, no retention uplift, no claims accuracy, and no willingness-to-pay result here. The public enterprise page and cookbook are not substitutes for internal adoption data.</p>
+<h2>Discovery plan</h2>
+<ol>
+<li><strong>Operator workflow mapping:</strong> recruit claims reviewers with consent; walk through sanitized or invented records. Ask what can be routed safely, what requires policy evidence, and what a wrong route costs. Record disagreements rather than forcing consensus.</li>
+<li><strong>Developer comprehension:</strong> use the proposed six-person study in <a href="PRD.html">PRD</a>. Have participants explain the Noul shape, locate the secret boundary, and identify an unsafe slider interpretation.</li>
+<li><strong>Comparative integration task:</strong> compare documentation-only versus reference-assisted composition using the same synthetic task and no paid endpoint. Use counterbalanced assignment where practical; capture errors and completion time with a predefined definition.</li>
+<li><strong>Risk-owner review:</strong> test the hold list and rubric with an independent reviewer. Treat a missing critical hold as a design defect, not an opportunity to increase autonomy.</li>
+<li><strong>Decision checkpoint:</strong> continue the vertical direction only if these sessions identify repeatable, consequential friction the reference reduces. If not, redirect effort toward the demonstrated integration or evaluation problem.</li>
+</ol>
+<p>These activities are proposed; none is presented as completed. <a href="METRICS.html">Metrics</a> specifies denominators and evidence gates.</p>
+<h2>Product implication today</h2>
+<p>Keep the first release narrow: one invented input, six typed answers, explicit simulated routing, inspectable code, visible uncertainty, and a human-review default. Do not turn high confidence into a medical recommendation, fraud finding, denial, or coverage promise. The next product decision should be informed by developer and operator evidence, not the synthetic chart&#39;s apparent calibration.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

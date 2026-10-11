@@ -51,7 +51,7 @@ The default application is TypeScript + React + Vite. It needs no application ba
 
 Root Markdown documents are source-of-truth files. `scripts/build-docs.mjs` copies their source and renders HTML to `public/docs/`; Vite then copies that directory into the build. The brand guide is copied separately from `docs/brand/`. Do not maintain generated copies by hand. Keep source links relative so the same navigation can work in the repository and built documentation. Confirm root **and** subpath links in a browser before declaring portability verified.
 
-No deployment URL or logged-out availability is asserted here. Hosting integrations and a public repository were unavailable during integration; the configurations below are a handoff, not a completed publication.
+Source repository: [CashpointSoulja/claims-one](https://github.com/CashpointSoulja/claims-one). No deployment URL or logged-out site availability is asserted here. Pages must be enabled by the repository owner before the public site can be verified.
 
 ### Cloudflare Worker with static assets (preferred handoff)
 
@@ -74,11 +74,25 @@ That second command is intentionally not part of verification and was not execut
 
 For an existing Cloudflare Pages project instead of a Worker, use build command `npm run build` and output directory `dist`, or the owner's manual upload command `CLOUDFLARE_SEND_METRICS=false npx --yes wrangler@4.149.0 pages deploy dist --project-name claims-one`. That upload is not executed or verified here and does not install the optional Worker API.
 
-### GitHub Pages fallback (manual dispatch only)
+### GitHub Pages from the default branch root
+
+The repository includes a compiled static site at its root: `index.html`, `assets/`, `brand/`, `docs/`, `favicon.svg` and `.nojekyll`. The development HTML entry lives separately in `app/index.html`; Pages never needs to interpret TypeScript or run npm. Asset and documentation URLs are relative, so the same static artifact supports the `/claims-one/` repository mount.
+
+To enable hosting, choose **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main → Folder: / (root)**, then save. The owner performs this step; preparing or pushing files does not itself enable Pages. Wait for GitHub's Pages build to finish and verify the resulting URL logged-out before calling the site deployed.
+
+After source or documentation changes, regenerate the committed static site from the repository root:
+
+```bash
+npm run prepare:pages
+```
+
+This builds with the default relative base, copies the compiled artifact to the root, writes `.nojekyll`, and verifies every copied file byte-for-byte. Do not set `VITE_BASE_PATH` for this command. Review and commit the generated files along with the source changes. `npm run dev` continues to serve the source through Vite; it does not depend on the committed bundle.
+
+### Optional GitHub Actions deployment
 
 `.github/workflows/pages.yml` has no push/PR trigger. It installs from the lockfile, runs tests/typecheck/lint, builds, and uploads the complete static artifact. Normal workflow permission is only `contents: read`; only the deployment job receives `pages: write` and `id-token: write`. Checkout does not persist credentials.
 
-An authorized owner must first make the intended public repository available and select **Settings → Pages → Source: GitHub Actions**. Then select **Actions → Deploy static demo to GitHub Pages → Run workflow** on the reviewed branch. No repository creation, workflow dispatch, deployment, or public URL is claimed here.
+For this alternative only, an authorized owner selects **Settings → Pages → Source: GitHub Actions**, then **Actions → Deploy static demo to GitHub Pages → Run workflow** on the reviewed branch. This is not required for the branch-root option above. No workflow dispatch, deployment, or public URL is claimed here.
 
 The workflow defaults `VITE_BASE_PATH` to `/<repository-name>/` (thus `/claims-one/` for this repository). For a custom domain or user/organization site, set the repository Actions variable `PAGES_BASE_PATH` to `/` before dispatching. Do not treat the repository path as a domain name. Equivalent offline builds:
 
@@ -117,6 +131,7 @@ The last command restores the portable relative-base artifact for handoff. The p
 - `worker/site.ts` / `wrangler.jsonc`: public static-asset wrapper and disabled-by-default Cloudflare deployment configuration.
 - `.github/workflows/pages.yml`: owner-triggered GitHub Pages fallback with explicit base path and scoped permissions.
 - `scripts/check-package.mjs`: byte-preserving public-asset/document and local-reference checks, without a browser.
+- `app/index.html`: Vite's development/build HTML source. The root `index.html` and static directories are compiled Pages artifacts, refreshed by `npm run prepare:pages`.
 - `demo/`: isolated desktop capture, free narration and Remotion composition. Its README documents the reproduction prerequisites and ordered pipeline; generated media is delivered separately, not committed.
 - `tests/contract.test.ts`, `tests/engine.test.ts`, `tests/evals.test.ts`: offline contract, routing, transport, economics, and evaluation checks; `tests/audit.test.ts` adds independent regression checks; `tests/integration.test.ts` covers six-section static React rendering, wrapper logic, deployment configuration, and rights packaging. Static rendering does not test browser interaction.
 

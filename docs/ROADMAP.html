@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROADMAP — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="ROADMAP.md">Read source markdown ↗</a></header>
+<main><h1>Roadmap — gated v1 → v2</h1>
+<p><a href="README.html">Documentation index</a> · <a href="VIABILITY.html">Viability</a> · <a href="METRICS.html">Metrics</a> · <a href="TEST-PLAN.html">Test plan</a></p>
+<p>This is a proposed sequence, not a dated delivery promise or a record of completed customer pilots. Every stage needs an accountable owner and evidence at its exit gate. A passed synthetic test does not authorize a real insurance action.</p>
+<h2>Current v1 boundary</h2>
+<p>The source implements a portable static React/Vite reference, twelve invented pet claims, six mixed typed questions, offline fixture evaluation, fail-closed simulated routes, workload economics, and 240 deterministic synthetic eval variations. The optional same-origin Worker transport exists in source but is disabled by default and is not a configured live deployment.</p>
+<p>The public experience must retain <strong>Mock demo</strong>, no real claimant records, and <strong>“An independent concept by Ayo Ahmed.”</strong> Static build readiness, rendered UI verification, logged-out public availability, and production readiness are different milestones. Read <a href="TEST-RESULTS.html">Test results</a> for actual verification evidence.</p>
+<h2>Stage 0 — reference release</h2>
+<p><strong>Deliverable:</strong> a clearly independent public static concept with functioning links, inspectable code, and truthful demonstrations.</p>
+<p><strong>Exit gate:</strong></p>
+<ul>
+<li>Record contract, routing, economics/eval, typecheck, lint, and production build results.</li>
+<li>Verify desktop and narrow layout, keyboard use, chart tables, stale-result handling, clipboard fallback, source/HTML document links, and root/subpath assets.</li>
+<li>Confirm the deployed static page loads logged out without a sign-in wall.</li>
+<li>Verify the dental .85 → .65 change and threshold-independent risk holds in the rendered experience.</li>
+<li>Scan source and rendered metadata for unintended attribution, private material, machine paths, exposed credentials, and misleading live/benchmark claims.</li>
+<li>Retain third-party ownership, font licence, non-affiliation, and approximation notices.</li>
+</ul>
+<p><strong>Stop:</strong> any unsafe hold bypass, secret exposure, misleading provenance, missing document, or blocking interaction defect prevents calling the reference release verified.</p>
+<h2>Stage 1 — discover the actual adoption problem</h2>
+<p><strong>Deliverable:</strong> a concise evidence memo from consented developer tasks, operator workflow mapping, and independent risk review.</p>
+<p><strong>Questions:</strong> does this productized template add value beyond official docs and the existing insurance cookbook? Which judgments are sufficiently narrow? Where do people misunderstand confidence, Noul, Score, or live-key placement?</p>
+<p><strong>Exit gate:</strong> repeatable integration or evaluation friction is observed; a developer can reproduce the contract safely; reviewers agree on a bounded action/hold taxonomy; the proposed rubric&#39;s limits are explicit. Diagnostic study targets are in <a href="PRD.html">PRD</a>, and denominators/confounds are in <a href="METRICS.html">Metrics</a>.</p>
+<p><strong>Stop or redirect:</strong> if the main barrier is procurement, policy retrieval, privacy, or an adequate deterministic rule, address that rather than adding more probabilistic UI.</p>
+<h2>Stage 2 — controlled live shadow evaluation</h2>
+<p><strong>Deliverable:</strong> a separately approved server integration and independently labeled evaluation corpus. Nothing changes the published static demo&#39;s default.</p>
+<h3>Technical dependencies</h3>
+<ol>
+<li>Deploy the Worker on the same origin with an explicit <code>/api/evaluate</code> route; supply deployment/runtime configuration not included in v1.</li>
+<li>Use a server-only <code>TYPESAFE_API_KEY</code> and explicit <code>ENABLE_LIVE=true</code> only after authorization and budget approval.</li>
+<li>Configure exact HTTPS <code>ALLOWED_ORIGIN</code>, a Cloudflare Access team/application (<code>ACCESS_TEAM_DOMAIN</code>, <code>ACCESS_AUD</code>), <code>LIVE_ALLOWED_EMAILS</code>, and mandatory <code>LIVE_RATE_LIMITER</code> quotas. Protect the API route, not the public mock page.</li>
+<li>Explicitly wire <code>createWorkerAdapter</code> at the adapter boundary; merely setting an environment variable does not replace the default mock.</li>
+<li>Validate deployed identity verification, origin enforcement, streamed limits, upstream response validation, error redaction, timeouts, quotas, and cost shutoff. Offline injected tests are not deployment proof.</li>
+<li>Re-read the official API, primitive, and confidence documentation before any schema changes; test the supported model alias and actual usage accounting.</li>
+</ol>
+<h3>Evidence and privacy dependencies</h3>
+<ul>
+<li>Approve minimized synthetic or appropriately authorized data, consent, retention/deletion, legal/vendor terms, jurisdiction, and security review before handling real records.</li>
+<li>Define independent reviewer labels, disagreement adjudication, rubric/policy/model versioning, and claim-separated tuning/held-out splits.</li>
+<li>Predeclare allowed error bounds, critical hold coverage, subgroup checks, review capacity, latency/cost budgets, and rollback owners.</li>
+<li>Measure actual live usage and network latency separately from fixture counters, token estimates, and published-workflow illustrations.</li>
+</ul>
+<p><strong>Exit gate:</strong> held-out performance meets the risk owner&#39;s predefined bounds with sufficient sample precision, no unresolved critical hold bypass, acceptable review load, and verified deployed controls. Even then, <strong>current live responses remain human-only</strong>: the router only trusts external synthetic fixture provenance. Do not forge that provenance or add unpublished fields to make live responses autonomous.</p>
+<p><strong>Stop:</strong> any data incident, critical hold bypass, authentication/quotas failure, unacceptable quality uncertainty, or review overload disables the live path and returns work to human review.</p>
+<h2>Stage 3 — reviewer assistance</h2>
+<p><strong>Deliverable:</strong> an authorized human workbench using typed answers to prioritize attention and request missing evidence. Reviewers retain final authority; no payment, denial, fraud finding, or coverage determination is automatic.</p>
+<p><strong>Requirements:</strong> real queue ownership, evidence provenance, audit trail with minimized retention, override/disagreement capture, urgent handling, appeal/escalation process, and agreed service levels. A production system must distinguish an estimate, an invoice, a medical note, and verified policy data; v1 only demonstrates narrative summaries.</p>
+<p><strong>Exit gate:</strong> a controlled assisted pilot improves time to appropriate attention or correct-route efficiency against a predefined comparator without worse safety, rework, complaints, or subgroup outcomes. Include all assigned intake records in reporting, not only successful API calls.</p>
+<p><strong>Stop:</strong> a confirmed harmful route or critical hold bypass pauses the affected path. Trends in quality, queue capacity, or costs crossing predefined bounds also trigger rollback. Resume only after reviewed remediation and fresh evidence.</p>
+<h2>Stage 4 — bounded delegation, if justified</h2>
+<p><strong>Deliverable:</strong> a separate, narrowly scoped policy for reversible workflow actions, not a blanket autonomous insurer.</p>
+<p>This stage is not a commitment to payments. “Auto-approve” in the mock is a demonstration label, not the action design for a regulated production rollout.</p>
+<p><strong>Exit gate before any delegation:</strong> domain/legal approval, independently validated action-specific confidence policy, complete verified evidence, critical holds, human challenge/override, mature outcomes, audit sampling, monitoring, rollback, and a kill switch. The response/provenance architecture must be deliberately redesigned and reviewed; do not relabel a live JSON response as a fixture.</p>
+<p><strong>Stop:</strong> without these conditions, remain human-assisted indefinitely. Raising a slider or publishing more synthetic rows is not a substitute.</p>
+<h2>v2 workstream — evaluation harness as a product</h2>
+<p>If discovery validates the need, package the current transparent calculation pattern into reusable tooling:</p>
+<ul>
+<li>Versioned question/rubric, model, routing policy, and dataset identifiers.</li>
+<li>Import of approved labeled examples with data minimization and explicit consent/retention rules.</li>
+<li>Independent label adjudication and dataset-leakage checks.</li>
+<li>Threshold sweeps with counts, null-safe metrics, confidence intervals, per-action and subgroup breakdowns.</li>
+<li>Separate primary and multi-label escalation analyses.</li>
+<li>Offline regression suites plus optional authorized live shadow runs; never silently fall back to a paid API.</li>
+<li>Comparison runs that record actual usage, latency distribution, retry/failure rates, region, concurrency, and quality target.</li>
+<li>Exportable evidence reports with provenance and reproducible configuration, not chart-only hardcodes.</li>
+</ul>
+<p><strong>Gate:</strong> developers can use it on a second independently defined workflow, accurately explain its evidence limits, and identify a regression it catches. Distribution packaging, multi-tenant storage, billing, and compliance are not included in v1.</p>
+<h2>v2 workstream — additional vertical templates</h2>
+<p>TypeSafe&#39;s public use-case map already lists multiple industries. These are productization candidates, not claims to invent those use cases.</p>
+<table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th>First bounded workflow</th>
+<th>Why explore it</th>
+<th>Additional gate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Support triage</td>
+<td>Classify intent/urgency and route to a queue; no automatic refund</td>
+<td>Often reversible queue actions and clearer label opportunities</td>
+<td>Validate urgency/service policy and personal-data handling; human escalation for ambiguous or sensitive tickets</td>
+</tr>
+<tr>
+<td>Content moderation</td>
+<td>Flag for review using explicit policy; no irreversible removal in the initial pilot</td>
+<td>Useful test of policy-versioned rubrics and disagreement analysis</td>
+<td>Language/subgroup review, reviewer welfare, rights/appeal process, and treatment of policy ambiguity</td>
+</tr>
+<tr>
+<td>KYC</td>
+<td>Assess stated document completeness and route to a specialist; no automated rejection or identity assertion</td>
+<td>Tests high-stakes evidence and workflow boundaries</td>
+<td>Regulated identity/privacy review, document authenticity limits, auditability, human approval, and stricter rollout controls</td>
+</tr>
+</tbody></table>
+<p>Prefer the lowest-stakes workflow with the strongest available labels, not the most impressive-looking decision. Each vertical needs its own rubric, evidence, holds, harm analysis, and rollout approval; a pet-claim threshold is not transferable.</p>
+<h2>Resource and sequencing principle</h2>
+<p>Invest first in evidence, shared contracts, safety regression coverage, and developer usability. Preserve the static demo as a no-account entry point. Keep live spend explicitly authorized and bounded. Choose between another vertical, integration packaging, and evaluation tooling using observed friction—not the published 193.6×/444.6× multipliers or synthetic calibration appearance.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

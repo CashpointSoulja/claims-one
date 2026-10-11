@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRD — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="PRD.md">Read source markdown ↗</a></header>
+<main><h1>Product requirements — Claims One v1</h1>
+<p><a href="README.html">Documentation index</a> · <a href="JTBD.html">Jobs</a> · <a href="METRICS.html">Metrics</a> · <a href="ROADMAP.html">Roadmap</a></p>
+<h2>Product statement</h2>
+<p><strong>Claims One turns the TypeSafe AI System One contract into an inspectable pet-claims triage experience.</strong> One invented claim fans out into six independent typed questions; ordinary code composes their answers into a simulated route. Uncertainty is visible, and a human-review path is a first-class result.</p>
+<p>This is an independent concept by Ayo Ahmed, not an official TypeSafe product. v1 is a static, mock-only reference—not an insurer service, a live Jev evaluation, or a claim-payment system.</p>
+<h2>Problem and evidence level</h2>
+<p><strong>Problem hypothesis:</strong> teams exploring structured decision automation may understand an API&#39;s types but still struggle to design the surrounding workflow: rubrics, risk holds, threshold selection, evaluation, and safe deployment. A vertical reference could shorten that translation.</p>
+<p><strong>Domain hypothesis:</strong> first-notice-of-loss (FNOL) intake has repeatable classification and routing needs, but missing evidence, disputed onset, urgency, and inconsistent documentation limit delegation. The size of that opportunity and actual operator pain have not been measured here. No claim is made that all insurance workflows are manual, that current LLM pipelines always fail, or that claims triage is the largest insurance decision category.</p>
+<p><strong>Observed public evidence:</strong> TypeSafe documents typed primitives, independent batched evaluation, and application-code composition. Its existing auto-insurance Noul self-consistency cookbook already explores insurance. Claims One adds a separate pet-claims product surface, six mixed primitives, an adjustable threshold, explicit holds, transparent economics, and an illustrative evaluation dashboard. It is not a claim to be the first enterprise application or first insurance example. See <a href="SOURCES.html">Sources</a>.</p>
+<h2>Users and jobs</h2>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Job</th>
+<th>Product response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Workflow developer</td>
+<td>Understand the contract and compose bounded decisions without putting secrets in a browser</td>
+<td>Exact types, raw request/response, actual copyable rubrics/router, server-only adapter boundary</td>
+</tr>
+<tr>
+<td>Claims operations reviewer</td>
+<td>See why a claim stays with a person and what evidence is missing</td>
+<td>Reasons, urgent review, policy ambiguity and documentation holds; no automatic denial</td>
+</tr>
+<tr>
+<td>Product/risk owner</td>
+<td>Explore the delegation/quality tradeoff with denominators, not a single confidence badge</td>
+<td>Shared threshold, autonomy rate, conditional accuracy, reason counts, synthetic provenance</td>
+</tr>
+<tr>
+<td>Policyholder, indirectly</td>
+<td>Receive appropriate attention without uncertain evidence being treated as a coverage decision</td>
+<td>Human escalation and explicit limitation of churn/integrity signals</td>
+</tr>
+</tbody></table>
+<p>These are proposed personas, not interviewed participants. v1&#39;s primary hands-on user is the developer/product reviewer, not a policyholder submitting a real claim.</p>
+<h2>Goals</h2>
+<ol>
+<li>Make state + typed questions + composed code understandable in one sitting.</li>
+<li>Show how probabilities, confidence, and domain-specific holds differ.</li>
+<li>Demonstrate a safe <strong>simulation</strong> of changing delegation, not authority to pay or deny.</li>
+<li>Make assumptions, data provenance, and verification evidence as inspectable as the UI.</li>
+<li>Offer a portable, credential-free static artifact and an optional protected server integration boundary.</li>
+</ol>
+<h2>Non-goals</h2>
+<ul>
+<li>Real payments, coverage decisions, denials, fraud findings, or medical advice.</li>
+<li>Reading attachments, validating invoices, retrieving a policy, or verifying the narrative&#39;s factual truth.</li>
+<li>Live API access, benchmark reproduction, production accuracy/calibration claims, or actual customer analytics.</li>
+<li>Identity onboarding, a claim database, real policyholder records, or a compliance certification.</li>
+<li>Proving exact licensed reproduction of commercial typography or ownership of third-party assets.</li>
+</ul>
+<h2>Requirements and acceptance criteria</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Acceptance criterion</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>R1</td>
+<td>Six-section, desktop-first single-page reference</td>
+<td>Hero, Triage, Workflow, Economics, Evaluation, Docs anchors; usable narrow layout; source docs linked</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Accurate public provenance</td>
+<td>Visible mock label, synthetic inputs/evals, simulation labels, economics caveats, non-affiliation, exact footer credit</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>Synthetic claim editor</td>
+<td>Twelve unique clearly invented samples; 20–12,000-character demo limit; no real-record encouragement; edits clear stale results</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>One batch contract</td>
+<td><code>buildRequest</code> includes state, <code>jev-latest</code>, and six fixed question IDs; mock evaluates questions independently through one batch, not sequential inference calls</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>Exact primitive presentation</td>
+<td>Choice includes all criteria keys, selected option, probabilities, confidence; Score includes legend, mean, probabilities, confidence; Noul includes only type and noul</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>Score scale distinction</td>
+<td>Five levels display 1–5 using raw score + 1; raw response, legend/probability keys, and routing use 0–4 positions</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>Fail-closed simulated routing</td>
+<td>Invalid shape/threshold and unknown/custom/cloned/live responses remain non-autonomous; all required Choice/Score confidences meet threshold before delegation</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>Independent holds</td>
+<td>Integrity probability &gt; .15, policy alignment &lt; .90, incomplete records, disputed/prior condition, unknown type, high churn, and urgency override the confidence slider</td>
+</tr>
+<tr>
+<td>R9</td>
+<td>Demonstrable threshold change</td>
+<td>Routine dental at .85 is human review and at .65 is simulated auto-approve on the same original response; risky cases remain human-only</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>Inspectable workflow</td>
+<td>Actual shared question definitions and actual routing source are readable and copyable; independent questions over one state are accurately depicted</td>
+</tr>
+<tr>
+<td>R11</td>
+<td>Honest economics</td>
+<td>Input-only published rate; assumptions/units visible; 193.6×/444.6× only ratio-derived illustrations, not measured artifact benefits</td>
+</tr>
+<tr>
+<td>R12</td>
+<td>Calculated synthetic evaluation</td>
+<td>240 deterministic truth-labeled variations; metrics, bins, and primary reasons computed through the shared router; correct denominators; empty autonomous accuracy is null</td>
+</tr>
+<tr>
+<td>R13</td>
+<td>Credential isolation</td>
+<td>Default adapter does not fetch; optional Worker owns the key, validates origin/identity/quotas/body/upstream; public static page needs no account</td>
+</tr>
+<tr>
+<td>R14</td>
+<td>Build and portability</td>
+<td>Documentation copied/rendered from root sources; relative Vite base; root/subpath links and assets verified before release</td>
+</tr>
+<tr>
+<td>R15</td>
+<td>Usable and accessible interactions</td>
+<td>Keyboard labels/focus, non-color-only statuses, readable chart tables, reduced-motion support; no unhandled console errors in recorded verification</td>
+</tr>
+</tbody></table>
+<p>R1, R14, and R15 require rendered browser/deployment checks, not just source review or static rendering. The acceptance matrix is operationalized in <a href="TEST-PLAN.html">Test plan</a>; actual outcomes belong in <a href="TEST-RESULTS.html">Test results</a>.</p>
+<h3>Fixed question design</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Primitive</th>
+<th>What it is allowed to mean</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>claim_type</code></td>
+<td>Choice</td>
+<td>Reported category, including <code>pre_existing</code> and <code>other</code>; not entitlement</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>Score</td>
+<td>Narrative urgency rubric, not clinical advice</td>
+</tr>
+<tr>
+<td><code>fraud_signal</code></td>
+<td>Noul</td>
+<td>An inconsistency needing human investigation, not fraud guilt</td>
+</tr>
+<tr>
+<td><code>liability</code></td>
+<td>Noul</td>
+<td>Alignment with stated synthetic policy evidence, not insurer liability</td>
+</tr>
+<tr>
+<td><code>documentation_completeness</code></td>
+<td>Score</td>
+<td>Completeness of the stated record list, not documents inferred into existence</td>
+</tr>
+<tr>
+<td><code>churn_risk</code></td>
+<td>Choice</td>
+<td>Explicit cancellation intent/service attention, not demographics or eligibility</td>
+</tr>
+</tbody></table>
+<p>Question text, distribution fixtures, router, and evaluation logic live in shared modules. The UI must not create a second implementation of routing or metrics. See <a href="README.html">README technical contract</a> for formulas and exact numerical holds.</p>
+<h2>State and interaction requirements</h2>
+<ul>
+<li>Evaluating freezes the submitted request for its response view; text changes invalidate pending results and clear old answers.</li>
+<li>Double submission is guarded. A rejected evaluation exposes an error rather than leaving a stale success decision visible.</li>
+<li>Threshold changes re-run routing and evaluation calculations without another inference call.</li>
+<li>The original returned response object is retained. Synthetic fixture provenance is external to JSON; clones lose eligibility.</li>
+<li>Custom input uses uniform Choice/Score distributions and Noul .5, not a plausible-looking fabricated diagnosis. Exact sample and rubric matching is required for fixture responses.</li>
+<li>Urgent review is prioritized human attention; every route remains simulated.</li>
+</ul>
+<h2>Success definition</h2>
+<h3>v1 release criteria</h3>
+<p>All critical contract, isolation, and fail-closed checks pass with recorded evidence; public mock/synthetic framing is visible; documentation and assets resolve; the .85 → .65 dental demonstration works; risk holds do not change with the slider; browser verification finds no blocking interaction/accessibility defects. A static build does not substitute for the logged-out deployed-site check.</p>
+<h3>Proposed discovery criteria, not achieved results</h3>
+<p>In a consented six-person developer comprehension study, aim for at least <strong>5/6</strong> participants to distinguish Noul from Choice/Score and correctly explain that mock autonomy is not coverage authority, after an unguided ten-minute task. At least <strong>4/6</strong> should locate the server-only key boundary and reproduce the intended dental threshold change. These are small-sample diagnostic targets, not generalizable adoption statistics or a release authorization for real claims.</p>
+<p>A future production pilot must define its own representative held-out labels, risk-specific error bounds, service-level budgets, review capacity, privacy approval, and rollback trigger before activation. Synthetic metrics and published workflow ratios cannot satisfy those gates. <a href="METRICS.html">Metrics</a> specifies denominators and candidate experiments; <a href="ROADMAP.html">Roadmap</a> specifies stage transitions.</p>
+<h2>Constraints and dependencies</h2>
+<p>No credential is required for v1. The live adapter is an option in source, not a turnkey deployed integration: it additionally needs origin policy, verified Cloudflare Access identities, allowlisted users, mandatory quotas, server configuration, budget approval, and live validation. Even then the current router keeps live responses human-only.</p>
+<p>Brand reference material retains third-party ownership and reuse caveats. Literal commercial typography needs an appropriate licence; the shipped system fallback is explicitly approximate. Public release must keep the non-affiliation notice and <strong>“An independent concept by Ayo Ahmed.”</strong></p>
+<h2>Open product questions</h2>
+<ol>
+<li>Which intake judgments can operators reliably label without interpreting an entire policy?</li>
+<li>Does the shared minimum-confidence gate create too much review load, especially when service signals are uncertain?</li>
+<li>Are the category and completeness rubrics comprehensible and actionable across insurers?</li>
+<li>Does a reference template reduce integration effort beyond TypeSafe&#39;s existing cookbook?</li>
+<li>Would developers prefer an evaluation harness, reusable integration package, or another vertical first?</li>
+</ol>
+<p>None is answered by the invented fixtures. The next step is discovery and controlled shadow evaluation, not expanding simulated payment authority.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

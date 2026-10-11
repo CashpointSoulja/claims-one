@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIABILITY — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="VIABILITY.md">Read source markdown ↗</a></header>
+<main><h1>Viability memo — productize the pattern, earn the evidence</h1>
+<p><a href="README.html">Documentation index</a> · <a href="PRD.html">Product requirements</a> · <a href="METRICS.html">Metrics</a> · <a href="ROADMAP.html">Roadmap</a></p>
+<h2>Recommendation</h2>
+<p>Treat Claims One as a <strong>product-shaped reference and discovery instrument</strong>, not as a validated insurance automation business or an official TypeSafe product. The useful direction is a family of bounded vertical templates paired with an evaluation discipline: typed questions, explicit application policy, human-review boundaries, and evidence that developers can actually integrate them.</p>
+<p>My recommendation is to validate developer friction and operator/risk requirements before expanding the live integration or the number of verticals. The current static experience proves that the contract can be made concrete and inspectable. It cannot prove model quality, customer demand, production safety, calibration, cost savings, or a sales conversion effect.</p>
+<h2>Start with the overlap, not a novelty claim</h2>
+<p>TypeSafe already publishes meaningful insurance material:</p>
+<ul>
+<li>Its <a href="https://docs.typesafe.ai/concepts/use-case-map.md">use-case map</a> explicitly lists insurance FNOL triage.</li>
+<li><a href="https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md">Self-consistency: nouls</a> evaluates <strong>one auto-insurance claim with 14 Noul questions, repeated 15 times per condition</strong>.</li>
+<li>That cookbook includes probability heatmaps, per-question <strong>.30–.70 uncertainty bands</strong> mapped to human review, and <strong>per-call latency and cost</strong> comparisons.</li>
+</ul>
+<p>These capabilities are not missing from the published example. Claims One does not invent insurance routing, confidence thresholds, probability visualization, or economics. It does not reproduce the cookbook&#39;s measured results. The public written recipe is the verified comparison basis; no claim is made about the configuration of an inaccessible console variant.</p>
+<p>The differentiated proposal is <strong>productization</strong>: a complete synthetic <strong>pet-FNOL template</strong> with mixed Choice/Score/Noul, application-level policy, editable confidence thresholds plus nonoverrideable risk gates, an interactive workflow/code surface, workload economics, a synthetic evaluation dashboard, and PM/engineering documentation. It shows a fuller product journey around the same underlying philosophy rather than claiming a new primitive or an absent industry category.</p>
+<p>Public pages do not establish TypeSafe&#39;s full enterprise application inventory. It would be inaccurate to assert that TypeSafe has zero enterprise applications or that this is its first enterprise reference. See <a href="SOURCES.html">Sources</a>.</p>
+<h2>How this maps to product-management work</h2>
+<table>
+<thead>
+<tr>
+<th>PM responsibility</th>
+<th>Concrete artifact</th>
+<th>What it demonstrates now</th>
+<th>What still needs evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Translate capabilities into compelling experiences</td>
+<td>Six-section interface, six atomic questions, full distributions and simulated routes</td>
+<td>A legible product model for structured judgments and uncertainty</td>
+<td>Whether developers and operators understand it without coaching</td>
+</tr>
+<tr>
+<td>Identify what to build next</td>
+<td>Narrow pet-claims wedge, explicit non-goals, stage-gated roadmap</td>
+<td>Prioritization and a hypothesis about reusable vertical/evaluation tooling</td>
+<td>Demand, repeatable friction, buying process, and better alternatives</td>
+</tr>
+<tr>
+<td>Developer empathy</td>
+<td>Copyable actual code, strict types, honest Noul/Score treatment, portable setup, key-isolated adapter</td>
+<td>Attention to integration details and unsafe assumptions</td>
+<td>Task success, time to useful integration, SDK needs, and documentation gaps</td>
+</tr>
+<tr>
+<td>Analyze usage and quality</td>
+<td>Calculated threshold metrics, bin counts, primary escalation reasons, explicit denominators</td>
+<td>A design for asking the right measurement questions</td>
+<td>Real privacy-approved telemetry, independent labels, operational cohorts, and causal benefit</td>
+</tr>
+<tr>
+<td>Balance product ambition and risk</td>
+<td>Human-only custom/live responses, independent holds, visible provenance</td>
+<td>A clear separation of simulation, triage, and insurer authority</td>
+<td>Domain approval, representative evaluations, deployment controls, appeals, and monitoring</td>
+</tr>
+</tbody></table>
+<p>The evaluation dashboard is a <strong>usage-analysis surface</strong>, not actual usage analysis. Synthetic rows deliberately couple confidence and truth agreement. The PM value is in the metric definitions and decision questions, not an implied measured result.</p>
+<h2>Technical and operational viability</h2>
+<h3>What is feasible in v1</h3>
+<p>A credential-free static React/Vite site can show the full typed workflow without a backend. The mock handles arbitrary valid requests conservatively, the fixed router fails closed, and a server-side Worker option isolates future credentials. Documentation makes the schema, numerical holds, score conversion, and assumptions explicit.</p>
+<h3>What is not established</h3>
+<ul>
+<li>Narrative classification or urgency is accurate on representative pet claims.</li>
+<li>Supplied policy summaries are sufficient for any real eligibility decision.</li>
+<li>The same confidence threshold works across actions, policies, languages, or risk levels.</li>
+<li>The shared minimum-confidence gate yields acceptable review volume.</li>
+<li>Cloudflare deployment, Access configuration, quotas, and real upstream compatibility work as a deployed system.</li>
+<li>Brand materials are approved for commercial reuse beyond this reference context.</li>
+</ul>
+<p>Type-safe outputs constrain structure, not truth. The synthetic policy-alignment Noul must not be sold as a verified coverage decision. A potential duplicate remains an investigation signal. Urgent narratives remain human-prioritized even at a permissive threshold.</p>
+<h2>Commercial hypothesis</h2>
+<p>A reference may help a developer answer “What can I safely compose with this API?” and shorten time to a valid prototype. A reusable eval harness might then help a team answer “What evidence would let me roll it out?” This is a potential adoption path, not observed conversion or revenue.</p>
+<p>The public launch article&#39;s input pricing makes frequent structured queries plausible to explore. It does not establish this product&#39;s total economics. At 50,000 claims/month and 1,500 input tokens/claim, the calculator illustrates $3.15 input spend; human review, record retrieval, policy checks, retries, integration, governance, and support are excluded. The 444.6× cost and 193.6× speed ratios come from published specific workflows, not measured pet claims or independent comparator pricing.</p>
+<p>A commercially worthwhile product could have low inference spend and still be operationally expensive. The relevant business test is total cost and time per <strong>correct permitted route</strong> without worse safety outcomes, not token savings alone.</p>
+<h2>Risk register</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Consequence</th>
+<th>Mitigation and stop condition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Confidence mistaken for coverage authority</td>
+<td>Unsafe decision or misleading promise</td>
+<td>Explicit simulation labels; independent policy gates; no payment/denial operation; stop any proposed path without domain approval</td>
+</tr>
+<tr>
+<td>Synthetic charts mistaken for calibration</td>
+<td>Premature delegation</td>
+<td>Provenance and denominators beside charts; independent held-out evaluation required</td>
+</tr>
+<tr>
+<td>Unknown/custom text inherits sample behavior</td>
+<td>Invented certainty</td>
+<td>Exact full-text/rubric matching; generic uncertainty; external object provenance; regression tests</td>
+</tr>
+<tr>
+<td>Public live proxy spends or leaks data</td>
+<td>Unbounded cost, exposure, abuse</td>
+<td>Static default; server-only key; exact origin; signed allowlisted Access identity; quotas; no-store/generic errors; leave disabled without all controls</td>
+</tr>
+<tr>
+<td>Review queue overload</td>
+<td>Delayed urgent or routine attention</td>
+<td>Measure queue capacity and appropriate-attention time; pause delegation when review capacity fails</td>
+</tr>
+<tr>
+<td>Biased or ambiguous labels</td>
+<td>Misleading quality claims</td>
+<td>Independent review, adjudication, subgroup checks, mature outcomes and count/interval reporting</td>
+</tr>
+<tr>
+<td>Brand confusion or unlicensed reuse</td>
+<td>Implied affiliation or rights problem</td>
+<td>Visible independence; retained asset ownership/licence notes; approximate licensed typography treatment; rights review for broader reuse</td>
+</tr>
+</tbody></table>
+<h2>v1 → v2 recommendation</h2>
+<ol>
+<li><strong>Finish reference verification:</strong> source checks plus dedicated browser, subpath, documentation, and logged-out deployment verification. Record only performed checks.</li>
+<li><strong>Run small discovery:</strong> developer comprehension and composition tasks, operator workflow mapping, and risk-owner hold review. No real records or paid endpoint needed for these tasks.</li>
+<li><strong>Package the successful pattern:</strong> if friction is validated, extract a versioned rubric/evaluation interface rather than immediately adding more simulated claims.</li>
+<li><strong>Controlled shadow integration:</strong> only after privacy/budget/security approval, use a protected same-origin Worker, representative held-out labels, and humans retaining all authority. Current live responses remain human-only.</li>
+<li><strong>Assist before delegate:</strong> connect reviewer queues only after shadow evidence supports them; any future bounded delegation needs its own gate and cannot inherit the mock threshold&#39;s legitimacy.</li>
+</ol>
+<p>Support triage, content moderation, and KYC are roadmap candidates, not equally safe interchangeable templates. Start expansion with the smallest reversible action and strongest labeling opportunities. Moderation and KYC need explicit policy, rights, and review/appeal safeguards. <a href="ROADMAP.html">Roadmap</a> provides the gate details.</p>
+<h2>Decision requested</h2>
+<p>Approve the reference as a way to discuss the integration and evaluation problem—not as evidence of a production claims business. Use the proposed studies to decide whether the next investment is a better template, reusable eval tooling, developer documentation, or a different vertical. Stop or redirect if evidence shows the primary barrier is procurement, data access, deterministic rules, or policy verification instead of model-workflow composition.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

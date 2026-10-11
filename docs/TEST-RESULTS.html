@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEST-RESULTS — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="TEST-RESULTS.md">Read source markdown ↗</a></header>
+<main><h1>Test results</h1>
+<h2>Verification status</h2>
+<p><strong>Offline regression checks, local desktop/mobile acceptance and final-video playback verified. Public deployment and Drive sharing remain unverified.</strong></p>
+<p>The commands below were actually executed on 11 October 2026 (UTC), with Node <strong>v22.23.3</strong>, npm <strong>10.9.9</strong>, and Vitest <strong>5.0.3</strong>. The installed Node 22 executable was selected through <code>PATH</code>. All evaluation and transport tests used invented fixtures, local synthetic signatures, or injected offline transports. No real claimant data, provider credentials, paid inference, or live model calls were used.</p>
+<p>The first regression pass ran while documentation was still arriving. Its two build failures are preserved below as historical evidence. The integration follow-up completed the document set, fixed the zero-usage copy, added deployment packaging and code-only screen checks, and reran the full offline checks successfully: <strong>287 tests across five suites, typecheck, lint, and full builds are green</strong>. The later local browser/video acceptance is recorded separately below. Hosting and cloud sharing were unavailable.</p>
+<h2>Earlier regression commands actually run</h2>
+<p>Run from the repository root:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Actual result</th>
+<th>Scope / caveat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>node --version</code></td>
+<td><code>v22.23.3</code>; exit 0</td>
+<td>Runtime selected for all npm commands below.</td>
+</tr>
+<tr>
+<td><code>npm --version</code></td>
+<td><code>10.9.9</code>; exit 0</td>
+<td>Package-manager version.</td>
+</tr>
+<tr>
+<td><code>npm test -- tests/audit.test.ts</code></td>
+<td><strong>124 passed</strong>, one test file; exit 0; 1.72 seconds</td>
+<td>Independent regression suite, first run.</td>
+</tr>
+<tr>
+<td><code>npm test</code></td>
+<td><strong>263 passed</strong>, four test files; exit 0; 1.81 seconds</td>
+<td><code>tests/contract.test.ts</code>, <code>tests/engine.test.ts</code>, <code>tests/evals.test.ts</code>, and <code>tests/audit.test.ts</code>. Run began at 02:17:01 UTC.</td>
+</tr>
+<tr>
+<td><code>npm run typecheck</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>Runs <code>tsc -b</code>; no diagnostics.</td>
+</tr>
+<tr>
+<td><code>npm run lint</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>Runs <code>eslint .</code>; no diagnostics.</td>
+</tr>
+<tr>
+<td><code>npm run build</code> (first invocation)</td>
+<td><strong>Blocked</strong>, exit 1</td>
+<td>Documentation prerequisite check stopped the build before TypeScript compilation or Vite. See the original missing-file list below.</td>
+</tr>
+<tr>
+<td><code>npm run build</code> (second invocation, after adding this document)</td>
+<td><strong>Blocked</strong>, exit 1</td>
+<td>Six remaining source documents were still absent; compilation and Vite were not reached. See the latest missing-file list below.</td>
+</tr>
+</tbody></table>
+<p>Durations above are test-run durations, not Jev inference latency. Command output was retained separately from the shipped documentation; environment-specific stack-trace paths are intentionally omitted here.</p>
+<h2>Independent regression coverage</h2>
+<p>The added <code>tests/audit.test.ts</code> suite contains <strong>124 passing test cases</strong>. Numerical checks use independently written confidence and weighted-mean calculations rather than calling the production helper to manufacture an expected result.</p>
+<h3>Published contract</h3>
+<ul>
+<li>All twelve synthetic claim responses preserve exactly the request&#39;s question IDs and each primitive&#39;s expected answer fields.</li>
+<li>Both Noul answers contain <strong>only <code>type</code> and <code>noul</code></strong>. Extra confidence, probability-map, Score, or explanatory fields are rejected. Missing, nonnumeric, nonfinite, negative, and greater-than-one values are rejected; 0, 0.5, and 1 are accepted as wire values.</li>
+<li>Choice and Score distributions contain every required key, contain only finite probabilities in [0, 1], and sum to one. Missing keys, additional keys, invalid values, and a deliberately incorrect sum are rejected for every distribution-bearing claim question.</li>
+<li>Choice accepts 1, 2, 254, and 255 arbitrary, fully named options; it rejects 0 and 256 instead of truncating the request. Score accepts 2, 5, and 10 levels and rejects 0, 1, 11, and 255. A batch of <strong>256 independent Noul questions</strong> is accepted: option cardinality is not a blanket question-count limit.</li>
+<li>Choice confidence matches the published normalization above a uniform split. Score confidence matches the published ordered-distance formula. Score is the probability-weighted mean, not the most likely label.</li>
+<li>The dental severity wire value remains <strong>1.1</strong>, with keys <strong>0–4</strong>. A one-based value or one-based probability map is rejected. Source assertions confirm that <code>src/App.tsx</code> adds one for the displayed five-level score, retains the raw score separately, and stores the returned response object directly. These are <strong>source-level checks, not rendered UI verification</strong>.</li>
+</ul>
+<h3>Fail-closed routing and safety gates</h3>
+<ul>
+<li>The same dental response produces <strong>human review at 0.85</strong> and <strong>Simulated auto-approve at 0.65</strong>. Equality at its 0.70 confidence is accepted; a slightly higher gate holds the claim. Routing does not change the response JSON.</li>
+<li>For every sample, increasing the threshold through <strong>all 101 whole-percent values from 0 to 1</strong> never restores autonomy after the claim has been held. Every autonomous route requires each needed Choice/Score confidence to meet the threshold, not merely their average.</li>
+<li>Separate, valid mutations of a safe, provenance-retaining fixture prove independent holds for high integrity probability, uncertain liability, incomplete documentation by mean or top-level probability, a chosen or probable prior condition, unknown type, urgency by mean or emergency probability, and high cancellation risk. These holds remain in place at every tested threshold. The tests explicitly validate each modified wire response so an invalid shape or lost fixture identity cannot accidentally mask the gate being tested.</li>
+<li>Fraud Noul <strong>0.15</strong> and liability Noul <strong>0.90</strong> are inclusive boundaries when every other gate passes; values just outside them require human review.</li>
+<li>Every emergency, disputed, incomplete, integrity-review, uncertain-policy, and service-escalation fixture remains human-only even with the confidence gate set to zero.</li>
+<li>Missing responses, missing required answers, malformed responses, and invalid or missing thresholds fail closed without throwing.</li>
+<li>Custom, instruction-like, abbreviated, or edited claim text never receives autonomy. Fixture matching requires the complete exact narrative and unchanged rubric. Structured clones, JSON round-trips, and shallow response copies have no trusted fixture provenance and remain human-only.</li>
+<li>All actions are simulated. The tests do not establish real eligibility, medical urgency, fraud, payment authority, or production safety.</li>
+</ul>
+<h3>Usage, evaluation, and economics integrity</h3>
+<ul>
+<li>Demo response usage remains <strong>zero input and zero output tokens</strong>. The separate rough estimate is <code>ceil(serialized request characters / 4)</code>; requesting an estimate never changes wire usage. Fractional, negative, nonfinite, missing, string, and unsafe counters are rejected.</li>
+<li>All <strong>240 unique deterministic synthetic evaluation rows</strong> validate, preserve zero measured usage, and use the minimum required Choice/Score confidence. The audit recounts autonomy, correctness, escalations, and primary reasons at every whole-percent threshold.</li>
+<li>Autonomy rate uses <strong>all rows</strong> as its denominator. Autonomous accuracy uses <strong>autonomous rows only</strong> and returns <strong>null</strong> when none are autonomous. Autonomous plus escalated equals total; correct autonomous never exceeds autonomous. Primary-reason counts sum exactly to escalated rows, avoiding double-counting a claim with several holds.</li>
+<li>Every confidence bin is reconstructed from the actual rows and synthetic truth labels. Bin counts cover all rows, and weighted confidence and accuracy totals reproduce the dataset totals. This is an illustrative fixture calculation, <strong>not observed provider calibration</strong>.</li>
+<li>Published-number arithmetic checks include <strong>50,000 claims × 1,500 input tokens = $3.15</strong> illustrative Jev input cost and <strong>$1,400.49</strong> ratio-derived comparator; <strong>one billion input tokens = $42</strong>. Output price is zero under the published figures.</li>
+<li>Illustrative latency is <strong>114 ms per batch request</strong>, with a published <strong>70–500 ms</strong> range. The <strong>193.6×</strong> ratio produces a <strong>22,070.4 ms</strong> illustrative comparator, not a measured baseline. Workload size does not multiply request latency, and six questions do not charge the supplied input-token total six times. The <strong>444.6×</strong> cost ratio is also a published specific-workflow ratio, not an independent pricing benchmark or measured Claims One benefit.</li>
+<li>Negative, fractional, nonfinite, and unsafe workload totals are rejected. Empty workloads and zero input-token assumptions produce zero workload cost without claiming measured latency.</li>
+</ul>
+<p>The existing three suites also passed in the full run. Their optional Worker tests use injected responses and locally generated synthetic Access signatures to exercise opt-in controls, identity verification, origin checks, quotas, body limits, response validation, and safe failure bodies. This is <strong>offline logic coverage</strong>, not proof of a deployed Cloudflare Access integration or the live provider&#39;s behavior.</p>
+<h2>Historical build blocker and integration observation</h2>
+<h3>Build prerequisite: public documentation was incomplete</h3>
+<p>The first <code>npm run build</code> invocation failed at the intentional prerequisite check in <code>scripts/build-docs.mjs:13–16</code> with:</p>
+<blockquote>
+<p>Required public documents are missing: PRD.md, FIVE-WHYS.md, JTBD.md, METRICS.md, TEST-PLAN.md, TEST-RESULTS.md, VIABILITY.md, ROADMAP.md, DECISIONS.md, AGENTS.md</p>
+</blockquote>
+<p>A second invocation, after adding this document and after some other source documents had arrived, also exited 1 at the same prerequisite check:</p>
+<blockquote>
+<p>Required public documents are missing: METRICS.md, TEST-PLAN.md, VIABILITY.md, ROADMAP.md, DECISIONS.md, AGENTS.md</p>
+</blockquote>
+<p>These are the missing documents <strong>at each recorded invocation</strong>, not permanent assertions about the working tree. The integration follow-up below supplied the completed document set and successfully ran the complete build, including document rendering, compilation, Vite and package verification. An older <code>dist</code> directory was not used as evidence for the failed invocations.</p>
+<h3>Historical copy discrepancy — resolved in integration</h3>
+<p>At the earlier review, the interface incorrectly described zero mock usage as estimated response usage. Integration corrected both the raw-contract note and FAQ: <strong>zero usage because no API ran</strong>, with rough sizing separate from response counters. The mock and its contract are unchanged. A new source regression assertion covers the corrected wording; the earlier audit did not edit production source.</p>
+<h2>Integration follow-up: actual offline checks</h2>
+<p>Run on 11 October 2026 (UTC), still using Node <strong>v22.23.3</strong> and npm <strong>10.9.9</strong>. No application server or browser was opened, and no paid/model endpoint was called. The following commands were actually executed from the repository root:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Actual result</th>
+<th>Scope / caveat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>node --version</code>, <code>npm --version</code></td>
+<td><code>v22.23.3</code>, <code>10.9.9</code>; both exit 0</td>
+<td>Runtime versions rechecked.</td>
+</tr>
+<tr>
+<td><code>npm view wrangler version</code></td>
+<td><code>4.149.0</code>; exit 0</td>
+<td>Public npm registry lookup, not an inference or hosting call.</td>
+</tr>
+<tr>
+<td><code>npm test</code> (initial integration pass)</td>
+<td><strong>287 passed</strong>, five test files; exit 0; 1.86 seconds</td>
+<td>Original 263 checks plus 24 integration checks. Started 02:28:01 UTC.</td>
+</tr>
+<tr>
+<td><code>npm run typecheck</code> (initial integration pass)</td>
+<td><strong>Failed</strong>, exit 2</td>
+<td>The new static React render test imports DOM-dependent app code into the Node test config. Added DOM/JSX/Vite types to that config.</td>
+</tr>
+<tr>
+<td><code>npm run lint</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>Full repository ESLint scope, not a browser accessibility audit.</td>
+</tr>
+<tr>
+<td><code>npm run build</code> (first integration invocation)</td>
+<td><strong>Failed</strong>, exit 2</td>
+<td>Docs now complete; TypeScript exposed the Web Crypto <code>Uint8Array</code> buffer type. Fixed the decoder return annotation to an ArrayBuffer-backed typed array, without changing logic.</td>
+</tr>
+<tr>
+<td><code>npm run build</code> (after the type fix)</td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>14 source/rendered docs, brand guide, full Vite client, and 432 local HTML/CSS reference checks across root/repository mounts.</td>
+</tr>
+<tr>
+<td><code>CLOUDFLARE_SEND_METRICS=false npx --yes wrangler@4.149.0 deploy --dry-run</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>CLI read 51 built files, bundled Worker at 16.84 KiB (4.94 KiB gzip), showed <code>ASSETS</code> and <code>ENABLE_LIVE: false</code>, then exited without publication. No account, credentials, Access integration or live provider validation.</td>
+</tr>
+<tr>
+<td><code>VITE_BASE_PATH=/claims-one/ npm run build</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>Explicit repository-subpath build; 216 packaged local HTML/CSS reference checks.</td>
+</tr>
+<tr>
+<td><code>VITE_BASE_PATH=/ npm run build</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>Explicit domain-root build; 216 packaged local HTML/CSS reference checks.</td>
+</tr>
+<tr>
+<td><code>npm test</code> (follow-up)</td>
+<td><strong>287 passed</strong>, five test files; exit 0; 1.81 seconds</td>
+<td>Started 02:29:16 UTC, after the type fixes.</td>
+</tr>
+<tr>
+<td><code>npm run typecheck</code> (follow-up)</td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>No diagnostics.</td>
+</tr>
+<tr>
+<td><code>npm run lint</code> (follow-up)</td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>No diagnostics.</td>
+</tr>
+<tr>
+<td><code>npm test &amp;&amp; npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm run build</code></td>
+<td><strong>All passed</strong>, exit 0; 287 tests, five suites, 1.76-second test run</td>
+<td>Sequential final verification started 02:31:12 UTC. Relative-base artifact restored; full docs/assets and 432 reference checks passed.</td>
+</tr>
+<tr>
+<td><code>npm run check:package</code></td>
+<td><strong>Passed</strong>, exit 0</td>
+<td>Standalone repeat of the filesystem package check: 14 source/rendered docs, 44 public files, 432 references.</td>
+</tr>
+</tbody></table>
+<h3>Code-only screen and package coverage</h3>
+<p><code>tests/integration.test.ts</code> adds 24 offline cases. Static React rendering checks the <strong>six required section anchors</strong>, navigation, literal wordmark reference, product/subject names, exact footer, visible mock/no-inference label, non-affiliation, all twelve samples, six pending typed cards, economics defaults, calculated synthetic chart tables, and every root documentation link plus the brand guide and font license. Source assertions preserve response identity, stale-result invalidation, one-based Score display and corrected zero-usage wording. These tests do <strong>not</strong> submit forms, drag controls, load images/fonts, test clipboard or execute browser interactions.</p>
+<p>Injected Worker asset tests check unauthenticated static serving, HEAD, status/header preservation, missing-asset 404, missing binding, method restriction, unknown API isolation, disabled live evaluation and absence of network calls. Configuration assertions cover the static directory, disabled live flag, manual Pages trigger, permission scopes, path selection, source ledger and third-party license exclusions. A successful Wrangler dry run validates packaging, not deployed routing or Cloudflare Access.</p>
+<p><code>scripts/check-package.mjs</code> checks every root Markdown source and corresponding rendered HTML, byte preservation of every public file, font license/observations, and filesystem existence of local HTML/CSS targets. All <strong>14 source/rendered documents</strong>, <strong>44 public files</strong>, eight public-site screenshot PNGs, sky PNG, transparent wordmark SVG, mono font and font notice are included. The final portable build contains <strong>47 files</strong>: 44 copied public files, the HTML entry and two compiled assets. Local link resolution is checked at root and <code>/claims-one/</code> for the relative artifact or at the selected explicit base. There is no network request or browser renderer in this check.</p>
+<p>First-party repository source, documents, configuration and generated <code>public/docs</code>/<code>dist</code> text were searched for private-source leakage, builder bylines and absolute machine paths. No matches were found in those scans; required TypeSafe AI/Jev subject names and the prescribed maintenance-document filename are not treated as builder attribution. Dependency installation caches and git internals are not shipped documentation.</p>
+<p>The preferred Cloudflare static configuration and manually dispatched GitHub Pages workflow are prepared, but hosting integrations and a public repository were unavailable. No workflow was dispatched, repo created, deployment URL invented or publication performed. Third-party branding retains its source ledger, owners&#39; rights and reuse caveats; broader commercial reuse still requires rights review.</p>
+<h2>Local browser acceptance and desktop walkthrough</h2>
+<p>Completed on 11 October 2026 (UTC), against the actual running mock application, after the offline checks above. The live provider remained disabled. The production build was also served under a temporary <code>/claims-one/</code> mount; this was local hosting, not a public deployment.</p>
+<p><strong>56/56 recorded runtime assertions passed.</strong> All six sections were inspected at 1360 px desktop and 390 px mobile widths. No horizontal overflow, broken brand assets, application console/page errors, failed network requests or inference POST requests were observed.</p>
+<table>
+<thead>
+<tr>
+<th>Browser check</th>
+<th>Actual result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dental threshold change</td>
+<td>At 85%, Human review; real slider drag to 65%, Simulated auto-approve. The raw response remained exactly unchanged.</td>
+</tr>
+<tr>
+<td>All twelve samples and safety holds</td>
+<td>All evaluated. Emergency, dispute/prior-condition, missing-document, integrity, uncertain-policy and cancellation holds persisted at 50%.</td>
+</tr>
+<tr>
+<td>Custom/edit input</td>
+<td>Human-only custom responses; stale results cleared on edits. Empty/short validation, 20-character boundary and 12,000-character limit checked.</td>
+</tr>
+<tr>
+<td>Primitive/request display</td>
+<td>One shared-state request with six questions; complete Choice/Score distributions and confidence; zero-based Score wire values with one-based display; Noul value only.</td>
+</tr>
+<tr>
+<td>Workflow/clipboard</td>
+<td>Both source tabs and clipboard copy passed.</td>
+</tr>
+<tr>
+<td>Economics</td>
+<td>75M monthly input tokens, $3.15 illustrative cost, $1,400.49 ratio-derived comparator, 114 ms illustration and 22,070 ms comparator. Invalid inputs did not produce misleading values.</td>
+</tr>
+<tr>
+<td>Synthetic evaluation</td>
+<td>Shared 240-row threshold; at 65%, 33/240 autonomous and 25/33 correct. At 99%, zero autonomous rows and no-data accuracy, not 0%. Escalation-reason totals matched escalated rows.</td>
+</tr>
+<tr>
+<td>Documentation/assets</td>
+<td>All fourteen rendered documents, source README, wordmark/font and eleven brand images loaded at root and the local repository subpath. Lazy-image disclosures were opened before checking image dimensions.</td>
+</tr>
+<tr>
+<td>Keyboard</td>
+<td>Skip link, mobile menu and threshold controls passed. No screen-reader certification is implied.</td>
+</tr>
+</tbody></table>
+<p>Two initial harness failures were resolved without application changes: checking lazy images while their disclosures were closed, and browser focus/scroll timing. Neither was counted as an application defect.</p>
+<p>The final narrated walkthrough uses actual 1920 × 1080 desktop footage, native clicks and slider drag, seven scene-synchronized British-English TTS segments, word-timed captions, pointer highlighting and restrained eased zooms. The final file was reviewed completely with audio and then played uninterrupted in a browser from 0 to 74.261334 seconds, unmuted, without a media error. It covers hero, claim submission, distributions, 85% → 65% routing, economics, synthetic evaluation and local rendered documentation. It does not imply that the remote repo or public deployment exists.</p>
+<p><code>ffprobe</code> independently confirmed <strong>74.24 seconds, 1920 × 1080, 30 fps, H.264/AAC</strong>. File size: <strong>10,138,790 bytes</strong>. Container and stream tags contain no comment/byline or absolute machine path. An initial renderer metadata comment was caught during review, removed by lossless stream-copy, and the cleaned final file was rechecked and watched. The reproducible cleanup step is included in the video package.</p>
+<p>After adding the isolated video package to lint coverage, these commands were executed again: <code>npm run lint</code>, <code>npm run typecheck</code>, <code>npm test</code>, <code>npm run build</code>, and <code>npm run typecheck --prefix demo</code>. All passed; the test run at 02:46:15 UTC reported 287 passing tests in five suites. The video package dependency audit and production dependency audit each reported zero vulnerabilities at the time checked. Generated JSON must exist before video type checking; a complete clean-clone video reproduction was not performed.</p>
+<h2>Remaining verification</h2>
+<p>The following remain <strong>unverified after local offline, browser and video checks</strong>:</p>
+<ul>
+<li>Real TypeSafe/Jev inference, provider errors, provider tokenization, billing, accuracy, calibration, or latency. Public API, primitive, and confidence documentation was read to establish contract expectations; reading those pages is not live integration testing.</li>
+<li>A deployed Cloudflare Worker, real Cloudflare Access policies or identities, deployed quota configuration, or hosting/account configuration. Optional live transport should remain disabled until independently reviewed and explicitly enabled with the required server-side controls.</li>
+<li>Any public deployment URL, logged-out reachability, CDN behavior, root/subpath hosting, or deployed documentation links.</li>
+<li>Screen-reader behavior and a formal automated accessibility audit. Local keyboard and responsive checks are not accessibility certification.</li>
+<li>Video cloud upload and anyone-with-link sharing permissions. The final MP4 and subtitles are local delivery artifacts, not a Drive link.</li>
+<li>A fresh-clone reproduction of the complete narration/capture/render pipeline.</li>
+</ul>
+<p>The owner subsequently created the public source repository. Branch-root Pages packaging is prepared separately below; enabling Pages remains an owner action. No logged-out public site, Drive upload or sharing permission is claimed. Local acceptance is not a substitute for insurer policy validation and representative held-out evaluation before any production use.</p>
+<h2>Default-branch-root Pages preparation</h2>
+<p>The source HTML entry moved to <code>app/index.html</code>; Vite still emits the same compiled client asset hashes. The repository root now contains the static production entry, relative assets, all rendered docs and brand assets, favicon and <code>.nojekyll</code>. The source and public mock-only framing are unchanged. <code>npm run prepare:pages</code> runs the production build, copies its output to the root and byte-verifies every copied file. The GitHub Actions workflow remains optional and manual; it is not required to enable <strong>main / (root)</strong> hosting.</p>
+<p>At 03:07:27 UTC on 11 October 2026, <code>npm test</code>, <code>npm run typecheck</code>, <code>npm run lint</code> and <code>npm run prepare:pages</code> all passed: 287 tests, five suites, 47 byte-verified static files plus <code>.nojekyll</code>, and 432 local references across root/repository mounts. This is preparation evidence, not proof that Pages was enabled or that a public URL loaded.</p>
+<p>Three additional branch-root regression checks passed at 03:08:18 UTC: compiled relative asset URLs and <code>.nojekyll</code>, separate development entry/reproducible preparation command, and current mock-framed docs/identical brand assets. The expanded suite reported <strong>290 passing tests in six suites</strong>; a subsequent lint pass caught and removed an unnecessary regex escape in that new test file.</p>
+<p>The actual repository-root static artifact was then exercised locally at both <code>/</code> and <code>/claims-one/</code>: dental 85% → 65% routing, unchanged response, primitive displays, README/viability/brand/font links and 390 px overflow checks passed. Moving the Vite HTML entry initially caused a development-only <code>/src/main.tsx</code> 404. Adding an in-root <code>app/main.ts</code> module corrected resolution without changing the compiled asset hashes. The restarted development server returned 200 for its entry and resolved source module, rendered the hero/mock label, passed the dental threshold regression and loaded the mock-framed README. No browser/network errors, failed HTTP requests, POSTs or upstream requests were observed. Preserved root/subpath desktop/mobile screenshots were visually reviewed without finding a regression. The final video is unchanged.</p>
+<p>After the entry fix, at 03:14:07 UTC, the 290-test suite, type checks, lint and Pages preparation all passed again. Public Pages remains untested because the owner has not enabled hosting.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

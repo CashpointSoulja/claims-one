@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>README — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="README.md">Read source markdown ↗</a></header>
+<main><h1>Claims One</h1>
+<p><strong>System One for claims.</strong> An independent, synthetic pet-insurance triage reference by Ayo Ahmed, using the published TypeSafe AI API contract.</p>
+<blockquote>
+<p><strong>Mock demo, not live Jev.</strong> Built against Jev&#39;s documented API contract, with synthetic responses and no live inference. Twelve invented claims, deliberately specified probability distributions, simulated routing, illustrative economics, and synthetic evaluation data. Nothing is paid, denied, reported as fraud, or determined to be covered. Claims One is not affiliated with or endorsed by TypeSafe AI.</p>
+</blockquote>
+<h2>Explain it like I&#39;m five</h2>
+<p>Imagine a sorting desk for pet-insurance paperwork. Instead of asking one big question—“Should we pay this?”—the desk asks six small ones: what happened, how urgent it sounds, whether anything is inconsistent, whether the supplied policy story aligns, whether the paperwork is complete, and whether the owner needs service attention.</p>
+<p>Some answers are uncertain. A slider changes how much certainty the <strong>simulation</strong> requires before showing a delegated route. Safety rules still send emergencies, disputes, missing records, and suspicious inconsistencies to a person. Lowering the slider never removes those rules.</p>
+<p>This demo does not read or understand new claims through a model. Exact sample text receives an invented, repeatable response. Edited or custom text gets generic, uncertain answers and stays human-only.</p>
+<h2>Try the reference</h2>
+<ol>
+<li>Open <strong>Triage</strong>. Routine dental treatment is selected initially.</li>
+<li>Evaluate the claim at the default <strong>85%</strong> threshold: it needs human review.</li>
+<li>Move the threshold to <strong>65%</strong>: the same returned response shows <strong>Simulated auto-approve</strong>. Its minimum required confidence is 70%; this is a product demonstration, not a safe production threshold.</li>
+<li>Load chocolate ingestion, a prior-condition dispute, or a potential duplicate invoice. Re-evaluate and lower the threshold: the safety hold remains.</li>
+<li>Edit a sample. Previous results clear immediately; re-evaluation uses generic uncertainty, not a keyword-based approximation of Jev.</li>
+<li>Inspect the request and response, copy the actual question/routing code, change the economics workload, and inspect synthetic evaluation denominators.</li>
+</ol>
+<p>All six page sections have anchors: <strong>Hero, Triage, Workflow, Economics, Evaluation, Docs</strong>. The triage and evaluation sliders share one threshold.</p>
+<h2>Run locally</h2>
+<p>Prerequisites: Node.js <strong>22.13 or newer</strong> and npm. No account, credential, or paid API is required for the static demo.</p>
+<p>From the repository directory:</p>
+<pre><code class="language-bash">npm ci
+npm run dev
+</code></pre>
+<p>The normal development command builds the public documentation and starts Vite. To check and build without starting an application server:</p>
+<pre><code class="language-bash">npm test
+npm run typecheck
+npm run lint
+npm run build
+</code></pre>
+<p><code>npm run build</code> checks required documents, renders them, typechecks, emits the client site to <code>dist/</code>, and verifies packaged documents/assets and local HTML/CSS references. <code>npm run check:package</code> repeats the filesystem packaging check on an existing build; neither command opens a browser. These are reproducible commands, not a claim that every check has passed. Actual execution evidence belongs in <a href="TEST-RESULTS.html">Test results</a>; planned browser and deployment checks belong in <a href="TEST-PLAN.html">Test plan</a>.</p>
+<h3>Portable static hosting</h3>
+<p>The default application is TypeScript + React + Vite. It needs no application backend. Publish the <strong>contents of <code>dist/</code></strong> to a static host; Cloudflare Pages or GitHub Pages can serve it. Vite uses relative asset URLs (<code>base: &#39;./&#39;</code>) for a domain root or a repository subpath. This is a single page, not a client-side route tree.</p>
+<p>Root Markdown documents are source-of-truth files. <code>scripts/build-docs.mjs</code> copies their source and renders HTML to <code>public/docs/</code>; Vite then copies that directory into the build. The brand guide is copied separately from <code>docs/brand/</code>. Do not maintain generated copies by hand. Keep source links relative so the same navigation can work in the repository and built documentation. Confirm root <strong>and</strong> subpath links in a browser before declaring portability verified.</p>
+<p>Source repository: <a href="https://github.com/CashpointSoulja/claims-one">CashpointSoulja/claims-one</a>. No deployment URL or logged-out site availability is asserted here. Pages must be enabled by the repository owner before the public site can be verified.</p>
+<h3>Cloudflare Worker with static assets (preferred handoff)</h3>
+<p><code>wrangler.jsonc</code> packages <strong>all of <code>dist/</code></strong> and selects <code>worker/site.ts</code>. Static pages, docs, captures, the wordmark, sky image, bundled mono font, font license, and source/rights ledger stay public without authentication. Only <code>/api</code> and <code>/api/*</code> run the Worker before asset handling; <code>/api/evaluate</code> remains disabled (<code>ENABLE_LIVE: &#39;false&#39;</code>). Unknown API routes and missing documents are not replaced with the hero. Application request logging through Wrangler observability is disabled; hosting-provider operational logs are a separate concern.</p>
+<p>From the repository root, these are the exact packaging commands (the pinned CLI can be downloaded from npm; a dry run does not publish or require account creation):</p>
+<pre><code class="language-bash">npm run build
+CLOUDFLARE_SEND_METRICS=false npx --yes wrangler@4.149.0 deploy --dry-run
+</code></pre>
+<p><strong>An authorized owner may later publish</strong> using an existing Cloudflare integration. Do not create accounts or add secrets just to view this demo. After permissions and third-party asset rights are reviewed, the owner&#39;s publish command is:</p>
+<pre><code class="language-bash">CLOUDFLARE_SEND_METRICS=false npx --yes wrangler@4.149.0 deploy
+</code></pre>
+<p>That second command is intentionally not part of verification and was not executed here. Do not enable live transport or configure provider credentials for the static deployment. Serving the public app does not require Cloudflare Access; Access is relevant only to a separately approved live API route.</p>
+<p>For an existing Cloudflare Pages project instead of a Worker, use build command <code>npm run build</code> and output directory <code>dist</code>, or the owner&#39;s manual upload command <code>CLOUDFLARE_SEND_METRICS=false npx --yes wrangler@4.149.0 pages deploy dist --project-name claims-one</code>. That upload is not executed or verified here and does not install the optional Worker API.</p>
+<h3>GitHub Pages from the default branch root</h3>
+<p>The repository includes a compiled static site at its root: <code>index.html</code>, <code>assets/</code>, <code>brand/</code>, <code>docs/</code>, <code>favicon.svg</code> and <code>.nojekyll</code>. The development HTML entry lives separately in <code>app/index.html</code>; Pages never needs to interpret TypeScript or run npm. Asset and documentation URLs are relative, so the same static artifact supports the <code>/claims-one/</code> repository mount.</p>
+<p>To enable hosting, choose <strong>Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main → Folder: / (root)</strong>, then save. The owner performs this step; preparing or pushing files does not itself enable Pages. Wait for GitHub&#39;s Pages build to finish and verify the resulting URL logged-out before calling the site deployed.</p>
+<p>After source or documentation changes, regenerate the committed static site from the repository root:</p>
+<pre><code class="language-bash">npm run prepare:pages
+</code></pre>
+<p>This builds with the default relative base, copies the compiled artifact to the root, writes <code>.nojekyll</code>, and verifies every copied file byte-for-byte. Do not set <code>VITE_BASE_PATH</code> for this command. Review and commit the generated files along with the source changes. <code>npm run dev</code> continues to serve the source through Vite; it does not depend on the committed bundle.</p>
+<h3>Optional GitHub Actions deployment</h3>
+<p><code>.github/workflows/pages.yml</code> has no push/PR trigger. It installs from the lockfile, runs tests/typecheck/lint, builds, and uploads the complete static artifact. Normal workflow permission is only <code>contents: read</code>; only the deployment job receives <code>pages: write</code> and <code>id-token: write</code>. Checkout does not persist credentials.</p>
+<p>For this alternative only, an authorized owner selects <strong>Settings → Pages → Source: GitHub Actions</strong>, then <strong>Actions → Deploy static demo to GitHub Pages → Run workflow</strong> on the reviewed branch. This is not required for the branch-root option above. No workflow dispatch, deployment, or public URL is claimed here.</p>
+<p>The workflow defaults <code>VITE_BASE_PATH</code> to <code>/&lt;repository-name&gt;/</code> (thus <code>/claims-one/</code> for this repository). For a custom domain or user/organization site, set the repository Actions variable <code>PAGES_BASE_PATH</code> to <code>/</code> before dispatching. Do not treat the repository path as a domain name. Equivalent offline builds:</p>
+<pre><code class="language-bash">VITE_BASE_PATH=/claims-one/ npm run build
+VITE_BASE_PATH=/ npm run build
+npm run build
+</code></pre>
+<p>The last command restores the portable relative-base artifact for handoff. The packaging check resolves local document, image, font and CSS links at the chosen mount; default relative builds check both root and <code>/claims-one/</code> through the filesystem. This is code-only evidence, not CDN/browser verification. After actual publication, separately verify the real URL logged-out, document links, image/font loading, console, desktop/mobile layout and interactions. Record only observed results in <a href="TEST-RESULTS.html">Test results</a>.</p>
+<h2>What is implemented</h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Implementation and boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Triage</td>
+<td>Twelve clearly synthetic pet claims; editor accepts 20–12,000 characters as a demo UX limit</td>
+</tr>
+<tr>
+<td>Typed questions</td>
+<td>One state and six independent questions, evaluated together with <code>Promise.all</code> in the mock</td>
+</tr>
+<tr>
+<td>Answers</td>
+<td>Complete Choice/Score distributions and derived confidence; Score legend; Noul probability of yes only</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td>Shared fail-closed router; all actions simulated; safety holds independent of the slider</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>Actual exported rubrics and raw routing source, with copy control</td>
+</tr>
+<tr>
+<td>Economics</td>
+<td>Workload arithmetic from published input pricing; explicitly ratio-derived comparator</td>
+</tr>
+<tr>
+<td>Evaluation</td>
+<td>240 deterministic synthetic variations with synthetic truth labels, calculated through the shared router</td>
+</tr>
+<tr>
+<td>Optional transport</td>
+<td>Server-side Worker boundary, disabled by default; no configured live integration</td>
+</tr>
+</tbody></table>
+<h3>Code map</h3>
+<ul>
+<li><code>src/contract.ts</code>: discriminated types, official confidence formulas, strict request/response validation.</li>
+<li><code>src/questions.ts</code>: <code>CLAIM_QUESTIONS</code> and <code>buildRequest(state)</code>; fresh six-question rubric, request model <code>jev-latest</code>.</li>
+<li><code>src/samples.ts</code>: twelve invented narratives and invented policy/attachment descriptions, not uploaded records.</li>
+<li><code>src/mock.ts</code>: exact text/rubric matching, synthetic distributions, conservative arbitrary-request answers, external fixture provenance.</li>
+<li><code>src/adapter.ts</code>: default offline <code>evaluateClaim</code>, rough sizing helper, explicit same-origin Worker adapter factory.</li>
+<li><code>src/routing.ts</code>: <code>routeClaim(response, threshold)</code> and simulated routing reasons.</li>
+<li><code>src/economics.ts</code> / <code>src/evals.ts</code>: shared calculator and evaluation calculations used by the UI.</li>
+<li><code>src/App.tsx</code>: the six-section interface; retains the returned object and invalidates stale results on input changes.</li>
+<li><code>worker/adapter.ts</code> / <code>worker/index.ts</code>: optional server-only transport and security checks.</li>
+<li><code>worker/site.ts</code> / <code>wrangler.jsonc</code>: public static-asset wrapper and disabled-by-default Cloudflare deployment configuration.</li>
+<li><code>.github/workflows/pages.yml</code>: owner-triggered GitHub Pages fallback with explicit base path and scoped permissions.</li>
+<li><code>scripts/check-package.mjs</code>: byte-preserving public-asset/document and local-reference checks, without a browser.</li>
+<li><code>app/index.html</code>: Vite&#39;s development/build HTML source. The root <code>index.html</code> and static directories are compiled Pages artifacts, refreshed by <code>npm run prepare:pages</code>.</li>
+<li><code>demo/</code>: isolated desktop capture, free narration and Remotion composition. Its README documents the reproduction prerequisites and ordered pipeline; generated media is delivered separately, not committed.</li>
+<li><code>tests/contract.test.ts</code>, <code>tests/engine.test.ts</code>, <code>tests/evals.test.ts</code>: offline contract, routing, transport, economics, and evaluation checks; <code>tests/audit.test.ts</code> adds independent regression checks; <code>tests/integration.test.ts</code> covers six-section static React rendering, wrapper logic, deployment configuration, and rights packaging. Static rendering does not test browser interaction.</li>
+</ul>
+<h2>The technical contract</h2>
+<p>The official <a href="https://docs.typesafe.ai/api.md">HTTP API</a>, <a href="https://docs.typesafe.ai/primitives.md">primitives</a>, and <a href="https://docs.typesafe.ai/confidence.md">confidence definitions</a> take precedence over broad marketing descriptions.</p>
+<p>A request is <code>{ state, model, questions }</code>. State supports a JSON string, object, or array; the shared TypeScript interface declares <code>state: unknown</code> and validates at runtime. Questions are a map of named typed questions. A response is <code>{ model, answers, usage: { input_tokens, output_tokens } }</code>, with exactly one answer for each question ID.</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Question criteria</th>
+<th>Answer fields, including the discriminant</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Choice</td>
+<td>Map of full option keys to descriptions, structured descriptions, or <code>null</code>; 1–255 options in this validator</td>
+<td><code>type: &#39;choice&#39;</code>, <code>choice</code>, <code>probabilities</code>, <code>confidence</code></td>
+</tr>
+<tr>
+<td>Score</td>
+<td>Ordered array of 2–10 level descriptions</td>
+<td><code>type: &#39;score&#39;</code>, <code>score</code>, <code>legend</code>, <code>probabilities</code>, <code>confidence</code></td>
+</tr>
+<tr>
+<td>Noul</td>
+<td>Optional <code>true</code> / <code>false</code> descriptions</td>
+<td><strong>Only</strong> <code>type: &#39;noul&#39;</code>, <code>noul</code></td>
+</tr>
+</tbody></table>
+<p>Choice probabilities cover every criteria key and sum to 1. Score probabilities and legend use string keys for zero-based positions; <code>score</code> is the probability-weighted mean, not the most likely level. The two five-level rubrics display <strong>score + 1</strong>, giving a 1–5 display while the wire response remains 0–4, potentially fractional. Noul has no separate confidence or probability map.</p>
+<p>For probabilities <code>p</code>, <code>n</code> options/levels, and most likely Score level <code>m</code>:</p>
+<pre><code class="language-text">Choice confidence = clamp((n × max(p) − 1) / (n − 1), 0, 1)
+Score mean        = sum(i × p[i])
+Score spread      = sum(p[i] × abs(i − m))
+Uniform spread    = sum(abs(i − (n − 1)/2)) / n
+Score confidence  = clamp(1 − Score spread / Uniform spread, 0, 1)
+</code></pre>
+<p>The implementation treats a one-option Choice as confidence 1. It rejects extra/missing answer keys, malformed probabilities, inconsistent means/confidence/legends, and invented Noul fields. The 255 limit is <strong>Choice option cardinality</strong>, not a documented blanket limit on questions. Arbitrary valid question maps are supported by the mock, including structured rubrics; that does not make arbitrary responses eligible for simulated autonomy.</p>
+<h3>Routing is application policy, not model authority</h3>
+<p>The fixed IDs are <code>claim_type</code>, <code>severity</code>, <code>fraud_signal</code>, <code>liability</code>, <code>documentation_completeness</code>, and <code>churn_risk</code>. Routing confidence is the <strong>minimum</strong> confidence across the two Choices and two Scores, not an average and not a Noul confidence.</p>
+<p>Simulated autonomy requires recognized exact-fixture provenance and all of these conditions:</p>
+<ul>
+<li>Every required Choice/Score confidence meets the supplied threshold.</li>
+<li>Integrity Noul is <strong>≤ 0.15</strong>; synthetic policy-alignment Noul is <strong>≥ 0.90</strong>.</li>
+<li>Documentation mean is <strong>≥ 3.8</strong> on the raw 0–4 scale and probability of level <code>4</code> is <strong>≥ 0.90</strong>.</li>
+<li>No fixture hold, unknown type, dispute/prior-condition hold, urgent narrative, or high cancellation risk.</li>
+</ul>
+<p>Prior-condition probability ≥ 0.15 independently holds; high churn choice or high-churn probability ≥ 0.25 independently holds. Urgency is a fixture flag, raw severity mean ≥ 3, or probability of raw severity level <code>4</code> ≥ 0.25. Valid urgent cases prioritize human review. Invalid inputs or thresholds fail closed. Remaining eligible illness cases or cases with raw severity ≥ 1.5 use simulated fast-track; other eligible cases use simulated auto-approve.</p>
+<p><strong>Retain the original returned response object.</strong> Trusted synthetic provenance is stored outside the published JSON shape in a WeakMap. JSON serialization, spreading into a new object, or structured cloning loses that provenance; cloned, custom, and live responses stay human-only. Reading JSON for display does not require replacing the stored object. Do not mutate its answers in the interface.</p>
+<h2>Economics and evaluation honesty</h2>
+<p>At the UI&#39;s default <strong>50,000 claims/month × 1,500 input tokens/claim</strong>, the illustrative input cost is <strong>$3.15/month</strong> at TypeSafe&#39;s published <strong>$42/billion input tokens</strong>, output free. Input includes state and all question overhead. The implied comparator is $3.15 × 444.6 = <strong>$1,400.49</strong>, not independently priced LLM usage.</p>
+<p>The latency illustration is <strong>114 ms per batch request</strong>, with the published <strong>70–500 ms</strong> range disclosed. Multiplying 114 ms by 193.6 gives a <strong>22,070.4 ms ratio-derived comparator</strong>, not a measured claim latency or total monthly processing duration. The 193.6×/444.6× figures come from TypeSafe&#39;s specific published workflow results; the launch article says gains are likely toward the higher end of real-world results. They are not measured Claims One benefits.</p>
+<p>Mock <code>usage</code> counters are <strong>zero</strong>, because no API ran. <code>estimateInputTokens</code> separately estimates serialized characters divided by four; it is not a tokenizer. The UI&#39;s local elapsed demo runtime is not Jev latency. The economics input is a user-supplied assumption, not automatically measured usage.</p>
+<p>Evaluation labels and disagreements are deterministically constructed, including a relationship between generated confidence and label agreement. The charts demonstrate inspectable calculations, not independent calibration evidence. Read <a href="METRICS.html">Metrics</a> for exact denominators and the proposed measurement plan.</p>
+<h2>Privacy: synthetic input only</h2>
+<p>Do <strong>not</strong> paste real claims, names, contact details, medical records, invoice images, policy IDs, bank details, or other personal data into this public demonstration. Use invented narratives only. The default evaluation is local JavaScript with no model request, claim storage service, or claim logging. This is not a legal promise about the hosting provider&#39;s access logs or a replacement for a privacy review.</p>
+<p>An optional live integration would send state and questions through the Worker to TypeSafe, changing the data boundary. It needs explicit consent, approved retention/security terms, data minimization, jurisdiction review, and representative evaluation before any real records are considered. No such approval or integration is claimed.</p>
+<h2>Optional server-side Worker adapter</h2>
+<p>The mock adapter mirrors the documented <code>/v1/systemone</code> endpoint&#39;s request and response shapes. A real key drops in through one server-side adapter file, <code>worker/adapter.ts</code>, plus the <code>TYPESAFE_API_KEY</code> environment variable. That describes the credential/transport boundary, not permission to turn the published demo live; explicit wiring and the security gates below are still required.</p>
+<p><strong>Keep the published demo offline.</strong> An API key alone does not enable the shipped interface. <code>evaluateClaim</code> always calls the mock. A future controlled deployment would explicitly wire <code>createWorkerAdapter(&#39;/api/evaluate&#39;)</code> into the adapter boundary and deploy the Worker on the <strong>same origin</strong>. At a subpath, this is still an origin-root API route. Static hosting alone does not create that route.</p>
+<p>The browser factory accepts no key. <code>worker/adapter.ts</code> is the only transport that supplies <code>Authorization: Bearer …</code> to <code>POST https://api.typesafe.ai/v1/systemone</code>. Never put the key in <code>VITE_*</code>, client code, HTML, screenshots, a commit, or a browser request payload.</p>
+<p>The public page should stay accessible without a sign-in wall. A future live <strong>API route</strong>, not the public static demo, must be protected with Cloudflare Access and the controls below. All are required by <code>worker/index.ts</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Server setting or binding</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ENABLE_LIVE</code></td>
+<td>Must explicitly equal <code>true</code>; otherwise disabled</td>
+</tr>
+<tr>
+<td><code>TYPESAFE_API_KEY</code></td>
+<td>Server-only secret, never a public build variable</td>
+</tr>
+<tr>
+<td><code>ALLOWED_ORIGIN</code></td>
+<td>Exact HTTPS origin, no path or trailing slash</td>
+</tr>
+<tr>
+<td><code>ACCESS_TEAM_DOMAIN</code></td>
+<td>Valid Cloudflare Access team hostname ending in <code>.cloudflareaccess.com</code></td>
+</tr>
+<tr>
+<td><code>ACCESS_AUD</code></td>
+<td>Expected Access application audience</td>
+</tr>
+<tr>
+<td><code>LIVE_ALLOWED_EMAILS</code></td>
+<td>Comma-separated identity allowlist, checked after signature verification</td>
+</tr>
+<tr>
+<td><code>LIVE_RATE_LIMITER</code></td>
+<td>Runtime binding exposing <code>limit({ key })</code>; both per-identity and endpoint-wide quotas must succeed</td>
+</tr>
+</tbody></table>
+<p>The handler verifies signed RS256 Access assertions, issuer, audience, expiry, and allowlisted identity. It checks method, content type, origin, same-origin fetch metadata when present, a streamed <strong>32 KiB</strong> request-body limit, and model <code>jev-latest</code>. It returns no-store responses, applies timeouts, validates the full upstream response, and emits generic errors rather than upstream claim contents. It performs <strong>no automatic retries</strong>. This is deliberately more conservative than the official API&#39;s retry guidance.</p>
+<p>Static Worker deployment configuration is supplied, but an Access application, quota values, budget approval, credentials, and a verified live connection are <strong>not supplied</strong> by the project. Offline tests use injected transports and locally signed synthetic identities; they do not certify Cloudflare deployment or a real TypeSafe exchange. Even a valid future live response remains human-only under the current router. See <a href="ROADMAP.html">Roadmap</a> for the gates before that can change.</p>
+<h2>Documentation index</h2>
+<ul>
+<li><a href="PRD.html">Product requirements</a> — problem, audience, scope, acceptance criteria.</li>
+<li><a href="FIVE-WHYS.html">Five Whys</a> — hypotheses, evidence, and discovery questions.</li>
+<li><a href="JTBD.html">Jobs to be done</a> — operator, developer, owner, and policyholder needs.</li>
+<li><a href="METRICS.html">Metrics</a> — actual synthetic formulas and proposed product measurement.</li>
+<li><a href="TEST-PLAN.html">Test plan</a> and <a href="TEST-RESULTS.html">Test results</a> — intended checks versus execution evidence.</li>
+<li><a href="VIABILITY.html">Viability</a> — product direction, developer empathy, and usage-analysis mapping.</li>
+<li><a href="ROADMAP.html">Roadmap</a> — gated v1 → v2, further verticals, and evaluation tooling.</li>
+<li><a href="DECISIONS.html">Decision log</a> — my implementation tradeoffs.</li>
+<li><a href="AGENTS.html">Maintenance context</a> — standing product and verification rules.</li>
+<li><a href="SOURCES.html">Sources</a> — public API, commercial-claim provenance, and bundled asset ledger.</li>
+<li><a href="LICENSE.html">License and rights</a> — MIT for original work only; third-party wordmark, artwork, fonts, and dependency rights excluded.</li>
+<li><a href="BRAND.html">Brand reference</a> and <a href="brand/index.html">visual brand guide</a> — observations, assets, typography limitations, and rights.</li>
+</ul>
+<h2>Ownership and non-affiliation</h2>
+<p>TypeSafe AI, Jev, their trademarks, and referenced imagery belong to their respective owners. Public availability of a brand asset is not permission for unrestricted reuse. The brand study records source URLs and reuse caveats. Commercial headline fonts are not redistributed; the interface uses an approximate system sans-serif fallback. Fragment Mono is bundled under its preserved SIL Open Font License. This is not a first-insurance-example claim: TypeSafe already publishes an auto-insurance Noul self-consistency cookbook, linked in <a href="SOURCES.html">Sources</a>.</p>
+<p><strong>An independent concept by Ayo Ahmed.</strong></p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

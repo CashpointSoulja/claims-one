@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JTBD — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="JTBD.md">Read source markdown ↗</a></header>
+<main><h1>Jobs to be done</h1>
+<p><a href="README.html">Documentation index</a> · <a href="PRD.html">Product requirements</a> · <a href="METRICS.html">Metrics</a></p>
+<p>These job statements are design hypotheses. They are not interview quotations, customer commitments, or evidence of a validated buying process. Claims One&#39;s current user is evaluating a synthetic reference, not submitting a real policy claim.</p>
+<h2>1. Workflow developer — compose a safe integration</h2>
+<p><strong>When</strong> I am exploring whether a structured decision API fits my workflow, <strong>I want</strong> to see the complete request, typed answers, composition rules, and deployment boundary, <strong>so I can</strong> estimate integration effort and avoid unsafe assumptions before wiring a service into production.</p>
+<ul>
+<li><strong>Trigger:</strong> an idea for routing unstructured intake, or an existing pipeline with opaque uncertainty handling.</li>
+<li><strong>Functional job:</strong> define rubrics, batch independent questions, validate responses, gate permitted routes, and keep credentials server-side.</li>
+<li><strong>Emotional job:</strong> feel confident that I understand what is contractual, illustrative, and unverified.</li>
+<li><strong>Current alternatives to investigate:</strong> official docs/cookbooks, deterministic rules, an internal proof of concept, a general-purpose LLM pipeline, or leaving the process unchanged.</li>
+<li><strong>Anxiety:</strong> demo code silently invents fields, treats a top probability as confidence, leaks a key, or appears production-ready without an evaluation.</li>
+<li><strong>v1 support:</strong> raw request/response; full distributions; zero-based Score mean and legend; Noul-only shape; actual copyable router; honest optional Worker requirements.</li>
+<li><strong>Success signal, proposed:</strong> task completion with no Noul-schema or key-placement mistake and a correct explanation of the human-only live path. Measure participants and tasks explicitly; see <a href="METRICS.html">Metrics</a>.</li>
+<li><strong>Not supplied:</strong> hosted live access, policy integration, compliance approval, deployment configuration, or an independently evaluated domain model.</li>
+</ul>
+<h2>2. Claims operations reviewer — know what needs attention</h2>
+<p><strong>When</strong> an intake record is incomplete, disputed, inconsistent, or urgent, <strong>I want</strong> the workflow to explain why it needs a person and what evidence is relevant, <strong>so I can</strong> prioritize review without mistaking a model signal for an insurer decision.</p>
+<ul>
+<li><strong>Functional job:</strong> distinguish urgent human coordination, ordinary review, and an eligible delegated queue.</li>
+<li><strong>Emotional job:</strong> avoid being pressured to accept an automated label without a reason.</li>
+<li><strong>Social job:</strong> explain a route to colleagues and a policyholder in terms of evidence, not model mystique.</li>
+<li><strong>v1 support:</strong> explicit reasons for pending invoices, policy ambiguity, prior-condition disputes, potential duplicate invoices, and cancellation intent; the slider cannot bypass holds.</li>
+<li><strong>Trust boundary:</strong> fraud signal means “investigate,” liability means alignment with supplied synthetic evidence, and severity means reported narrative urgency. None is a factual adjudication.</li>
+<li><strong>Success signal, proposed:</strong> independent reviewers agree on the permitted queue and identify missing evidence without additional guessing; record disagreements and review time rather than assuming all escalation is waste.</li>
+<li><strong>Not supplied:</strong> a real adjuster workbench, records retrieval, appeal handling, SLA notifications, a human queue, or a payment operation.</li>
+</ul>
+<h2>3. Product and risk owner — decide what can be delegated</h2>
+<p><strong>When</strong> a team proposes more automation, <strong>I want</strong> coverage, error rates, review load, and subgroup evidence at each threshold, <strong>so I can</strong> choose a bounded rollout and know when to stop it.</p>
+<ul>
+<li><strong>Functional job:</strong> set an allowed-action policy, evaluate held-out outcomes, budget review capacity, and monitor shifts.</li>
+<li><strong>Emotional job:</strong> know that a lower-review headline is not hiding more harmful mistakes.</li>
+<li><strong>v1 support:</strong> shared threshold; conditional accuracy with explicit denominator; null accuracy when nothing is autonomous; confidence bins with counts; one primary escalation reason per row; transparent economics.</li>
+<li><strong>Success signal, proposed:</strong> a documented risk decision with confidence intervals, error severity, denominator, review capacity, owner, and rollback condition—not merely a target autonomy percentage.</li>
+<li><strong>Not supplied:</strong> representative live outcomes, subgroup calibration, causal savings evidence, production telemetry, or a validated risk tolerance.</li>
+</ul>
+<h2>4. Policyholder — receive fair, appropriate attention</h2>
+<p><strong>When</strong> I report a pet&#39;s treatment and supporting documents, <strong>I want</strong> my record to reach an appropriate person or process, <strong>so I can</strong> get a clear next step without uncertain evidence becoming a denial or an accusation.</p>
+<p>This is an indirect job informing the design, not a public submission feature.</p>
+<ul>
+<li>Emergencies need human coordination rather than a confident-looking green approval.</li>
+<li>Missing records should prompt a request for evidence, not an invented attachment.</li>
+<li>A duplicate invoice may be a clerical error, not proof of wrongdoing.</li>
+<li>Explicit cancellation intent calls for service attention, never a different entitlement standard.</li>
+<li>Policy disagreements need qualified review and an appeal path in any future real system.</li>
+</ul>
+<p>A production product would need policyholder research, accessibility/language coverage, complaint analysis, and jurisdiction-specific safeguards. The synthetic demo cannot establish fairness or a suitable communication policy.</p>
+<h2>Job journey and current coverage</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>User question</th>
+<th>What v1 demonstrates</th>
+<th>Future requirement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frame</td>
+<td>Is this a focused judgment or a complex adjudication?</td>
+<td>Six explicit, narrow rubrics</td>
+<td>Operator discovery and risk-owner action taxonomy</td>
+</tr>
+<tr>
+<td>Prepare</td>
+<td>Is the evidence complete and authorized?</td>
+<td>Invented narrative plus stated attachment/policy summaries</td>
+<td>Minimized structured state, consent, evidence provenance</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>What are the typed answers and uncertainties?</td>
+<td>One batch, full distributions, exact primitive shapes</td>
+<td>Controlled live validation and versioned rubrics/model</td>
+</tr>
+<tr>
+<td>Compose</td>
+<td>What route is permitted?</td>
+<td>Shared simulated router with independent holds</td>
+<td>Validated route-specific policy; human approval boundaries</td>
+</tr>
+<tr>
+<td>Review</td>
+<td>Why does this need a person?</td>
+<td>Reason list and urgent/ordinary labels</td>
+<td>Real queues, ownership, appeal/escalation process</td>
+</tr>
+<tr>
+<td>Learn</td>
+<td>Is delegation correct and worthwhile?</td>
+<td>Synthetic denominator-aware dashboard</td>
+<td>Held-out labels, audit sampling, monitoring, cost-of-quality analysis</td>
+</tr>
+</tbody></table>
+<h2>Prioritization rule</h2>
+<p>Serve the developer and risk-owner comprehension jobs first. Do not add a payment button, fabricated “fraud detected” label, or high-stakes autonomous action simply to complete a visual journey. Expand only after evidence shows which real job remains unsolved. <a href="ROADMAP.html">Roadmap</a> ties those expansions to gates rather than dates.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

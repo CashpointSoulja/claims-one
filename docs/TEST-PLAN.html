@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEST-PLAN — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="TEST-PLAN.md">Read source markdown ↗</a></header>
+<main><h1>Test plan</h1>
+<p><a href="README.html">Documentation index</a> · <a href="METRICS.html">Metrics</a> · <a href="TEST-RESULTS.html">Test results</a></p>
+<p>This document defines checks and acceptance criteria. It is <strong>not</strong> evidence that they have run. Actual command output, versions, timestamps, screenshots, observed limitations, and deployment checks belong in <a href="TEST-RESULTS.html">Test results</a>. A synthetic reference passing these checks is not approved for real claims decisions.</p>
+<h2>Scope and boundaries</h2>
+<p>Validate the offline contract, twelve fixtures, six-question composition, fail-closed router, economics, calculated synthetic evaluation, React interaction, public documentation build, and optional server transport. All automated suites must remain offline with injected test transport and synthetic inputs. No credentials, paid requests, new accounts, real records, or model calls are required.</p>
+<p>Source inspection and static rendering are useful but do not replace rendered browser and public-host checks. The rendered acceptance pass is a separate handoff; do not start a server or browser during documentation-only work.</p>
+<h2>Automated verification commands</h2>
+<p>Run from the repository root using the project&#39;s supported Node version. Preserve the actual output and failure details rather than summarizing a failed command as passed.</p>
+<pre><code class="language-sh">npm ci
+npm test
+npm run typecheck
+npm run lint
+npm run build
+</code></pre>
+<p><code>npm ci</code> is setup, not a quality result. <code>npm test</code> runs the offline Vitest suite. <code>npm run build</code> requires all substantive root documents, renders and copies them, then builds the static app. A missing document, including the audit-owned <code>TEST-RESULTS.md</code>, should fail visibly; do not create an empty test record to bypass it.</p>
+<h2>Contract suite — <code>tests/contract.test.ts</code></h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Exact request/response envelopes</td>
+<td>Only the documented state/model/questions and model/answers/usage fields; required fields and all answer IDs present</td>
+</tr>
+<tr>
+<td>Primitive shape separation</td>
+<td>Choice/Score preserve full keyed distributions and confidence; Noul contains only <code>type</code> and <code>noul</code></td>
+</tr>
+<tr>
+<td>Choice bounds</td>
+<td>1 and 255 options accepted; 0 and 256 rejected; identifiers and selected argmax align</td>
+</tr>
+<tr>
+<td>Score bounds</td>
+<td>2 and 10 levels accepted; 1 and 11 rejected; legend/probability keys match exact levels</td>
+</tr>
+<tr>
+<td>Question-count distinction</td>
+<td>256 independently named Noul questions valid; no blanket 255-question restriction</td>
+</tr>
+<tr>
+<td>Probability integrity</td>
+<td>Reject nonfinite, negative, out-of-range, missing/extra keys, and invalid sums; accept valid round-trip distributions within implementation tolerance</td>
+</tr>
+<tr>
+<td>Choice confidence</td>
+<td>Formula <code>(n × max(p) − 1)/(n − 1)</code> with explicit one-option case and clamp; reject contradictory reported confidence</td>
+</tr>
+<tr>
+<td>Score confidence/mean</td>
+<td>Ordered distance and weighted zero-based mean; reject inconsistent means/confidence and invalid legend</td>
+</tr>
+<tr>
+<td>Zero-based wire convention</td>
+<td>Raw .3 remains .3 in the contract; 1.3 is display-only; five levels are keyed 0–4</td>
+</tr>
+<tr>
+<td>Model/state handling</td>
+<td>Missing or invalid model rejected; supported JSON state and valid model alias preserved</td>
+</tr>
+<tr>
+<td>Unexpected fields</td>
+<td>Reject fabricated Noul confidence, explanation, risk flags, and application provenance added to the public shape</td>
+</tr>
+</tbody></table>
+<p>When semantics change, consult current official docs first, then adjust implementation, exact boundary tests, and matching documentation together.</p>
+<h2>Engine and safety suite — <code>tests/engine.test.ts</code></h2>
+<h3>Fixtures and routing</h3>
+<ul>
+<li>All twelve invented samples yield the full six-question response with valid distributions, documented model, and zero usage.</li>
+<li>The default adapter has no environment/network/live fallback. Matching requires the complete sample text and exact fixed rubric; a copied rubric with changed labels/levels is not a fixture.</li>
+<li>A short phrase match, token-heavy unrelated narrative, extra text, custom input, or rubric drift produces generic uncertain answers and human-only routing.</li>
+<li>Preserve independent <code>Promise.all</code> evaluation over one shared state. Do not interpret offline scheduling as a latency benchmark.</li>
+<li>Keep external trusted provenance separate from the API response. Repeated routing of the original object works; JSON serialization/clone, arbitrary structurally valid answers, and live-shaped responses do not acquire trust.</li>
+<li>Reject invalid threshold or response before considering a route; no thrown exception should become silent simulated approval.</li>
+<li>Routine dental stays human-reviewed at .85 and changes to simulated auto-approve at .65.</li>
+<li>Emergency/severe, disputed, prior-condition, invoice/date/integrity, incomplete-evidence, unknown, and high-service-risk examples cannot become autonomous at a low threshold.</li>
+<li>Integrity &gt; .15 and policy-alignment &lt; .90 are independent holds. Documentation requires raw score ≥3.8 and raw level-4 probability ≥.90. Test equality boundaries and values immediately outside them.</li>
+<li>Require every required Choice/Score confidence, not an average. The slider cannot override evidence holds.</li>
+<li>Ensure the four actions remain clearly simulated and never call a payment/coverage/denial system.</li>
+</ul>
+<h3>Optional adapter and Worker</h3>
+<p>Use offline <code>Request</code> objects, injected fetch boundaries, and test keys only. The suite should cover:</p>
+<ul>
+<li>Browser adapter accepts an origin-root relative path only; reject absolute URLs, protocol-relative URLs, scheme endpoints, backslashes, and query/hash components. Strictly validate returned JSON. Endpoint configuration remains a developer-controlled setting, not a claim-text field.</li>
+<li>Disabled live path or missing server key fails closed and makes no upstream request.</li>
+<li>Exact HTTPS origin configuration and incoming Origin required. Reject wrong/missing/null origin and cross-site metadata; do not treat a permissive CORS header as authentication.</li>
+<li>Require configured Access team domain/audience, valid signed Access JWT, trusted issuer, current expiry, allowed identity, and verified signing-key constraints. Optional <code>nbf</code>/<code>iat</code> claims must be valid and not more than the implementation&#39;s 30-second future tolerance.</li>
+<li>Require <code>LIVE_RATE_LIMITER</code>; test per-identity and global quotas and denial behavior. A binding error does not make the request free to proceed.</li>
+<li>Reject unsupported path/method/content type, body over the 32 KiB limit, malformed or excessive declared length, streamed overflow, invalid JSON/schema/primitive limits, and unsupported model before upstream work where applicable. Missing Content-Length is permitted: streamed byte counting must enforce the limit even when length is omitted or understated.</li>
+<li>Upstream is fixed to the official System One endpoint; server adds the credential, forwards exact request fields, and validates full returned response and requested answer set/model.</li>
+<li>Test upstream HTTP error, oversized/error body, malformed successful JSON, invalid probabilities, wrong model/IDs, and abort/timeout behavior. Keep browser errors generic, no-store, and free of credentials/upstream details.</li>
+<li>No unconfigured retry, remote redirect, or accidental live request may occur during tests.</li>
+</ul>
+<p>These tests verify code boundaries, not real Access policy, runtime binding, deployment routing, or a live vendor account. A future live deployment needs separately authorized integration verification and budget control; v1 has no such evidence.</p>
+<h2>Economics and evaluation suite — <code>tests/evals.test.ts</code></h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Input validation</td>
+<td>Reject negative, fractional, nonfinite, empty/invalid, excessive, and unsafe-integer values; accept specified limits</td>
+</tr>
+<tr>
+<td>Published-price arithmetic</td>
+<td>50,000 × 1,500 input tokens at $42/billion = $3.15; output charge is zero</td>
+</tr>
+<tr>
+<td>Comparator arithmetic</td>
+<td>Cost derives from 444.6×, latency from 193.6× and 114 ms; neither is independently measured</td>
+</tr>
+<tr>
+<td>Token/runtime caveats</td>
+<td>Separate rough input estimate, zero mock usage, local demo runtime, and illustrative published latency</td>
+</tr>
+<tr>
+<td>Synthetic dataset</td>
+<td>Exactly 240 deterministic rows, twelve fixture groups × twenty variations, with constructed labels</td>
+</tr>
+<tr>
+<td>Threshold safety</td>
+<td>Increasing threshold cannot raise synthetic autonomy; holds remain binding</td>
+</tr>
+<tr>
+<td>Metric denominators</td>
+<td>Autonomy = autonomous/240; conditional autonomous accuracy = agreed/autonomous; null when none autonomous</td>
+</tr>
+<tr>
+<td>Calibration bins</td>
+<td>Every row included exactly once; use minimum required Choice/Score confidence and synthetic agreement; show row counts</td>
+</tr>
+<tr>
+<td>Escalation reasons</td>
+<td>One primary reason per human/urgent row; sum reconciles to escalated count, not 240 or multi-label findings</td>
+</tr>
+<tr>
+<td>Source of truth</td>
+<td>Interface calculations call shared engine functions; no chart-only hardcoded rates or benchmark claims</td>
+</tr>
+</tbody></table>
+<h2>Independent regression suite — <code>tests/audit.test.ts</code></h2>
+<p>Retain the separate offline checks of all twelve exact response shapes, independently calculated confidence/weighted means, primitive cardinality boundaries, every required question&#39;s malformed-answer handling, zero-based wire Scores, threshold monotonicity, independent risk holds, and default-network isolation. Source assertions about React labels/state storage remain source checks; they do not count as rendered interaction evidence. Read the actual test record for executed scope and counts.</p>
+<h2>Build, documentation, and publication audit</h2>
+<ol>
+<li>Verify <code>npm run typecheck</code> includes browser, worker, and tests; lint has no ignored blocking error; production build emits portable app assets.</li>
+<li>Confirm the documentation renderer fails for missing required Markdown and emits readable HTML plus raw Markdown for every required file, including the actual test record.</li>
+<li>Follow app documentation links and document-to-document links. Check source and rendered forms, heading fragments where used, external public citations, source downloads, and readable print output.</li>
+<li>Confirm <code>BRAND.md</code> and licence/research assets are available at linked paths. Keep licence/ownership text and font-approximation caveat intact.</li>
+<li>Check project-root and subpath asset loading. Relative Vite base alone is not evidence of correct host rewrite behavior; test a built deployment or an equivalent static host configuration.</li>
+<li>Confirm exact primitive field distinctions and Score conversion match code. No static document may describe a fixture as live inference or show added response metadata.</li>
+<li>Scan source, docs, compiled pages, metadata, committed public media, and any publication history for private planning material, machine paths, secrets, unintended builder bylines, unsupported affiliation, and stale benchmark claims.</li>
+<li>Search for inaccurate “first insurance” or “no enterprise apps” claims. Acknowledge the existing official FNOL use-case map and 14-question/15-repeat Noul cookbook with uncertainty routing, heatmaps, latency, and cost; do not imply independent reproduction.</li>
+</ol>
+<p>Build artifacts are generated output; check the root source and renderer rather than hand-editing a public HTML document to hide a source defect.</p>
+<h2>Rendered interaction and accessibility handoff</h2>
+<p>Run with the built app at <strong>1280–1366 px desktop</strong>, <strong>390 px mobile</strong>, and a useful intermediate width. Capture actual rendered screenshots; inspect them rather than asserting layout from CSS.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Acceptance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Opening/brand</td>
+<td>Literal wordmark visible; paper/ink opening, bounded sky, dark working console, restrained pink actions, no excessive glow; ownership/non-affiliation visible</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td>All six sections reachable; tabs and in-page links have clear focus/current state; URL/back behavior does not break the page</td>
+</tr>
+<tr>
+<td>Narrative input</td>
+<td>Synthetic privacy caution readable; sample selection/input labeled; no real-record invitation</td>
+</tr>
+<tr>
+<td>Pending/results</td>
+<td>Loading state understandable; changing input clears stale results; rapidly changed requests cannot paint an old response into a new narrative</td>
+</tr>
+<tr>
+<td>Primitive outputs</td>
+<td>Full distributions legible; Noul only probability of yes; Score visibly 1–5 with zero-based raw contract clarified</td>
+</tr>
+<tr>
+<td>Routing slider</td>
+<td>Keyboard-operable control with value label; dental .85/.65 outcome changes; urgent/risky holds do not disappear</td>
+</tr>
+<tr>
+<td>Copy/workflow</td>
+<td>Copy question and routing source; success/failure feedback accessible; when clipboard is unavailable, selectable visible source remains usable</td>
+</tr>
+<tr>
+<td>Economics</td>
+<td>Input bounds enforced, assumptions visible, outputs recalculate from engine, no claim of measured Claims One savings or latency</td>
+</tr>
+<tr>
+<td>Evaluations</td>
+<td>Threshold results recalculate, table accompanies chart, bin/reason counts legible, synthetic/calibration caveats adjacent</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>HTML and Markdown links work; no missing-test-record destination; readable dark/light and print modes where supported</td>
+</tr>
+<tr>
+<td>Footer</td>
+<td>Exact independent-concept statement, TypeSafe/Jev subject naming, demo mode and non-affiliation; no live video or page claim</td>
+</tr>
+<tr>
+<td>Reflow</td>
+<td>No clipped labels, unwanted horizontal viewport overflow, hidden logo, chart/control collision, or unreachable source view at 390 px</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>Full keyboard path, labels and semantic headings, discernible contrast/focus, sensible announcement order, no chart-only information</td>
+</tr>
+<tr>
+<td>Motion/zoom</td>
+<td>Reduced-motion preference honored; 200% zoom keeps controls/content reachable; sky imagery never obscures essential text</td>
+</tr>
+</tbody></table>
+<p>Use an automated accessibility audit as a supplement, not a substitute for manual keyboard and contrast review. Record browser/version, viewport, screenshot paths, console errors, and known limitations. Test blocked clipboard, cleared fields, invalid economics entries, and rapid text edits—not only the happy path.</p>
+<h2>Deployment acceptance</h2>
+<p>Only perform publication checks after explicit deployment authorization:</p>
+<ul>
+<li>Public URL resolves over HTTPS, logged out and without a sign-in wall for the static mock experience.</li>
+<li>Correct root/subpath assets, HTML/raw documentation, fonts/licence paths, and direct entry/reload behavior.</li>
+<li>No browser key, unexpected analytics, live API request, remote fallback, missing-asset error, or sensitive console message.</li>
+<li>The site and any walkthrough retain <strong>Mock demo</strong> and never imply live Jev inference.</li>
+<li>Optional live API, if separately authorized, is protected at the server route; public static access must not imply public authenticated evaluation access.</li>
+</ul>
+<p>A local build is not deployment evidence. A configured origin that has not resolved is not a public URL.</p>
+<h2>Release gate and evidence discipline</h2>
+<p>Block reference-release verification for critical unsafe routing, exposed secret/private material, misleading provenance/live claims, missing required documents, broken primary interactions, or inaccessible core controls. Record other known issues with impact, owner, and remediation instead of silently omitting them.</p>
+<p>A results record should distinguish <strong>executed and passed</strong>, <strong>executed and failed</strong>, <strong>not run</strong>, and <strong>out of scope</strong>; include command output and rendered observations. Report another person&#39;s run as their reported evidence, separately from local execution. Repeat the affected tests and rendered checks after fixes. Nothing in this test plan establishes live accuracy, calibration, regulated compliance, commercial rights for future reuse, or readiness to handle real claims.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

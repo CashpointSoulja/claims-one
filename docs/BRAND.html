@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BRAND — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="BRAND.md">Read source markdown ↗</a></header>
+<main><h1>Claims One — brand reference</h1>
+<p>A public-site study of TypeSafe AI, followed by an explicit interpretation for an independent claims-triage reference application. Captured <strong>11 October 2026</strong>, before application UI work. This is not an official TypeSafe identity manual.</p>
+<p><strong>Mock-only framing:</strong> built against Jev&#39;s documented API contract; the mock adapter mirrors real endpoints and response shapes. A real key can later be connected through one adapter file plus a server-side environment variable. The site must visibly say <strong>“Mock demo.”</strong> Do not claim a live Jev connection or measured Jev performance.</p>
+<p><strong>Visual guide:</strong> <a href="brand/index.html">docs/brand/index.html</a>. <strong>Measured evidence:</strong> <a href="brand/observations.json">docs/brand/observations.json</a>. All screenshot and asset paths below are repository-relative.</p>
+<h2>1. Sources and capture method</h2>
+<ul>
+<li>Homepage: <a href="https://typesafe.ai/">https://typesafe.ai/</a></li>
+<li>Enterprise: <a href="https://typesafe.ai/enterprise">https://typesafe.ai/enterprise</a></li>
+<li>Launch article: <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">https://typesafe.ai/blog/introducing-system-one-models-and-jev</a></li>
+<li>API reference: <a href="https://docs.typesafe.ai/api.md">https://docs.typesafe.ai/api.md</a></li>
+<li>Primitives: <a href="https://docs.typesafe.ai/primitives.md">https://docs.typesafe.ai/primitives.md</a></li>
+<li>Confidence: <a href="https://docs.typesafe.ai/confidence.md">https://docs.typesafe.ai/confidence.md</a></li>
+</ul>
+<p>The public pages were rendered in Chrome at <strong>1440 × 1000 desktop</strong> and the homepage at <strong>390 × 844 mobile</strong>, with device scale factor 1. Fonts were allowed to load; the pages were scrolled to trigger lazy content before full-page capture. CSS values below are computed styles, not guesses from a compressed screenshot. A desktop scrollbar leaves a 1425px content area. Animated elements may differ between the viewport and full-page captures; these are actual rendered captures, not stitched mockups. No analytics, tracking scripts, page source bundle, or private application data was copied.</p>
+<table>
+<thead>
+<tr>
+<th>Public page</th>
+<th>Full-page screenshot</th>
+<th>Opening viewport</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Home, desktop</td>
+<td><code>public/brand/typesafe-home-desktop.png</code> (1440 × 11282)</td>
+<td><code>public/brand/typesafe-home-desktop-viewport.png</code></td>
+</tr>
+<tr>
+<td>Home, mobile</td>
+<td><code>public/brand/typesafe-home-mobile.png</code> (390 × 10206)</td>
+<td><code>public/brand/typesafe-home-mobile-viewport.png</code></td>
+</tr>
+<tr>
+<td>Enterprise, desktop</td>
+<td><code>public/brand/typesafe-enterprise-desktop.png</code> (1440 × 5822)</td>
+<td><code>public/brand/typesafe-enterprise-desktop-viewport.png</code></td>
+</tr>
+<tr>
+<td>Launch article, desktop</td>
+<td><code>public/brand/typesafe-blog-desktop.png</code> (1440 × 10475)</td>
+<td><code>public/brand/typesafe-blog-desktop-viewport.png</code></td>
+</tr>
+</tbody></table>
+<p>Screenshot content and the TypeSafe AI trademark belong to their respective owners. Screenshots are credited to <strong>TypeSafe AI, typesafe.ai</strong>, and reproduced here for visual reference. Claims One is an independent concept by Ayo Ahmed, not affiliated with or endorsed by TypeSafe AI. A public asset URL is provenance, not a grant of unrestricted reuse.</p>
+<h2>2. Direct observations: do not replace these with generic SaaS styling</h2>
+<p>The live homepage is primarily a <strong>grey/white desktop operating-system canvas with enormous near-black type</strong>. The opening headline is textual; the pink/purple sky appears in the next prominent desktop scene. The top-left wordmark is literal <strong>“TypeSafe AI” text</strong>, not a made-up geometric symbol. There are pixel-terminal accents, base64 decorations, a shallow system-menu strip, rendered window/chart graphics, and unusually blunt editorial headings. Pink is an accent, not a wash over every panel.</p>
+<p>The literal hierarchy is:</p>
+<ol>
+<li>Near-white menu strip; TypeSafe AI owns the top-left.</li>
+<li>Huge tightly set, near-black grotesk headline and plain direct copy.</li>
+<li>A sky desktop scene with layered/floating window imagery.</li>
+<li>Giant economics statements, small qualifiers, and operational diagrams.</li>
+<li>“We give a FAQ” and evidence with named <strong>Nuance</strong> sections.</li>
+</ol>
+<p>The menu, editorial type, and sky are the identity. A completely dark landing page with glowing violet gradients, pill cards, and generic startup copy would miss it. The application console can be dark; the hero should remain recognizably this homepage.</p>
+<h3>Observed color values</h3>
+<table>
+<thead>
+<tr>
+<th>Token recommendation</th>
+<th>Exact value</th>
+<th>Direct evidence / role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--brand-paper</code></td>
+<td><code>#FEFEFE</code></td>
+<td>Computed page body and menu backgrounds; inverse text on dark sections</td>
+</tr>
+<tr>
+<td><code>--brand-ink</code></td>
+<td><code>#1E1E1E</code></td>
+<td>Wordmark, headline, dark panel backgrounds</td>
+</tr>
+<tr>
+<td><code>--brand-ink-soft</code></td>
+<td><code>rgba(30,30,30,.86)</code></td>
+<td>Large downstream headings and prose</td>
+</tr>
+<tr>
+<td><code>--brand-grey</code></td>
+<td><code>#DEDEDE</code></td>
+<td>Secondary text and desktop surfaces</td>
+</tr>
+<tr>
+<td><code>--brand-grey-deep</code></td>
+<td><code>#C4C4C4</code></td>
+<td>Background surfaces within the OS treatment</td>
+</tr>
+<tr>
+<td><code>--brand-pink</code></td>
+<td><code>#F386A1</code></td>
+<td>Accent backgrounds, labels, and accessible skip-link background</td>
+</tr>
+<tr>
+<td><code>--brand-magenta</code></td>
+<td><code>#E551BA</code></td>
+<td>Homepage plotted accent</td>
+</tr>
+<tr>
+<td><code>--brand-success-observed</code></td>
+<td><code>rgba(3,170,92,.74)</code></td>
+<td>One plotted/demo accent; not evidence of a universal success token</td>
+</tr>
+<tr>
+<td><code>--brand-system-muted</code></td>
+<td><code>#ABBAB9</code></td>
+<td>System-caption text and launch-article canvas background</td>
+</tr>
+</tbody></table>
+<p>The sky is a <strong>raster image</strong>, not a computed CSS purple gradient. Its exact observed source is <a href="https://framerusercontent.com/images/khHXfJSV1hyOxMqy8loI0dIEz4.png">https://framerusercontent.com/images/khHXfJSV1hyOxMqy8loI0dIEz4.png</a>. The reference copy is <code>public/brand/typesafe-sky.png</code>. Use it as a bounded decorative desktop scene, not as text-bearing chart ink. The sampled palette should not be presented as the image&#39;s full color space.</p>
+<h3>Observed typography, URLs, and licensing</h3>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Role / exact observation</th>
+<th>Public font URL</th>
+<th>Rights</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Die Grotesk C Medium</strong></td>
+<td>Main headings and wordmark; CSS weight 500</td>
+<td><a href="https://framerusercontent.com/assets/4w6Hg5DeDzuWT6PSthKEwbacV0g.woff2">https://framerusercontent.com/assets/4w6Hg5DeDzuWT6PSthKEwbacV0g.woff2</a></td>
+<td>Font metadata: Copyright 2026 Klim Type Foundry, all rights reserved; use subject to Klim licence</td>
+</tr>
+<tr>
+<td><strong>Die Grotesk C Regular</strong></td>
+<td>Supporting copy; CSS weight 400</td>
+<td><a href="https://framerusercontent.com/assets/AjH8uNDZvXKC9xfhOZo8jIJKVss.woff2">https://framerusercontent.com/assets/AjH8uNDZvXKC9xfhOZo8jIJKVss.woff2</a></td>
+<td>Font metadata: Copyright 2025 Klim Type Foundry; use subject to Klim licence</td>
+</tr>
+<tr>
+<td><strong>LisaTerminal Paper 2X3Y Medium</strong></td>
+<td>Pixel-like system captions, announcement bar, <code>TS.AI.0S1</code>; CSS weight 500</td>
+<td><a href="https://framerusercontent.com/assets/V2AZqQSDXyGgvnJfcbuPd1WaW0.woff2">https://framerusercontent.com/assets/V2AZqQSDXyGgvnJfcbuPd1WaW0.woff2</a></td>
+<td>No distribution licence established from the public font metadata; do not bundle</td>
+</tr>
+<tr>
+<td><strong>JetBrains Mono</strong></td>
+<td>Base64/code decoration; commonly CSS weight 300, 10–13px</td>
+<td><a href="https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8lqxTOlOV.woff2">https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8lqxTOlOV.woff2</a></td>
+<td>Observed source only; not bundled here</td>
+</tr>
+<tr>
+<td><strong>Fragment Mono</strong></td>
+<td>Declared in the homepage&#39;s font stylesheet and loaded on the launch article; selected for portable console labels</td>
+<td><a href="https://fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnB4NHhg.woff2">https://fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnB4NHhg.woff2</a></td>
+<td>SIL Open Font License 1.1; copyright 2022 The Fragment-Mono Project Authors</td>
+</tr>
+</tbody></table>
+<p><strong>Important distinction:</strong> Fragment Mono is present in the public site&#39;s font resources, but the measured homepage system captions actually use LisaTerminal, and its measured code decorations use JetBrains Mono. Calling every caption “Fragment Mono” would be inaccurate.</p>
+<p>Die Grotesk is a commercial Klim typeface. <a href="https://klim.co.nz/retail-fonts/die-grotesk/">Foundry source</a> and <a href="https://klim.co.nz/licences/">licensing terms</a> must be consulted for the final deployment. Its full font files and LisaTerminal files are <strong>not redistributed</strong> here. Public accessibility does not establish a licence for a different domain. Do not hotlink commercial fonts as a licence workaround. If the project owner has the relevant licence, supply local webfont files and use the exact families above; otherwise the portable, no-purchase fallback is <code>Arial, Helvetica, sans-serif</code>, clearly an approximation rather than identical typography.</p>
+<p>Fragment Mono&#39;s observed Latin WOFF2 is included at <code>public/brand/fragment-mono-latin-400.woff2</code>, with its complete licence at <code>docs/brand/fragment-mono-license.txt</code>. This is <strong>Fragment Mono</strong>, the open-source typeface, not a similarly named commercial Fragment family. Preserve that licence when distributing the font. The Latin subset does not promise every script; retain a system monospace fallback.</p>
+<h3>Exact type and spacing measurements</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Desktop (1440px viewport)</th>
+<th>Mobile (390px viewport)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TypeSafe AI menu text</td>
+<td>18px / 18px, weight 500, tracking .54px; glyph run 97.1328px wide</td>
+<td>Compact menu; desktop wordmark measurement is the reproduction reference</td>
+</tr>
+<tr>
+<td>Main homepage headline</td>
+<td>150px / 120px, weight 500, normal tracking</td>
+<td>54px / 43.2px, weight 500</td>
+</tr>
+<tr>
+<td>Intro line</td>
+<td>17px / 20.4px, weight 400, tracking .85px</td>
+<td>Same 17px text, wraps</td>
+</tr>
+<tr>
+<td>Large editorial CTA</td>
+<td>64px / 57.6px, weight 500</td>
+<td>28px / 25.2px</td>
+</tr>
+<tr>
+<td>System captions</td>
+<td>18px / 18px, weight 500, tracking .18px</td>
+<td>Announcement 16px / 16px, tracking .16px; secondary announcement 18px / 18px</td>
+</tr>
+<tr>
+<td>Main content container</td>
+<td>1240px wide, x=92.5px within 1425px content</td>
+<td>Headline x=20px, width 339.5px</td>
+</tr>
+<tr>
+<td>Headline inner container</td>
+<td>max-width 1024px; 10px inner horizontal padding; live headline width 1004px</td>
+<td>Narrow, intentionally wrapped headline</td>
+</tr>
+<tr>
+<td>Headline stack</td>
+<td>50px gap; 200px bottom padding</td>
+<td>Do not carry desktop empty space onto mobile</td>
+</tr>
+<tr>
+<td>Outer opening stack</td>
+<td>60px top padding; 40px gap</td>
+<td>Reduced at narrow widths</td>
+</tr>
+<tr>
+<td>Sky desktop scene</td>
+<td>1240 × 800px, x=92.5px, y=1492.5px in this capture</td>
+<td>Refer to full mobile capture for stacking</td>
+</tr>
+</tbody></table>
+<p>Observed HTML wrappers are often square; two chart/image-area wrappers had 4px corner radii. One launch-video overlay had <code>0 4px 4px rgba(0,0,0,.25)</code>. Much of the floating-window appearance is contained in raster graphics, so a large-radius live application card is an <strong>interpretation</strong>, not a scraped universal homepage radius.</p>
+<h2>3. Literal wordmark and usage</h2>
+<p>Use <strong><code>public/brand/typesafe-wordmark.svg</code></strong>, served in the app as <code>brand/typesafe-wordmark.svg</code> with the deployment&#39;s base URL. It is a transparent, self-contained outline SVG, with a 97.132813 × 18 viewBox. No background rectangle, external font request, tracking script, or embedded full font is included.</p>
+<p>Provenance: the homepage navigation renders the text “TypeSafe AI” in Die Grotesk C Medium at 18px, weight 500, tracking .54px. No original navigation-logo image exists in the observed DOM. The SVG reproduces those literal glyph outlines from the public font source above, positioned using the browser&#39;s measured character offsets: <code>0, 9.046875, 18.4296875, 29.2109375, 39.09375, 50.609375, 60.046875, 65.7109375, 75.59375, 79.5, 92.9140625</code>. This is a static reference rendering of the observed trademark, not a new brand mark or a font distribution licence. Its baseline is normalized within the transparent 18px line box.</p>
+<ul>
+<li>Put the TypeSafe AI wordmark first, top-left, on a near-white system strip. Place <strong>Claims One</strong> beside it, separated by a fine rule and generous breathing room, not fused into a new trademark.</li>
+<li>Preserve literal capitalization: <strong>TypeSafe AI</strong>, <strong>Jev</strong>, <strong>Claims One</strong>, <strong>System One</strong>.</li>
+<li>Keep aspect ratio. No stretching, purple glow, extra symbol, or novelty monospace replacement for the wordmark.</li>
+<li>Recommend at least 18px displayed line-box height and 12px clear space (application guidance, not an official clear-space rule).</li>
+<li>Keep the wordmark on the light strip even above a dark console. If an inverse version is required, change only the outline fill to <code>#FEFEFE</code>; document it as an application adaptation.</li>
+<li>Include accessible <code>alt=&quot;TypeSafe AI&quot;</code> on an image; do not imply the product is an official TypeSafe service.</li>
+</ul>
+<h2>4. Interpretation: a dark console inside the literal homepage world</h2>
+<p><strong>Hero: direct reference. Console: deliberate adaptation.</strong> Keep the paper/ink type-led opening and a bounded pink-sky scene; introduce a dark working window within that same desktop language. This reconciles the literal public homepage with a utilitarian terminal-adjacent triage surface, instead of inventing an unrelated purple SaaS brand.</p>
+<p>Recommended composition:</p>
+<ol>
+<li>Shallow paper system bar with the literal wordmark, Claims One, and restrained monospace status.</li>
+<li>Huge ink headline: <strong>“System One for claims.”</strong> Supporting copy: <strong>“Classify. Score. Route. Keep uncertainty in view.”</strong> No vague “revolutionize” or “unlock” language.</li>
+<li>A sky-backed preview/working-window scene, not a full-page generic gradient. One or two staggered windows are enough; avoid decorative dashboards unrelated to the task.</li>
+<li>The main dark working console uses near-black surfaces, grey rules, white readable copy, Fragment Mono labels, tabular figures, a single pink action accent, and visible human-review states.</li>
+<li>Economics and evidence return to direct headings and small, readable <strong>Nuance</strong> qualifiers. Use “We give a FAQ” for the FAQ heading.</li>
+</ol>
+<h3>Recommended application-only tokens</h3>
+<p>These values are <strong>design recommendations</strong>, not computed homepage values, unless marked observed:</p>
+<pre><code class="language-css">:root {
+  --brand-paper: #fefefe;             /* observed */
+  --brand-ink: #1e1e1e;              /* observed */
+  --brand-grey: #dedede;             /* observed */
+  --brand-grey-deep: #c4c4c4;         /* observed */
+  --brand-pink: #f386a1;             /* observed */
+  --brand-magenta: #e551ba;          /* observed */
+  --console-bg: #171717;             /* adaptation */
+  --console-surface: #1e1e1e;        /* observed ink, new role */
+  --console-raised: #262626;         /* adaptation */
+  --console-rule: #414141;           /* adaptation */
+  --console-text: #fefefe;           /* observed paper, new role */
+  --console-muted: #b8b8b8;          /* adaptation */
+  --status-approved: #88d7a5;        /* adaptation */
+  --status-review: #f2c37b;          /* adaptation */
+  --status-risk: #f386a1;            /* observed pink, new role */
+  --font-display: &quot;Die Grotesk C Medium&quot;, Arial, Helvetica, sans-serif;
+  --font-body: &quot;Die Grotesk C Regular&quot;, Arial, Helvetica, sans-serif;
+  --font-mono: &quot;Fragment Mono&quot;, ui-monospace, monospace;
+  --radius-window: 18px;             /* adaptation */
+  --radius-panel: 12px;              /* adaptation */
+  --radius-control: 8px;             /* adaptation */
+  --window-shadow: 0 24px 70px rgba(30, 30, 30, .22),
+                   0 4px 12px rgba(30, 30, 30, .12); /* adaptation */
+}
+</code></pre>
+<p>Use a <strong>4, 8, 12, 16, 24, 32, 48, 64px</strong> application spacing scale. Use 24–32px window padding, 16–24px card gaps, 44px minimum hit areas, and 12–14px mono labels with readable body text at 16px/1.5. The spacing scale and radii organize a usable product; they are not claimed to be the official site&#39;s token system. Match the 0.8 headline line-height only in display headings, never in paragraphs or code.</p>
+<p>Use dark ink text on pink filled buttons, not white on light pink. On the dark console, pink and magenta can identify selected probability bars; nonselected bars remain grey. Review is amber with explicit <strong>“Human review”</strong> text; approval is green with explicit <strong>“Auto-approve”</strong> text. Never encode decisions by color alone. Rounded edges are useful; a sea of pill controls is not the desktop-OS motif.</p>
+<p>Motion should be short (160–220ms), deterministic, and limited to window reveals, result bars, or route changes. Honor reduced-motion settings. No shimmering fake activity, endless terminal typing, or marketing animation across the working data.</p>
+<h2>5. Voice: claim, evidence, nuance</h2>
+<p><strong>Direct observation:</strong> Enterprise says “Put Jev to work” and “Classify, score, and route quickly, at low cost.” The launch article follows large claims with <strong>Evidence / Technical Results</strong> and named <strong>Nuance</strong> sections. The homepage says <strong>“We give a FAQ.”</strong> The voice is brief, specific, developer-native, skeptical of its own boldness, and occasionally dry.</p>
+<p><strong>Application copy recommendations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Prefer</th>
+<th>Avoid</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“System One for claims.”</td>
+<td>“The future of revolutionary intelligent insurance.”</td>
+</tr>
+<tr>
+<td>“One state. Six questions. Typed answers.”</td>
+<td>“Magic that understands everything.”</td>
+</tr>
+<tr>
+<td>“Confidence below your threshold. Send to an adjuster.”</td>
+<td>“Guaranteed correct decision.”</td>
+</tr>
+<tr>
+<td>“Reference implementation on the published API contract.”</td>
+<td>“Live Jev analysis” when using fixtures</td>
+</tr>
+<tr>
+<td>“Synthetic evaluation data. Not measured Jev performance.”</td>
+<td>“Validated accuracy” without a real evaluation</td>
+</tr>
+<tr>
+<td>“Based on TypeSafe&#39;s published workflow results.”</td>
+<td>“Your claims will be 193.6x faster.”</td>
+</tr>
+<tr>
+<td>“Nuance: policy checks remain in code.”</td>
+<td>“Zero errors. Fully autonomous insurance.”</td>
+</tr>
+</tbody></table>
+<p>Published homepage multipliers <strong>193.6x faster / 444.6x cheaper</strong> are workflow-evaluation claims, not measured claims-triage guarantees. The blog explicitly says they are likely at the higher end of real-world gains. The blog reports $42 per billion input tokens, free output, and 70–500ms end-to-end response times; keep sources and assumptions beside economics, and do not present a local fixture delay as live service latency. Type-safe answers do not establish correct insurance coverage judgments.</p>
+<h2>6. Data display is part of the brand&#39;s honesty</h2>
+<p>The official API reference, primitives, and confidence docs were read before these recommendations. UI labels must preserve their distinctions:</p>
+<ul>
+<li><strong>Choice:</strong> show the chosen option, every option in <code>probabilities</code>, and the returned <code>confidence</code>. Confidence is derived from the distribution; it is not simply the top probability.</li>
+<li><strong>Score:</strong> show a possibly fractional <code>score</code>, every level in <code>probabilities</code>, the returned <code>legend</code>, and <code>confidence</code>. API level indices start at 0. A product severity scale of 1–5 must clearly identify the display transformation from a five-level API score; do not silently replace the raw contract.</li>
+<li><strong>Noul:</strong> show the single <code>noul</code> value from 0 to 1, labeled <strong>“Probability of yes.”</strong> Do not invent <code>probabilities</code> or API <code>confidence</code> fields. Uncertainty is already present near 0.5.</li>
+<li>Several independent questions over the same <code>state</code> are evaluated in parallel in one request; final routing is composed in application code. Do not show a fictitious sequential reasoning transcript.</li>
+<li>Confidence is not a blanket promise of domain accuracy. Thresholds depend on risk and should be evaluated on the actual use case. Calibration charts populated with fixtures must remain explicitly synthetic.</li>
+</ul>
+<p>The current docs specify up to 255 Choice options and 2–10 Score levels, not 255 Score levels or a documented blanket 255-question limit. These details matter to the data design; the broad marketing phrase “every decision includes confidence” must not override the precise Noul API shape.</p>
+<p>Do not claim this is the first insurance example or that TypeSafe has no existing auto-insurance work; this study makes no exclusivity claim.</p>
+<h2>7. Implementation handoff and boundaries</h2>
+<ul>
+<li>Brand assets are ready; this lane does not implement application UI or adapters.</li>
+<li>Use base-aware asset URLs for a portable Vite build, for example <code>${import.meta.env.BASE_URL}brand/typesafe-wordmark.svg</code>. The repository&#39;s visual guide instead uses relative links to <code>../../public/brand/</code> so it can be opened directly without a server.</li>
+<li>The visual guide and assets require no account, API call, external stylesheet, or remote font at viewing time. Source citations are links, not loaded trackers.</li>
+<li>Confirm permission/licensing for TypeSafe imagery and the outlined wordmark before broader commercial reuse. Obtain the correct Die Grotesk licence for literal full-page typography or disclose the system fallback. No permission has been claimed on behalf of TypeSafe or Klim.</li>
+<li>Preserve the font licence, screenshot credit, non-affiliation statement, and the footer credit <strong>“An independent concept by Ayo Ahmed.”</strong></li>
+<li>Application rendering, responsive behavior, accessibility, and production screenshots belong to the subsequent UI verification handoff. This study&#39;s public-site captures are not application test results.</li>
+</ul>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>

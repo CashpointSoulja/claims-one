@@ -150,4 +150,16 @@ The following remain **unverified after local offline, browser and video checks*
 - Video cloud upload and anyone-with-link sharing permissions. The final MP4 and subtitles are local delivery artifacts, not a Drive link.
 - A fresh-clone reproduction of the complete narration/capture/render pipeline.
 
-Public repository creation, hosting and Drive sharing were unavailable in this environment. No publication, logged-out public URL, upload or sharing permission is claimed. Local acceptance is not a substitute for insurer policy validation and representative held-out evaluation before any production use.
+The owner subsequently created the public source repository. Branch-root Pages packaging is prepared separately below; enabling Pages remains an owner action. No logged-out public site, Drive upload or sharing permission is claimed. Local acceptance is not a substitute for insurer policy validation and representative held-out evaluation before any production use.
+
+## Default-branch-root Pages preparation
+
+The source HTML entry moved to `app/index.html`; Vite still emits the same compiled client asset hashes. The repository root now contains the static production entry, relative assets, all rendered docs and brand assets, favicon and `.nojekyll`. The source and public mock-only framing are unchanged. `npm run prepare:pages` runs the production build, copies its output to the root and byte-verifies every copied file. The GitHub Actions workflow remains optional and manual; it is not required to enable **main / (root)** hosting.
+
+At 03:07:27 UTC on 11 October 2026, `npm test`, `npm run typecheck`, `npm run lint` and `npm run prepare:pages` all passed: 287 tests, five suites, 47 byte-verified static files plus `.nojekyll`, and 432 local references across root/repository mounts. This is preparation evidence, not proof that Pages was enabled or that a public URL loaded.
+
+Three additional branch-root regression checks passed at 03:08:18 UTC: compiled relative asset URLs and `.nojekyll`, separate development entry/reproducible preparation command, and current mock-framed docs/identical brand assets. The expanded suite reported **290 passing tests in six suites**; a subsequent lint pass caught and removed an unnecessary regex escape in that new test file.
+
+The actual repository-root static artifact was then exercised locally at both `/` and `/claims-one/`: dental 85% → 65% routing, unchanged response, primitive displays, README/viability/brand/font links and 390 px overflow checks passed. Moving the Vite HTML entry initially caused a development-only `/src/main.tsx` 404. Adding an in-root `app/main.ts` module corrected resolution without changing the compiled asset hashes. The restarted development server returned 200 for its entry and resolved source module, rendered the hero/mock label, passed the dental threshold regression and loaded the mock-framed README. No browser/network errors, failed HTTP requests, POSTs or upstream requests were observed. Preserved root/subpath desktop/mobile screenshots were visually reviewed without finding a regression. The final video is unchanged.
+
+After the entry fix, at 03:14:07 UTC, the 290-test suite, type checks, lint and Pages preparation all passed again. Public Pages remains untested because the owner has not enabled hosting.

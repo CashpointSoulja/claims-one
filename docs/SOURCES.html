@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SOURCES — Claims One docs</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fragment Mono;src:url('../brand/fragment-mono-latin-400.woff2') format('woff2');font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#fefefe;color:#1e1e1e;font:17px/1.65 Arial,Helvetica,sans-serif}header{border-bottom:1px solid #c4c4c4;padding:18px max(24px,calc((100% - 1100px)/2));display:flex;gap:24px;flex-wrap:wrap}header img{width:108px;height:20px}main{max-width:960px;margin:64px auto;padding:0 24px}h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em}h2{margin-top:48px;line-height:1.2}h3{margin-top:32px}a{color:inherit;text-underline-offset:4px}a:hover{background:#f386a1}pre{background:#1e1e1e;color:#fefefe;padding:24px;border-radius:12px;overflow:auto}code{font:13px/1.7 'Fragment Mono',monospace;overflow-wrap:anywhere}pre code{white-space:pre;overflow-wrap:normal}blockquote{border-left:4px solid #f386a1;margin:24px 0;padding:4px 24px;background:#f3f3f3}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border-bottom:1px solid #c4c4c4}img{max-width:100%;height:auto}footer{border-top:1px solid #c4c4c4;padding:32px 24px;text-align:center;font-size:13px}.source{font:12px/1.5 'Fragment Mono',monospace;color:#555}:focus-visible{outline:3px solid #b22b61;outline-offset:4px}@media(max-width:600px){main{margin:32px auto}pre{padding:16px}header{padding:16px 24px}}@media print{header,.source{display:none}main{max-width:none;margin:0}pre{white-space:pre-wrap;color:#1e1e1e;background:#eee}a{overflow-wrap:anywhere}}
+</style></head><body>
+<header><a href="../index.html" aria-label="Claims One home"><img src="../brand/typesafe-wordmark.svg" alt="TypeSafe AI"></a><a href="index.html">Claims One / Docs</a><a class="source" href="SOURCES.md">Read source markdown ↗</a></header>
+<main><h1>Sources and evidence boundaries</h1>
+<p><a href="README.html">Documentation index</a></p>
+<p>This register cites <strong>public</strong> material and the implemented source. It is not a list of independent validations. Claims One is an independent concept by Ayo Ahmed, not affiliated with or endorsed by TypeSafe AI.</p>
+<h2>Primary technical references</h2>
+<table>
+<thead>
+<tr>
+<th>Public source</th>
+<th>What it supports</th>
+<th>How Claims One uses it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.typesafe.ai/api.md">HTTP API reference</a></td>
+<td><code>POST /v1/systemone</code>; bearer authorization; state/model/questions and model/answers/usage; answer shapes; Choice up to 255 options; Score 2–10 levels</td>
+<td><code>src/contract.ts</code>, fixed rubrics, offline adapter shape, optional server-only transport</td>
+</tr>
+<tr>
+<td><a href="https://docs.typesafe.ai/primitives.md">Primitives</a></td>
+<td>Independent typed questions over one state; full Choice/Score distributions; Score legend; Noul returns a single probability</td>
+<td>Six mixed questions in one batch; final composition in ordinary code</td>
+</tr>
+<tr>
+<td><a href="https://docs.typesafe.ai/confidence.md">Confidence</a></td>
+<td>Choice normalization above a uniform split; Score ordered spread formula; Noul has no separate confidence; thresholds depend on risk</td>
+<td>Shared formula implementations, strict response validation, minimum required Choice/Score gate</td>
+</tr>
+<tr>
+<td><a href="https://docs.typesafe.ai/llms.txt">Documentation index</a></td>
+<td>Discoverable official reference, patterns, and cookbook links</td>
+<td>Starting point for maintenance research; recheck current pages before changing the contract</td>
+</tr>
+<tr>
+<td><a href="https://docs.typesafe.ai/concepts/use-case-map.md">Use-case map</a></td>
+<td>Insurance FNOL triage is an existing official use case</td>
+<td>Evidence of domain overlap; does not establish a deployed customer inventory or validate this pet-claims rubric</td>
+</tr>
+<tr>
+<td><a href="https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md">Self-consistency: nouls</a></td>
+<td>Existing auto-insurance example, one claim, 14 Noul questions, 15 repeated evaluations per condition, probability heatmaps, .30–.70 uncertainty/human-review bands, per-call latency and cost</td>
+<td>Evidence that insurance and these workflow concepts are already public; Claims One productizes a distinct mixed-primitive pet-FNOL template, not a benchmark reproduced here</td>
+</tr>
+</tbody></table>
+<p>The precise API pages override broad wording such as “every answer has confidence.” <strong>Noul is only <code>{ type: &#39;noul&#39;, noul: number }</code>.</strong> Question IDs are application keys, not a replacement for complete instructions. A count of Choice options must not become a blanket question-count limit.</p>
+<p>The API reference suggests backoff for certain upstream errors. The optional Worker in this project does not implement automatic retries; its request budget and conservative failure behavior are local choices, not a claim about all TypeSafe clients.</p>
+<h2>Published commercial figures</h2>
+<p>Primary source: <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Introducing System One Models &amp; Jev</a>, especially <strong>Evidence / Technical Results</strong> and <strong>Workflow evals / Nuance</strong>. The <a href="https://typesafe.ai/">TypeSafe homepage</a> is also the visual source of the prominent multipliers.</p>
+<table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Source status</th>
+<th>Project treatment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$42 per billion input tokens; output free</td>
+<td>Published TypeSafe pricing in the launch article</td>
+<td>USD workload arithmetic; input tokens include state and questions</td>
+</tr>
+<tr>
+<td>70–500 ms end-to-end response range</td>
+<td>Published TypeSafe description</td>
+<td>Context for an illustration, not a guaranteed SLA or local measurement</td>
+</tr>
+<tr>
+<td>193.6× faster / 444.6× cheaper</td>
+<td>Published specific-workflow results; source says likely toward the higher end of real-world gains</td>
+<td>Only used to derive illustrative comparator values, never represented as measured Claims One benefit</td>
+</tr>
+<tr>
+<td>114 ms</td>
+<td>Local illustrative constant in <code>src/economics.ts</code></td>
+<td>A scenario assumption inside the published range; not asserted as an independently verified typical Jev latency</td>
+</tr>
+</tbody></table>
+<p>The comparator is not a separately researched pricing schedule, a matched claims workload benchmark, a throughput study, or a promise of customer savings. No inference was run to validate any of these figures. Source figures can change; update code, UI, documentation, and tests together if the assumptions change.</p>
+<p>The launch article&#39;s type-safety discussion concerns constrained output structure. This project does <strong>not</strong> convert that into a guarantee of truthful claim content, accurate policy interpretation, medical safety, fraud detection, or insurance coverage. Runtime validation remains necessary at the integration boundary.</p>
+<h2>Brand sources and rights</h2>
+<p>The detailed record is <a href="BRAND.html">Brand reference</a>, with <a href="brand/index.html">visual guide</a> and <a href="brand/observations.json">measured observations</a>.</p>
+<ul>
+<li><a href="https://typesafe.ai/">TypeSafe homepage</a> — literal wordmark treatment, editorial hierarchy, sky imagery, colors, and voice.</li>
+<li><a href="https://typesafe.ai/enterprise">Enterprise page</a> — public positioning; it does not disclose a complete customer or application inventory.</li>
+<li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Launch article</a> — evidence/nuance writing structure.</li>
+<li><a href="https://klim.co.nz/retail-fonts/die-grotesk/">Die Grotesk foundry page</a> and <a href="https://klim.co.nz/licences/">Klim licences</a> — commercial typography context, not permission to distribute fonts.</li>
+<li><code>docs/brand/fragment-mono-license.txt</code> — preserved SIL Open Font License for the bundled Fragment Mono font.</li>
+</ul>
+<h3>Bundled asset ledger</h3>
+<table>
+<thead>
+<tr>
+<th>Repository asset</th>
+<th>Public source / owner record</th>
+<th>Reuse boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>public/brand/typesafe-wordmark.svg</code></td>
+<td><a href="https://typesafe.ai/">TypeSafe homepage</a>; transparent outlined rendering of its Die Grotesk C Medium textual wordmark</td>
+<td>Third-party mark and font-derived reference; no unrestricted trademark/font permission established</td>
+</tr>
+<tr>
+<td><code>public/brand/typesafe-sky.png</code></td>
+<td><a href="https://framerusercontent.com/images/khHXfJSV1hyOxMqy8loI0dIEz4.png">Homepage sky artwork</a>, observed on TypeSafe&#39;s public site</td>
+<td>Third-party artwork; no unrestricted reuse permission established</td>
+</tr>
+<tr>
+<td><code>public/brand/typesafe-home-desktop.png</code>, <code>typesafe-home-desktop-viewport.png</code>, <code>typesafe-home-mobile.png</code>, <code>typesafe-home-mobile-viewport.png</code></td>
+<td><a href="https://typesafe.ai/">TypeSafe homepage</a>, public-site captures dated 11 October 2026 in the brand record</td>
+<td>Screenshot content remains third-party; visual reference, not app verification</td>
+</tr>
+<tr>
+<td><code>public/brand/typesafe-enterprise-desktop.png</code>, <code>typesafe-enterprise-desktop-viewport.png</code></td>
+<td><a href="https://typesafe.ai/enterprise">TypeSafe enterprise page</a>, same capture record</td>
+<td>Same screenshot/reference boundary</td>
+</tr>
+<tr>
+<td><code>public/brand/typesafe-blog-desktop.png</code>, <code>typesafe-blog-desktop-viewport.png</code></td>
+<td><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Launch article</a>, same capture record</td>
+<td>Same screenshot/reference boundary</td>
+</tr>
+<tr>
+<td><code>public/brand/fragment-mono-latin-400.woff2</code></td>
+<td><a href="https://fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnB4NHhg.woff2">Public font file</a>; <a href="https://raw.githubusercontent.com/google/fonts/main/ofl/fragmentmono/OFL.txt">upstream OFL notice</a></td>
+<td>SIL Open Font License 1.1, copyright 2022 The Fragment-Mono Project Authors; full notice retained in <code>docs/brand/fragment-mono-license.txt</code></td>
+</tr>
+<tr>
+<td><code>public/favicon.svg</code></td>
+<td>Original Claims One initials icon</td>
+<td>First-party MIT scope, not a TypeSafe trademark grant</td>
+</tr>
+</tbody></table>
+<p>The static build preserves every <code>public/brand/</code> file and the brand guide, observations, and font license. <a href="LICENSE.html">License and rights</a> applies MIT only to original work and explicitly excludes third-party marks, imagery, captures, fonts, and dependency rights.</p>
+<p>Screenshots, the TypeSafe AI trademark, the wordmark reference rendering, and sky imagery remain third-party material. Public URLs are provenance, not unrestricted reuse grants. The interface uses an explicitly approximate system sans-serif fallback instead of redistributing commercial headline fonts. Broader commercial reuse needs an appropriate rights review.</p>
+<h2>Local evidence and what it cannot prove</h2>
+<table>
+<thead>
+<tr>
+<th>Repository evidence</th>
+<th>Demonstrates</th>
+<th>Does not demonstrate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/mock.ts</code> and <code>src/samples.ts</code></td>
+<td>Deliberately specified synthetic responses to exact invented narratives, generic uncertain responses otherwise</td>
+<td>Model understanding or measured Jev outputs</td>
+</tr>
+<tr>
+<td><code>src/routing.ts</code></td>
+<td>Explicit simulated holds and delegation logic</td>
+<td>Valid insurer policy or payment authorization</td>
+</tr>
+<tr>
+<td><code>src/evals.ts</code></td>
+<td>Deterministic row construction and actual calculations over 240 labeled variations</td>
+<td>Independent labeling, live calibration, population-representative accuracy, or usage analysis</td>
+</tr>
+<tr>
+<td><code>src/economics.ts</code></td>
+<td>Transparent units and ratio-derived arithmetic</td>
+<td>A matched independent LLM benchmark or total operating cost</td>
+</tr>
+<tr>
+<td><code>worker/index.ts</code> and offline transport tests</td>
+<td>Security controls in source and injected-test coverage</td>
+<td>Deployed security posture, approved real-data handling, or live API compatibility</td>
+</tr>
+<tr>
+<td><a href="TEST-RESULTS.html">Test results</a></td>
+<td>Only the commands and checks actually recorded there</td>
+<td>Unrecorded browser, public availability, or production results</td>
+</tr>
+</tbody></table>
+<p>No customer interviews, client results, independent accuracy studies, or TypeSafe internal usage data were collected for these product documents. Discovery statements are labeled hypotheses or proposed experiments. No claim is made that TypeSafe has zero enterprise applications; public sources cannot establish that inventory, and the existing insurance cookbook is explicit contrary evidence to a first-insurance claim.</p>
+</main><footer>An independent concept by Ayo Ahmed.</footer></body></html>
